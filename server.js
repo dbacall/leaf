@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 const db = require("./config/keys").mongoURI;
+const passport = require("passport");
+const users = require("./routes/api/users");
 
 app.use(
   bodyParser.urlencoded({
@@ -16,6 +18,13 @@ mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+// Routes
+app.use("/users", users);
 
 const port = process.env.PORT || 5000;
 
