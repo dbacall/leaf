@@ -1,10 +1,15 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const passport = require('passport');
 const app = express();
-const db = require("./config/keys").mongoURI;
-const passport = require("passport");
-const users = require("./routes/api/users");
+const db = require('./config/keys').mongoURI;
+const users = require('./routes/api/users');
+const path = require('path');
+
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(
   bodyParser.urlencoded({
@@ -14,17 +19,27 @@ app.use(
 
 app.use(bodyParser.json());
 
-mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB successfully connected"))
-  .catch((err) => console.log(err));
+if (process.env.npm_lifecycle_event !== 'development') {
+  mongoose
+    .connect(
+      'mongodb+srv://dbacall:fsl20@cluster0.vekgo.mongodb.net/fantasy-sunday-league-test?retryWrites=true&w=majority',
+      { useNewUrlParser: true, useUnifiedTopology: true }
+    )
+    .then(() => console.log('Connected to test database!'))
+    .catch((err) => console.log(err));
+} else {
+  mongoose
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB successfully connected'))
+    .catch((err) => console.log(err));
+}
 
 // Passport middleware
 app.use(passport.initialize());
 // Passport config
-require("./config/passport")(passport);
+require('./config/passport')(passport);
 // Routes
-app.use("/users", users);
+app.use('/users', users);
 
 const port = process.env.PORT || 5000;
 
