@@ -19,18 +19,18 @@ app.use(
 
 app.use(bodyParser.json());
 
-if (process.env.npm_lifecycle_event !== 'development') {
+if (process.env.NODE_ENV !== 'test') {
+  mongoose
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB successfully connected'))
+    .catch((err) => console.log(err));
+} else {
   mongoose
     .connect(
       'mongodb+srv://dbacall:fsl20@cluster0.vekgo.mongodb.net/fantasy-sunday-league-test?retryWrites=true&w=majority',
       { useNewUrlParser: true, useUnifiedTopology: true }
     )
     .then(() => console.log('Connected to test database!'))
-    .catch((err) => console.log(err));
-} else {
-  mongoose
-    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB successfully connected'))
     .catch((err) => console.log(err));
 }
 
