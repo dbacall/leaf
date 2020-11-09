@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const User = require('../models/User');
-const registerHelpers = require('./helpers/register_helpers');
+const registerHelpers = require('./helpers/register_helpers').default;
 
 describe('Register', () => {
   it('should register a user', async () => {
@@ -22,7 +22,7 @@ describe('Register', () => {
   });
 
   it('lets you register more than one user', async () => {
-    for (i = 0; i <= 10; i++) {
+    for (var i = 0; i <= 10; i++) {
       await registerHelpers.registerUser(
         'David',
         'Bacall',
