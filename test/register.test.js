@@ -22,24 +22,18 @@ describe('Register routes', () => {
   });
 
   it('lets you register more than one user', async () => {
-    await registerHelpers.registerUser(
-      'David',
-      'Bacall',
-      'dbacall@hotmail.co.uk',
-      'password',
-      'password'
-    );
-
-    await registerHelpers.registerUser(
-      'David',
-      'Bacall',
-      'dbacall2@hotmail.co.uk',
-      'password',
-      'password'
-    );
+    for (i = 0; i <= 10; i++) {
+      await registerHelpers.registerUser(
+        'David',
+        'Bacall',
+        `dbacall${i}@hotmail.co.uk`,
+        'password',
+        'password'
+      );
+    }
 
     await User.find().then((res) => {
-      expect(res).to.be.length(2);
+      expect(res).to.be.length(11);
     });
   });
 
