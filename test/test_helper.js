@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-before(() => {
-  process.env.NODE_ENV = 'test';
-});
 
-beforeEach((done) => {
-  mongoose.connection.collections.users.drop(() => {
-    done();
-  });
+beforeEach(async () => {
+  await mongoose.connection.collections.users.drop(() => {});
 });
 
 // afterEach((done) => {
