@@ -1,8 +1,6 @@
 const expect = require('chai').expect;
-const User = require('../models/User');
 const registerHelpers = require('./helpers/register_helpers');
-const supertest = require('supertest');
-const app = require('../server');
+const loginHelpers = require('./helpers/login_helpers');
 
 describe('Login routes', () => {
   it('should login a registered user', async () => {
@@ -14,17 +12,12 @@ describe('Login routes', () => {
       'password'
     );
 
-    const data = {
-      email: 'dbacall@hotmail.co.uk',
-      password: 'password',
-    };
+    var data = await loginHelpers.loginUser(
+      'dbacall@hotmail.co.uk',
+      'password'
+    );
 
-    await supertest(app)
-      .post('/users/login')
-      .send(data)
-      .then((res) => {
-        expect(res.body.success).to.be.true;
-        expect(res.body.token).to.exist;
-      });
+    expect(data.body.success).to.be.true;
+    expect(data.body.token).to.exist;
   });
 });
