@@ -64,4 +64,13 @@ describe('Register routes', () => {
       'Password must be at least 6 characters'
     );
   });
+
+  it('should return errors if fields are left empty', async () => {
+    const data = await registerHelpers.registerUser('', '', '', '', '');
+    expect(data.body.firstName).to.equal('First Name field is required');
+    expect(data.body.surname).to.equal('Surname field is required');
+    expect(data.body.email).to.equal('Email field is required');
+    expect(data.body.password).to.equal('Password field is required');
+    expect(data.body.password2).to.equal('Confirm password field is required');
+  });
 });
