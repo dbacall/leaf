@@ -1,17 +1,17 @@
 const supertest = require('supertest');
 const app = require('../../server');
 
-const data = {
-  firstName: 'David',
-  surname: 'Bacall',
-  email: 'dbacall@hotmail.com',
-  password: 'password',
-  password2: 'password',
-};
-
 const registerHelpers = {
-  registerUser: async () => {
+  registerUser: async (firstName, surname, email, password, password2) => {
     var result = {};
+
+    const data = {
+      firstName: firstName,
+      surname: surname,
+      email: email,
+      password: password,
+      password2: password2,
+    };
 
     await supertest(app)
       .post('/users/register')
