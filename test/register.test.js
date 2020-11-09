@@ -1,5 +1,3 @@
-const supertest = require('supertest');
-const app = require('../server');
 const expect = require('chai').expect;
 const User = require('../models/User');
 const registerHelpers = require('./helpers/register_helpers');
@@ -23,6 +21,28 @@ describe('Register routes', () => {
     });
   });
 
+  it('lets you register more than one user', async () => {
+    await registerHelpers.registerUser(
+      'David',
+      'Bacall',
+      'dbacall@hotmail.co.uk',
+      'password',
+      'password'
+    );
+
+    await registerHelpers.registerUser(
+      'David',
+      'Bacall',
+      'dbacall2@hotmail.co.uk',
+      'password',
+      'password'
+    );
+
+    await User.find().then((res) => {
+      expect(res).to.be.length(2);
+    });
+  });
+
   it('should return an error if a user with the same email tries to register', async () => {
     await registerHelpers.registerUser(
       'David',
@@ -39,6 +59,17 @@ describe('Register routes', () => {
       'password'
     );
     expect(data.body.email).to.equal('Email already exists');
+  });
+
+  it('should return an error if the email is invalid', async () => {
+    const data = await registerHelpers.registerUser(
+      'David',
+      'Bacall',
+      'dbacallhotmail.co.uk',
+      'password',
+      'password'
+    );
+    expect(data.body.email).to.equal('Email is invalid');
   });
 
   it("should return an error if a users passwords don't match", async () => {
