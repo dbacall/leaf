@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const app = express();
 const db = require('./config/keys').mongoURI;
-const users = require('./routes/api/users').default;
+const users = require('./routes/api/users');
 
 const cors = require('cors');
 

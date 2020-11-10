@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix client",
+    "client": "npm start --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "NODE_ENV=test nodemon --exec 'mocha -R min'"
   },
@@ -29,7 +29,6 @@
     "validator": "^13.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.13.0",
     "eslint-plugin-react": "^7.21.5",
     "nodemon": "^2.0.2"
   }

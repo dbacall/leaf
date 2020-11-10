@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { logoutUser } from "../actions/authActions";
-import "./styles/navbar.css";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logoutUser } from '../actions/authActions';
+import './styles/navbar.css';
 
 class Navbar extends Component {
-  onLogoutClick = e => {
+  onLogoutClick = (e) => {
     e.preventDefault();
     this.props.logoutUser();
   };
 
-  renderLogOutButton = user => {
-    if (typeof user.id === "string") {
+  renderLogOutButton = (user) => {
+    if (typeof user.id === 'string') {
       return (
         <button
           style={{
-            width: "150px",
-            borderRadius: "3px",
-            letterSpacing: "1.5px",
-            marginTop: "1rem"
+            width: '150px',
+            borderRadius: '3px',
+            letterSpacing: '1.5px',
+            marginTop: '1rem',
           }}
           onClick={this.onLogoutClick}
           className="btn btn-success log-out-btn"
@@ -38,11 +38,11 @@ class Navbar extends Component {
             <Link
               to="/"
               style={{
-                fontFamily: "monospace"
+                fontFamily: 'monospace',
               }}
               className="col s5 brand-logo center black-text"
             >
-              Movie Bucket List
+              Fantasy Me
             </Link>
           </div>
           {this.renderLogOutButton(user)}
@@ -52,8 +52,8 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { logoutUser })(Navbar);
