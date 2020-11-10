@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const SundayLeague = require('./SundayLeague');
 
 const userSchema = new Schema({
   firstName: {
@@ -22,6 +23,12 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  sundayLeagues: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'SundayLeague',
+    },
+  ],
 });
 
 module.exports = User = mongoose.model('users', userSchema);

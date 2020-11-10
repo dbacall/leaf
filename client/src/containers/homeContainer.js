@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import Home from '../components/home';
 
 const HomeContainer = () => {
-  const name = useSelector((state) => state.auth.user.name);
+  const user = useSelector((state) => state.auth.user);
 
-  return <Home name={name} />;
+  return <Home user={user} />;
 };
 
 export default HomeContainer;

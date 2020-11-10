@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const sundayLeagueSchema = new Schema({
-  name: String,
+  leagueName: String,
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User',
