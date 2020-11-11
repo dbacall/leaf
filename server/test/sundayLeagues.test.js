@@ -2,6 +2,9 @@ const expect = require('chai').expect;
 const registerHelpers = require('./helpers/register_helpers');
 const Sundayleague = require('../models/SundayLeague');
 const sundayLeagueHelpers = require('./helpers/sundayLeague_helpers');
+const supertest = require('supertest');
+const app = require('../server');
+
 describe('Sunday League', () => {
   it('lets a user add a sunday league', async () => {
     const user = await registerHelpers.registerUser(
@@ -37,5 +40,12 @@ describe('Sunday League', () => {
       'password',
       'password'
     );
+
+    await sundayLeagueHelpers.addLeague('league1', user._id);
+    await supertest(app)
+      .get(`/sunday-leagues/${user._id}`)
+      .then((res) => {
+        expect(res.body).to.be.length(1);
+      });
   });
 });

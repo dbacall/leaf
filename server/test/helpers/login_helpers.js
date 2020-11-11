@@ -17,7 +17,7 @@ const loginHelpers = {
         result = res;
       });
 
-    return result;
+    return result.body;
   },
 };
 

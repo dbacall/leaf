@@ -17,8 +17,8 @@ describe('Login', () => {
       'password'
     );
 
-    expect(data.body.success).to.be.true;
-    expect(data.body.token).to.exist;
+    expect(data.success).to.be.true;
+    expect(data.token).to.exist;
   });
 
   it('should return an error if user is not registered', async () => {
@@ -27,7 +27,7 @@ describe('Login', () => {
       'password'
     );
 
-    expect(data.body.emailnotfound).to.equal('Email not found');
+    expect(data.emailnotfound).to.equal('Email not found');
   });
 
   it('should return an error if user inputs wrong password', async () => {
@@ -41,7 +41,7 @@ describe('Login', () => {
 
     var data = await loginHelpers.loginUser('dbacall@hotmail.co.uk', 'passwo');
 
-    expect(data.body.passwordIncorrect).to.equal('Password incorrect');
+    expect(data.passwordIncorrect).to.equal('Password incorrect');
   });
 
   it('should return errors if email and password field are left empty', async () => {
@@ -55,7 +55,7 @@ describe('Login', () => {
 
     var data = await loginHelpers.loginUser('', '');
 
-    expect(data.body.email).to.equal('Email field is required');
-    expect(data.body.password).to.equal('Password field is required');
+    expect(data.email).to.equal('Email field is required');
+    expect(data.password).to.equal('Password field is required');
   });
 });

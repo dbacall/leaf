@@ -15,7 +15,7 @@ const sundayLeagueHelpers = {
         result = res;
       });
 
-    return result;
+    return result.body;
   },
 };
 
