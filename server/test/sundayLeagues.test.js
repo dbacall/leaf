@@ -32,7 +32,7 @@ describe('Sunday League', () => {
     expect(league.owner.email).to.equal('dbacall@hotmail.co.uk');
   });
 
-  it.only('retrieves a users owned sunday leagues', async () => {
+  it('retrieves a users owned sunday leagues', async () => {
     const user = await registerHelpers.registerUser(
       'David',
       'Bacall',

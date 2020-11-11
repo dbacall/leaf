@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles/home.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
   const [createLeague, setCreateLeague] = useState(false);
@@ -20,7 +21,8 @@ const Home = (props) => {
   return (
     <div>
       <h1>Home</h1>
-      <h2>Hello {props.user.name}</h2>
+      <Link to="/my-sunday-leagues">My Sunday Leagues</Link>
+      <h2>Hello {props.user.firstName}</h2>
       <button onClick={() => setCreateLeague(!createLeague)}>
         Create Sunday League
       </button>
