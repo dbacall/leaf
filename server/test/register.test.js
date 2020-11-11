@@ -52,7 +52,7 @@ describe('Register', () => {
       'password',
       'password'
     );
-    expect(data.body.email).to.equal('Email already exists');
+    expect(data.email).to.equal('Email already exists');
   });
 
   it('should return an error if the email is invalid', async () => {
@@ -63,7 +63,7 @@ describe('Register', () => {
       'password',
       'password'
     );
-    expect(data.body.email).to.equal('Email is invalid');
+    expect(data.email).to.equal('Email is invalid');
   });
 
   it("should return an error if a users passwords don't match", async () => {
@@ -74,7 +74,7 @@ describe('Register', () => {
       'password',
       'passworfdds'
     );
-    expect(data.body.password2).to.equal('Passwords must match');
+    expect(data.password2).to.equal('Passwords must match');
   });
 
   it('should return an error if the password is less than 6 characters', async () => {
@@ -85,17 +85,15 @@ describe('Register', () => {
       'passw',
       'passw'
     );
-    expect(data.body.password).to.equal(
-      'Password must be at least 6 characters'
-    );
+    expect(data.password).to.equal('Password must be at least 6 characters');
   });
 
   it('should return errors if fields are left empty', async () => {
     const data = await registerHelpers.registerUser('', '', '', '', '');
-    expect(data.body.firstName).to.equal('First Name field is required');
-    expect(data.body.surname).to.equal('Surname field is required');
-    expect(data.body.email).to.equal('Email field is required');
-    expect(data.body.password).to.equal('Password field is required');
-    expect(data.body.password2).to.equal('Confirm password field is required');
+    expect(data.firstName).to.equal('First Name field is required');
+    expect(data.surname).to.equal('Surname field is required');
+    expect(data.email).to.equal('Email field is required');
+    expect(data.password).to.equal('Password field is required');
+    expect(data.password2).to.equal('Confirm password field is required');
   });
 });

@@ -38,9 +38,7 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(passport.initialize());
 // Passport config
 require('./config/passport')(passport);
-// Models
-// require('./models/User');
-// require('./models/SundayLeague');
+
 // Routes
 app.use('/users', users);
 app.use('/sunday-leagues', sundayLeagues);
