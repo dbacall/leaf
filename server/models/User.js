@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const SundayLeague = require('./SundayLeague');
 
 const userSchema = new Schema({
   firstName: {

@@ -20,7 +20,7 @@ const registerHelpers = {
         result = res;
       });
 
-    return result;
+    return result.body;
   },
 };
 

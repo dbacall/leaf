@@ -5,7 +5,7 @@ const sundayLeagueSchema = new Schema({
   leagueName: String,
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'users',
   },
 });
 

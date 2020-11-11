@@ -4,6 +4,7 @@ mongoose.Promise = global.Promise;
 
 beforeEach(async () => {
   await mongoose.connection.collections.users.drop(() => {});
+  await mongoose.connection.collections.sundayleagues.drop(() => {});
 });
 
 // afterEach((done) => {
