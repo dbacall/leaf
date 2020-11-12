@@ -6,8 +6,8 @@ const MySundayLeagues = (props) => {
     <div>
       <h1>My Sunday Leagues</h1>
 
-      {props.leagues.length > 0
-        ? props.leagues.map((league) => {
+      {props.sundayLeagues.leagues.length > 0
+        ? props.sundayLeagues.leagues.map((league) => {
             return <p>{league.leagueName}</p>;
           })
         : null}
