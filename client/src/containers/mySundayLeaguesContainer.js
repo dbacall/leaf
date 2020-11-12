@@ -14,7 +14,12 @@ const MySundayLeaguesContainer = () => {
     dispatch(fetchSundayLeagues(user.id));
   }, [user]);
 
-  return <MySundayLeagues sundayLeagues={sundayLeagues} />;
+  return (
+    <MySundayLeagues
+      leagues={sundayLeagues.leagues}
+      status={sundayLeagues.status}
+    />
+  );
 };
 
 export default MySundayLeaguesContainer;

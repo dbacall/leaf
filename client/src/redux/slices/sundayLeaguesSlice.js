@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   leagues: [],
-  status: 'idle',
+  status: 'loading',
 };
 
 export const fetchSundayLeagues = createAsyncThunk(
@@ -36,6 +36,6 @@ const sundayLeaguesSlice = createSlice({
   },
 });
 
-export const { updateSundayLeagues } = sundayLeaguesSlice.actions;
+export const {} = sundayLeaguesSlice.actions;
 
 export default sundayLeaguesSlice.reducer;
