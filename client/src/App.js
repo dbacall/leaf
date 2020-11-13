@@ -13,6 +13,7 @@ import Register from './components/register';
 import Login from './components/login';
 import Home from './containers/homeContainer';
 import MySundayLeagues from './containers/mySundayLeaguesContainer';
+import SundayLeague from './containers/sundayLeagueContainer';
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -42,6 +43,10 @@ class App extends Component {
                 exact
                 path="/my-sunday-leagues"
                 component={MySundayLeagues}
+              />
+              <PrivateRoute
+                path="/sunday-league/:id"
+                component={SundayLeague}
               />
             </Switch>
           </div>

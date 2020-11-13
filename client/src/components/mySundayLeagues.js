@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
+import { Link } from 'react-router-dom';
 
 const MySundayLeagues = ({ status, leagues }) => {
   return (
@@ -11,7 +12,16 @@ const MySundayLeagues = ({ status, leagues }) => {
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
       ) : (
         leagues.map((league) => {
-          return <p>{league.leagueName}</p>;
+          return (
+            <Link
+              to={{
+                pathname: `/sunday-league/${league._id}`,
+                state: { league: league },
+              }}
+            >
+              {league.leagueName}
+            </Link>
+          );
         })
       )}
     </div>
