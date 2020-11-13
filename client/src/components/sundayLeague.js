@@ -8,6 +8,7 @@ const SundayLeague = ({ league, submitTeam }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     submitTeam(teamName);
+    setTeamName('');
   };
 
   return (

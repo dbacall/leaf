@@ -1,4 +1,5 @@
 const SundayLeagueTeam = require('../models/SundayLeagueTeam');
+const SundayLeague = require('../models/SundayLeague');
 
 const sundayLeagueTeamController = {
   addTeam: async (req, res) => {
@@ -16,6 +17,12 @@ const sundayLeagueTeamController = {
       .catch(() => {
         res.status(400).json('Team could not be added.');
       });
+
+    const sundayLeague = await SundayLeague.findOne({
+      _id: newSundayLeagueTeam.league,
+    });
+    sundayLeague.teams.push(newSundayLeagueTeam);
+    await sundayLeague.save();
   },
 };
 
