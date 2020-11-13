@@ -14,7 +14,7 @@ const addSundayLeague = async (name, id) => {
       result = res;
     });
 
-  return result.body;
+  return result;
 };
 
 module.exports.addSundayLeague = addSundayLeague;

@@ -13,14 +13,16 @@ const MySundayLeagues = ({ status, leagues }) => {
       ) : (
         leagues.map((league) => {
           return (
-            <Link
-              to={{
-                pathname: `/sunday-league/${league._id}`,
-                state: { league: league },
-              }}
-            >
-              {league.leagueName}
-            </Link>
+            <div>
+              <Link
+                to={{
+                  pathname: `/sunday-league/${league._id}`,
+                  state: { league: league },
+                }}
+              >
+                {league.leagueName}
+              </Link>
+            </div>
           );
         })
       )}

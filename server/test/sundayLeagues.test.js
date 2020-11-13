@@ -18,9 +18,7 @@ describe('Sunday League', () => {
 
     const leagueAdded = await addSundayLeague('league1', user._id);
 
-    expect(leagueAdded).to.equal(
-      'Sunday League successfully added to database.'
-    );
+    expect(leagueAdded.status).to.equal(200);
 
     var league = await Sundayleague.findOne({ leagueName: 'league1' }).populate(
       'owner'

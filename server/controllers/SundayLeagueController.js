@@ -1,4 +1,5 @@
 const SundayLeague = require('../models/SundayLeague');
+const User = require('../models/User');
 
 const SundayLeagueController = {
   create: async (req, res) => {
@@ -15,6 +16,10 @@ const SundayLeagueController = {
       .catch(() => {
         res.status(400).json('Sunday League could not be saved to database.');
       });
+
+    const user = await User.findOne({ _id: newSundayLeague.owner });
+    user.sundayLeagues.push(newSundayLeague);
+    await user.save();
   },
 
   getOwnedLeagues: async (req, res) => {

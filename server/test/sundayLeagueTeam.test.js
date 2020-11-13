@@ -8,7 +8,7 @@ const SundayLeagueTeam = require('../models/SundayLeagueTeam');
 const SundayLeague = require('../models/SundayLeague');
 
 describe('Team', () => {
-  it.only('should let a user add a team to a league', async () => {
+  it('should let a user add a team to a league', async () => {
     const user = await registerUser(
       'David',
       'Bacall',

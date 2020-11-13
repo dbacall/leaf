@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './styles/sunday-league.css';
 
-const SundayLeague = ({ league }) => {
+const SundayLeague = ({ league, submitTeam }) => {
   const [addTeam, setAddTeam] = useState(false);
   const [teamName, setTeamName] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submitTeam(teamName);
+  };
 
   return (
     <div>
@@ -11,7 +16,7 @@ const SundayLeague = ({ league }) => {
       <button onClick={() => setAddTeam(!addTeam)}>Add Team</button>
       {addTeam ? (
         <div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               className="add-team-input"
               type="text"
@@ -23,6 +28,7 @@ const SundayLeague = ({ league }) => {
           </form>
         </div>
       ) : null}
+      <h2>Teams</h2>
     </div>
   );
 };
