@@ -3,14 +3,14 @@ import './styles/home.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Home = (props) => {
+const Home = ({ user }) => {
   const [createLeague, setCreateLeague] = useState(false);
   const [leagueName, setLeagueName] = useState('');
 
   const submitLeague = () => {
     const data = {
       leagueName: leagueName,
-      owner: props.user.id,
+      owner: user.id,
     };
 
     axios.post('http://localhost:5000/sunday-leagues/new', data).then((res) => {
@@ -22,7 +22,7 @@ const Home = (props) => {
     <div>
       <h1>Home</h1>
       <Link to="/my-sunday-leagues">My Sunday Leagues</Link>
-      <h2>Hello {props.user.firstName}</h2>
+      <h2>Hello {user.firstName}</h2>
       <button onClick={() => setCreateLeague(!createLeague)}>
         Create Sunday League
       </button>

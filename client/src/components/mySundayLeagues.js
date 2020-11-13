@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 
-const MySundayLeagues = (props) => {
+const MySundayLeagues = ({ status, leagues }) => {
   return (
     <div>
       <h1>My Sunday Leagues</h1>
 
-      {props.status == 'loading' ? (
+      {status == 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
       ) : (
-        props.leagues.map((league) => {
+        leagues.map((league) => {
           return <p>{league.leagueName}</p>;
         })
       )}
