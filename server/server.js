@@ -6,6 +6,7 @@ const app = express();
 const db = require('./config/keys').mongoURI;
 const users = require('./routes/users');
 const sundayLeagues = require('./routes/sundayLeagues');
+const sundayLeagueTeam = require('./routes/sundayLeagueTeam');
 
 const cors = require('cors');
 
@@ -42,6 +43,7 @@ require('./config/passport')(passport);
 // Routes
 app.use('/users', users);
 app.use('/sunday-leagues', sundayLeagues);
+app.use('/sunday-leagues/team', sundayLeagueTeam);
 
 const port = process.env.PORT || 5000;
 

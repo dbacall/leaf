@@ -7,6 +7,12 @@ const sundayLeagueSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users',
   },
+  teams: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'SundayLeagueTeam',
+    },
+  ],
 });
 
 module.exports = mongoose.model('SundayLeague', sundayLeagueSchema);
