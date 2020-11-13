@@ -1,24 +1,22 @@
 const supertest = require('supertest');
 const app = require('../../server');
 
-const loginHelpers = {
-  loginUser: async (email, password) => {
-    const data = {
-      email: email,
-      password: password,
-    };
+const loginUser = async (email, password) => {
+  const data = {
+    email: email,
+    password: password,
+  };
 
-    var result = {};
+  var result = {};
 
-    await supertest(app)
-      .post('/users/login')
-      .send(data)
-      .then((res) => {
-        result = res;
-      });
+  await supertest(app)
+    .post('/users/login')
+    .send(data)
+    .then((res) => {
+      result = res;
+    });
 
-    return result.body;
-  },
+  return result.body;
 };
 
-module.exports = loginHelpers;
+module.exports.loginUser = loginUser;

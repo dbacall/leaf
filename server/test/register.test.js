@@ -1,10 +1,10 @@
 const expect = require('chai').expect;
 const User = require('../models/User');
-const registerHelpers = require('./helpers/register_helpers');
+const registerUser = require('./helpers/register_helpers').registerUser;
 
 describe('Register', () => {
   it('should register a user', async () => {
-    await registerHelpers.registerUser(
+    await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
@@ -23,7 +23,7 @@ describe('Register', () => {
 
   it('lets you register more than one user', async () => {
     for (var i = 0; i <= 10; i++) {
-      await registerHelpers.registerUser(
+      await registerUser(
         'David',
         'Bacall',
         `dbacall${i}@hotmail.co.uk`,
@@ -38,14 +38,14 @@ describe('Register', () => {
   });
 
   it('should return an error if a user with the same email tries to register', async () => {
-    await registerHelpers.registerUser(
+    await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
       'password',
       'password'
     );
-    const data = await registerHelpers.registerUser(
+    const data = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
@@ -56,7 +56,7 @@ describe('Register', () => {
   });
 
   it('should return an error if the email is invalid', async () => {
-    const data = await registerHelpers.registerUser(
+    const data = await registerUser(
       'David',
       'Bacall',
       'dbacallhotmail.co.uk',
@@ -67,7 +67,7 @@ describe('Register', () => {
   });
 
   it("should return an error if a users passwords don't match", async () => {
-    const data = await registerHelpers.registerUser(
+    const data = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
@@ -78,7 +78,7 @@ describe('Register', () => {
   });
 
   it('should return an error if the password is less than 6 characters', async () => {
-    const data = await registerHelpers.registerUser(
+    const data = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
@@ -89,7 +89,7 @@ describe('Register', () => {
   });
 
   it('should return errors if fields are left empty', async () => {
-    const data = await registerHelpers.registerUser('', '', '', '', '');
+    const data = await registerUser('', '', '', '', '');
     expect(data.firstName).to.equal('First Name field is required');
     expect(data.surname).to.equal('Surname field is required');
     expect(data.email).to.equal('Email field is required');

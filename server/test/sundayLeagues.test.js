@@ -1,13 +1,14 @@
 const expect = require('chai').expect;
-const registerHelpers = require('./helpers/register_helpers');
+const registerUser = require('./helpers/register_helpers').registerUser;
 const Sundayleague = require('../models/SundayLeague');
-const sundayLeagueHelpers = require('./helpers/sundayLeague_helpers');
+const addSundayLeague = require('./helpers/sundayLeague_helpers')
+  .addSundayLeague;
 const supertest = require('supertest');
 const app = require('../server');
 
 describe('Sunday League', () => {
   it('lets a user add a sunday league', async () => {
-    const user = await registerHelpers.registerUser(
+    const user = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
@@ -15,10 +16,7 @@ describe('Sunday League', () => {
       'password'
     );
 
-    const leagueAdded = await sundayLeagueHelpers.addLeague(
-      'league1',
-      user._id
-    );
+    const leagueAdded = await addSundayLeague('league1', user._id);
 
     expect(leagueAdded).to.equal(
       'Sunday League successfully added to database.'
@@ -33,7 +31,7 @@ describe('Sunday League', () => {
   });
 
   it('retrieves a users owned sunday leagues', async () => {
-    const user = await registerHelpers.registerUser(
+    const user = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
@@ -41,7 +39,7 @@ describe('Sunday League', () => {
       'password'
     );
 
-    await sundayLeagueHelpers.addLeague('league1', user._id);
+    await addSundayLeague('league1', user._id);
     await supertest(app)
       .get(`/sunday-leagues/${user._id}`)
       .then((res) => {
