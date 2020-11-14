@@ -8,7 +8,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "NODE_ENV=test nodemon --exec 'mocha -R min'"
+    "test": "NODE_ENV=test nodemon --exec 'nyc mocha -R min'"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "mocha": "^8.2.1",
     "mongoose": "^5.9.7",
+    "nyc": "^15.1.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "supertest": "^6.0.1",
