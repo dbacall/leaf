@@ -1,6 +1,8 @@
 const registerUser = require('./helpers/register_helpers').registerUser;
 const addSundayLeague = require('./helpers/sundayLeague_helpers')
   .addSundayLeague;
+const addTeamToLeague = require('./helpers/sundayLeagueTeam_helpers')
+  .addTeamToLeague;
 const supertest = require('supertest');
 const app = require('../server');
 const expect = require('chai').expect;
@@ -18,16 +20,14 @@ describe('Team', () => {
     );
 
     const leagueAdded = await addSundayLeague('league1', user._id);
-    data = {
+
+    await addTeamToLeague('team1', leagueAdded.body.league.id);
+
+    const result = await SundayLeagueTeam.findOne({
       teamName: 'team1',
-      league: leagueAdded.body.league.id,
-    };
+    });
 
-    await supertest(app).post('/sunday-leagues/team').send(data);
-    const result = await SundayLeagueTeam.findOne({ teamName: 'team1' });
     expect(result.teamName).to.equal('team1');
-
-    const leagues = await SundayLeague.find().populate('teams');
-    console.log(leagues[0].teams);
+    expect(result.league.toString()).to.eq(leagueAdded.body.league.id);
   });
 });
