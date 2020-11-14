@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
 const registerUser = require('./helpers/register_helpers').registerUser;
 const Sundayleague = require('../models/SundayLeague');
+const User = require('../models/User');
 const addSundayLeague = require('./helpers/sundayLeague_helpers')
   .addSundayLeague;
 const supertest = require('supertest');
@@ -17,7 +18,7 @@ describe('Sunday League', () => {
     );
 
     const leagueAdded = await addSundayLeague('league1', user._id);
-    console.log(leagueAdded);
+    console.log(leagueAdded.body);
 
     expect(leagueAdded.status).to.equal(200);
     expect(leagueAdded.body.success).to.be.true;
@@ -28,6 +29,9 @@ describe('Sunday League', () => {
 
     expect(league.leagueName).to.equal('league1');
     expect(league.owner.email).to.equal('dbacall@hotmail.co.uk');
+
+    const users = await User.find().populate('sundayLeaguesOwned');
+    console.log(users[0].sundayLeaguesOwned);
   });
 
   it('retrieves a users owned sunday leagues', async () => {

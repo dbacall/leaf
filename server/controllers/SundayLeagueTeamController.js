@@ -5,13 +5,12 @@ const sundayLeagueTeamController = {
   addTeam: async (req, res) => {
     const newSundayLeagueTeam = new SundayLeagueTeam({
       teamName: req.body.teamName,
-      league: req.body.leagueId,
+      league: req.body.league,
     });
 
     await newSundayLeagueTeam
       .save()
       .then((team) => {
-        console.log('team added');
         res.status(200).json({ success: true, team });
       })
       .catch(() => {
@@ -19,12 +18,6 @@ const sundayLeagueTeamController = {
           .status(400)
           .json({ success: false, error: 'Team could not be added.' });
       });
-
-    const sundayLeague = await SundayLeague.findOne({
-      _id: newSundayLeagueTeam.league,
-    });
-    sundayLeague.teams.push(newSundayLeagueTeam);
-    await sundayLeague.save();
   },
 };
 

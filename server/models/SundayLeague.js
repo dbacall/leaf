@@ -7,12 +7,15 @@ const sundayLeagueSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users',
   },
-  teams: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'SundayLeagueTeam',
-    },
-  ],
 });
+
+sundayLeagueSchema.virtual('teams', {
+  ref: 'SundayLeagueTeam',
+  localField: '_id',
+  foreignField: 'league',
+});
+
+sundayLeagueSchema.set('toObject', { virtuals: true });
+sundayLeagueSchema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('SundayLeague', sundayLeagueSchema);

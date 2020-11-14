@@ -18,15 +18,16 @@ describe('Team', () => {
     );
 
     const leagueAdded = await addSundayLeague('league1', user._id);
-
     data = {
       teamName: 'team1',
-      league: leagueAdded._id,
+      league: leagueAdded.body.league.id,
     };
 
     await supertest(app).post('/sunday-leagues/team').send(data);
-
     const result = await SundayLeagueTeam.findOne({ teamName: 'team1' });
     expect(result.teamName).to.equal('team1');
+
+    const leagues = await SundayLeague.find().populate('teams');
+    console.log(leagues[0].teams);
   });
 });

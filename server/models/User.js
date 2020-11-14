@@ -22,12 +22,15 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  sundayLeagues: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'SundayLeague',
-    },
-  ],
 });
+
+userSchema.virtual('sundayLeaguesOwned', {
+  ref: 'SundayLeague', //The Model to use
+  localField: '_id', //Find in Model, where localField
+  foreignField: 'owner', // is equal to foreignField
+});
+
+userSchema.set('toObject', { virtuals: true });
+userSchema.set('toJSON', { virtuals: true });
 
 module.exports = User = mongoose.model('users', userSchema);
