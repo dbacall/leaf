@@ -9,7 +9,7 @@ const SundayLeagueContainer = (props) => {
   const submitTeam = async (teamName) => {
     const data = {
       teamName: teamName,
-      league: props.location.state.league._id,
+      league: props.location.state.league.id,
     };
     axios.post(`${url}/sunday-leagues/team`, data).then((res) => {
       console.log('Team successfully added.');

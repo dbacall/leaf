@@ -24,7 +24,7 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.virtual('sundayLeaguesOwned', {
+userSchema.virtual('leagues', {
   ref: 'SundayLeague', //The Model to use
   localField: '_id', //Find in Model, where localField
   foreignField: 'owner', // is equal to foreignField

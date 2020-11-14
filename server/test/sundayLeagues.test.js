@@ -19,7 +19,6 @@ describe('Sunday League', () => {
     );
 
     const leagueAdded = await addSundayLeague('league1', user._id);
-    console.log(leagueAdded.body);
 
     expect(leagueAdded.status).to.equal(200);
     expect(leagueAdded.body.success).to.be.true;
@@ -30,9 +29,6 @@ describe('Sunday League', () => {
 
     expect(league.leagueName).to.equal('league1');
     expect(league.owner.email).to.equal('dbacall@hotmail.co.uk');
-
-    const users = await User.find().populate('sundayLeaguesOwned');
-    console.log(users[0].sundayLeaguesOwned);
   });
 
   it('retrieves a users owned sunday leagues', async () => {
@@ -45,6 +41,14 @@ describe('Sunday League', () => {
     );
 
     await addSundayLeague('league1', user._id);
+
+    const result = await User.findOne({
+      email: 'dbacall@hotmail.co.uk',
+    }).populate('leagues');
+
+    expect(result.leagues).to.be.length(1);
+    expect(result.leagues[0].leagueName).to.eq('league1');
+
     await supertest(app)
       .get(`/sunday-leagues/${user._id}`)
       .then((res) => {
@@ -52,7 +56,7 @@ describe('Sunday League', () => {
       });
   });
 
-  it.only('should contain a reference to an array of teams', async () => {
+  it('should contain a reference to an array of teams', async () => {
     const user = await registerUser(
       'David',
       'Bacall',
