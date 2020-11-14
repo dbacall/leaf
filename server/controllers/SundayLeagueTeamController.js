@@ -12,10 +12,12 @@ const sundayLeagueTeamController = {
       .save()
       .then((team) => {
         console.log('team added');
-        res.status(200).json(team);
+        res.status(200).json({ success: true, team });
       })
       .catch(() => {
-        res.status(400).json('Team could not be added.');
+        res
+          .status(400)
+          .json({ success: false, error: 'Team could not be added.' });
       });
 
     const sundayLeague = await SundayLeague.findOne({

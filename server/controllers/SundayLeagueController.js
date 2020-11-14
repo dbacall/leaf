@@ -11,10 +11,15 @@ const SundayLeagueController = {
     await newSundayLeague
       .save()
       .then((league) => {
-        res.status(200).json(league);
+        res.status(200).json({ success: true, league });
       })
       .catch(() => {
-        res.status(400).json('Sunday League could not be saved to database.');
+        res
+          .status(400)
+          .json({
+            success: false,
+            error: 'Sunday League could not be saved to database.',
+          });
       });
 
     const user = await User.findOne({ _id: newSundayLeague.owner });
