@@ -4,7 +4,7 @@ const registerUser = require('./helpers/register_helpers').registerUser;
 
 describe('Register', () => {
   it('should register a user', async () => {
-    await registerUser(
+    const newUser = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
@@ -18,6 +18,7 @@ describe('Register', () => {
       expect(user.surname).to.equal('Bacall');
       expect(user.email).to.equal('dbacall@hotmail.co.uk');
       expect(user.password).not.to.equal('password');
+      expect(user.id).to.eq(newUser.id);
     });
   });
 
