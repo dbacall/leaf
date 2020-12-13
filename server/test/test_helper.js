@@ -2,6 +2,15 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
+before(async () => {
+  global.registerUser = require('./helpers/registerUser');
+  global.loginUser = require('./helpers/loginUser');
+  global.addSundayLeague = require('./helpers/addSundayLeague');
+  global.addSundayLeagueTeam = require('./helpers/addSundayLeagueTeam');
+
+
+})
+
 beforeEach(async () => {
   await mongoose.connection.dropDatabase(() => { });
 });
