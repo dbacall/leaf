@@ -1,6 +1,4 @@
 const expect = require('chai').expect;
-const { registerUser } = require('./helpers/register_helpers');
-const { loginUser } = require('./helpers/login_helpers');
 
 describe('Login', () => {
   it('should login a registered user', async () => {

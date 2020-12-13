@@ -1,6 +1,3 @@
-const registerUser = require('./helpers/register_helpers').registerUser;
-const { addSundayLeague } = require('./helpers/sundayLeague_helpers');
-const { addTeamToLeague } = require('./helpers/sundayLeagueTeam_helpers');
 const expect = require('chai').expect;
 const SundayLeagueTeam = require('../models/SundayLeagueTeam');
 
@@ -16,7 +13,7 @@ describe('Team', () => {
 
     const leagueAdded = await addSundayLeague('league1', user._id);
 
-    await addTeamToLeague('team1', leagueAdded.body.league.id);
+    await addSundayLeagueTeam('team1', leagueAdded.body.league.id);
 
     const result = await SundayLeagueTeam.findOne({
       teamName: 'team1',
