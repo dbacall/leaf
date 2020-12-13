@@ -1,7 +1,7 @@
 const supertest = require('supertest');
 const app = require('../../server');
 
-const addTeamToLeague = async (teamName, league) => {
+module.exports = async (teamName, league) => {
   var result = {};
   const data = {
     teamName: teamName,
@@ -16,5 +16,3 @@ const addTeamToLeague = async (teamName, league) => {
 
   return result;
 };
-
-module.exports.addTeamToLeague = addTeamToLeague;

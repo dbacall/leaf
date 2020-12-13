@@ -1,7 +1,7 @@
 const supertest = require('supertest');
 const app = require('../../server');
 
-const loginUser = async (email, password) => {
+module.exports = async (email, password) => {
   const data = {
     email: email,
     password: password,
@@ -17,6 +17,5 @@ const loginUser = async (email, password) => {
     });
 
   return result.body;
-};
+}
 
-module.exports.loginUser = loginUser;
