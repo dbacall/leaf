@@ -1,13 +1,8 @@
 const registerUser = require('./helpers/register_helpers').registerUser;
-const addSundayLeague = require('./helpers/sundayLeague_helpers')
-  .addSundayLeague;
-const addTeamToLeague = require('./helpers/sundayLeagueTeam_helpers')
-  .addTeamToLeague;
-const supertest = require('supertest');
-const app = require('../server');
+const { addSundayLeague } = require('./helpers/sundayLeague_helpers');
+const { addTeamToLeague } = require('./helpers/sundayLeagueTeam_helpers');
 const expect = require('chai').expect;
 const SundayLeagueTeam = require('../models/SundayLeagueTeam');
-const SundayLeague = require('../models/SundayLeague');
 
 describe('Team', () => {
   it('should let a user add a team to a league', async () => {

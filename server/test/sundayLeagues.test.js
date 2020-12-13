@@ -1,10 +1,9 @@
 const expect = require('chai').expect;
-const registerUser = require('./helpers/register_helpers').registerUser;
+const { registerUser } = require('./helpers/register_helpers');
 const Sundayleague = require('../models/SundayLeague');
 const User = require('../models/User');
-const addSundayLeague = require('./helpers/sundayLeague_helpers')
-  .addSundayLeague;
-const addTeam = require('./helpers/sundayLeagueTeam_helpers').addTeamToLeague;
+const { addSundayLeague } = require('./helpers/sundayLeague_helpers');
+const { addTeamToLeague } = require('./helpers/sundayLeagueTeam_helpers');
 const supertest = require('supertest');
 const app = require('../server');
 
@@ -67,8 +66,8 @@ describe('Sunday League', () => {
 
     const sundayLeague = await addSundayLeague('league1', user._id);
     const leagueId = sundayLeague.body.league.id;
-    addTeam('team1', leagueId);
-    addTeam('team2', leagueId);
+    addTeamToLeague('team1', leagueId);
+    addTeamToLeague('team2', leagueId);
 
     const league = await Sundayleague.findOne({
       leagueName: 'league1',
