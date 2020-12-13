@@ -9,7 +9,7 @@ before(async () => {
   global.addSundayLeagueTeam = require('./helpers/addSundayLeagueTeam');
 })
 
-beforeEach(async () => {
+afterEach(async () => {
   await mongoose.connection.dropDatabase(() => { });
 });
 

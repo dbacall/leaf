@@ -10,6 +10,22 @@ const sundayLeagueTeam = require('./routes/sundayLeagueTeam');
 
 const cors = require('cors');
 
+// load environment variables. 
+
+const dotenv_config = {};
+
+if (process.env.ENV_FILE) {
+  dotenv_config.path = `${__dirname}/.env.${process.env.ENV_FILE}`;
+}
+
+const dotenv = require('dotenv').config(dotenv_config);
+
+if (!dotenv) {
+  throw new Error('No .env file found.');
+}
+
+// process.env.NODE_PATH = __dirname;
+
 app.use(cors());
 
 app.use(
@@ -20,20 +36,12 @@ app.use(
 
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV !== 'test') {
-  mongoose
-    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB successfully connected'))
-    .catch((err) => console.log(err));
-} else {
-  mongoose
-    .connect(
-      'mongodb+srv://dbacall:fsl20@cluster0.vekgo.mongodb.net/fantasy-sunday-league-test?retryWrites=true&w=majority',
-      { useNewUrlParser: true, useUnifiedTopology: true }
-    )
-    .then(() => console.log('Connected to test database!'))
-    .catch((err) => console.log(err));
-}
+mongoose
+  .connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    process.env.ENV_FILE === 'test' ? console.log('Test MongoDB successfully connected') : console.log('MongoDB successfully connected');
+  })
+  .catch((err) => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
