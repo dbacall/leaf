@@ -7,19 +7,11 @@ before(async () => {
   global.loginUser = require('./helpers/loginUser');
   global.addSundayLeague = require('./helpers/addSundayLeague');
   global.addSundayLeagueTeam = require('./helpers/addSundayLeagueTeam');
-
-
 })
 
 beforeEach(async () => {
   await mongoose.connection.dropDatabase(() => { });
 });
-
-// afterEach((done) => {
-//   mongoose.connection.collections.users.drop(() => {
-//     done();
-//   });
-// });
 
 after(() => {
   mongoose.connection.close(() => {
