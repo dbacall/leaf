@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const app = express();
@@ -8,6 +7,7 @@ const sundayLeagues = require('./routes/sundayLeagues');
 const sundayLeagueTeam = require('./routes/sundayLeagueTeam');
 
 const cors = require('cors');
+const database = require('./loaders/database')
 
 // load environment variables. 
 
@@ -25,6 +25,10 @@ if (!dotenv) {
 
 // process.env.NODE_PATH = __dirname;
 
+// connect to database
+
+database();
+
 app.use(cors());
 
 app.use(
@@ -35,14 +39,7 @@ app.use(
 
 app.use(bodyParser.json());
 
-require('./utilities/globals.js')();
 
-mongoose
-  .connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    process.env.ENV_FILE === 'test' ? console.log('Test MongoDB successfully connected') : console.log('MongoDB successfully connected');
-  })
-  .catch((err) => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
