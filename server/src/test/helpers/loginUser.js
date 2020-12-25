@@ -1,5 +1,5 @@
 const supertest = require('supertest');
-const app = require('../../server');
+const app = require('../../app');
 
 module.exports = async (email, password) => {
   const data = {

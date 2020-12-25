@@ -8,7 +8,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "ENV_FILE=test nodemon --exec 'nyc mocha -R min'"
+    "test": "ENV_FILE=test nodemon --exec 'nyc mocha 'src/test/spec/*.test.js''"
   },
   "author": "",
   "license": "ISC",

@@ -1,8 +1,8 @@
 const expect = require('chai').expect;
-const Sundayleague = require('../models/SundayLeague');
-const User = require('../models/User');
+const Sundayleague = require('../../models/SundayLeague');
+const User = require('../../models/User');
 const supertest = require('supertest');
-const app = require('../server');
+const app = require('../../app');
 
 describe('Sunday League', () => {
   it('lets a user add a sunday league', async () => {

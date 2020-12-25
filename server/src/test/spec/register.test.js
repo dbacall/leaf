@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const User = require('../models/User');
+const User = require('../../models/User');
 
 describe('Register', () => {
   it('should register a user', async () => {

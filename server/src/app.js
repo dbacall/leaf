@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const app = express();
-const db = require('./config/keys').mongoURI;
 const users = require('./routes/users');
 const sundayLeagues = require('./routes/sundayLeagues');
 const sundayLeagueTeam = require('./routes/sundayLeagueTeam');
@@ -15,7 +14,7 @@ const cors = require('cors');
 const dotenv_config = {};
 
 if (process.env.ENV_FILE) {
-  dotenv_config.path = `${__dirname}/.env.${process.env.ENV_FILE}`;
+  dotenv_config.path = `${__dirname}/config/.env.${process.env.ENV_FILE}`;
 }
 
 const dotenv = require('dotenv').config(dotenv_config);
@@ -36,6 +35,8 @@ app.use(
 
 app.use(bodyParser.json());
 
+require('./utilities/globals.js')();
+
 mongoose
   .connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -55,6 +56,6 @@ app.use('/sunday-leagues/team', sundayLeagueTeam);
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+app.listen(port, () => console.log(`Server up and running on port ${port}!`));
 
 module.exports = app;

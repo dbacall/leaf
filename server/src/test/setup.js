@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-
 before(async () => {
   global.registerUser = require('./helpers/registerUser');
   global.loginUser = require('./helpers/loginUser');
