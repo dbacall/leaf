@@ -14,38 +14,34 @@ class UserService extends Service {
   }
 
   async register(data) {
-    // Form validation
     const { errors, isValid } = validateRegisterInput(data);
-    // Check validation
+
     if (!isValid) {
-      return { errors };
+      return {
+        error: true,
+        statusCode: 500,
+        message: 'Invalid registration entries.',
+        errors,
+      };
     }
-    let response = {};
+
     const newUser = new this.model(data);
 
-    await this.model
-      .findOne({ email: data.email })
-      .then((user) => {
-        if (user) {
-          console.log('user exists', user);
-          throw new Error('Nah bruv');
-        }
-      })
-      .then(() => {
-        return this.hashPassword(newUser.password);
-      })
-      .then((hashedPassword) => {
-        newUser.password = hashedPassword;
-        return this.saveUser(newUser);
-      })
-      .then((savedUser) => {
-        response = savedUser;
-      })
-      .catch((error) => {
-        return { error };
-      });
+    const user = await this.model.findOne({ email: data.email });
 
-    return response;
+    if (user) {
+      return {
+        error: true,
+        statusCode: 500,
+        message: 'User already exists.',
+      };
+    }
+
+    newUser.password = await this.hashPassword(newUser.password);
+
+    const savedUser = this.saveUser(newUser);
+
+    return savedUser;
   }
 
   async hashPassword(password) {
@@ -57,11 +53,13 @@ class UserService extends Service {
         });
       });
     });
+
     return hashedPassword;
   }
 
   async saveUser(newUser) {
     let user = await newUser.save();
+
     if (user) {
       return {
         error: false,
