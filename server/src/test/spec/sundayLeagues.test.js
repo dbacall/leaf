@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const SundayLeague = require('../../models/SundayLeague');
+const SundayLeague = require('../../models/sundayLeague');
 const User = require('../../models/User');
 const supertest = require('supertest');
 const app = require('../../app');

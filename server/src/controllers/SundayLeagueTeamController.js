@@ -1,6 +1,6 @@
-const Controller = require('./Controller');
-const SundayLeagueTeamService = require('../services/SundayLeagueTeamService');
-const SundayLeagueTeam = require('../models/SundayLeagueTeam');
+const Controller = require('./controller');
+const SundayLeagueTeamService = require('../services/sundayLeagueTeamService');
+const SundayLeagueTeam = require('../models/sundayLeagueTeam');
 
 const sundayLeagueTeamService = new SundayLeagueTeamService(SundayLeagueTeam);
 

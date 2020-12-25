@@ -1,4 +1,4 @@
-const Service = require('./Service');
+const Service = require('./service');
 
 class SundayLeagueService extends Service {
   constructor(model) {
