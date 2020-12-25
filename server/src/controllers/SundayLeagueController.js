@@ -7,6 +7,13 @@ const sundayLeagueService = new SundayLeagueService(SundayLeague);
 class SundayLeagueController extends Controller {
   constructor(service) {
     super(service);
+    this.getOwnedLeagues = this.getOwnedLeagues.bind(this);
+  }
+
+  async getOwnedLeagues(req, res) {
+    let response = await this.service.getOwnedLeagues(req);
+    if (response.error) return res.status(response.statusCode).send(response);
+    return res.status(201).send(response);
   }
 }
 

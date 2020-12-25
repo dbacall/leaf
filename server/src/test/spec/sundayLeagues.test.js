@@ -48,7 +48,7 @@ describe('Sunday League', () => {
     await supertest(app)
       .get(`/sunday-leagues/${user._id}`)
       .then((res) => {
-        expect(res.body).to.be.length(1);
+        expect(res.body.data).to.be.length(1);
       });
   });
 
