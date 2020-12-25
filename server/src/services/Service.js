@@ -7,6 +7,7 @@ class Service {
     this.create = this.create.bind(this);
     this.update = this.update.bind(this);
     this.delete = this.delete.bind(this);
+    this.getAllById = this.getAllById.bind(this);
   }
 
   async getAll(query) {
@@ -35,6 +36,23 @@ class Service {
     }
   }
 
+  async getAllById(query, field) {
+    try {
+      const leagues = await this.model.find({ [field]: query.params.id });
+      return {
+        error: false,
+        statusCode: 200,
+        data: leagues,
+      };
+    } catch (errors) {
+      return {
+        error: true,
+        statusCode: 500,
+        errors,
+      };
+    }
+  }
+
   async create(data) {
     const newItem = new this.model(data);
     try {
@@ -43,7 +61,7 @@ class Service {
         return {
           error: false,
           status: 200,
-          item,
+          data: item,
         };
     } catch (error) {
       console.log('error', error);
@@ -62,7 +80,7 @@ class Service {
       return {
         error: false,
         statusCode: 202,
-        item,
+        data: item,
       };
     } catch (error) {
       return {
@@ -87,7 +105,7 @@ class Service {
         error: false,
         deleted: true,
         statusCode: 202,
-        item,
+        data: item,
       };
     } catch (error) {
       return {

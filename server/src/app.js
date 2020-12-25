@@ -3,6 +3,7 @@ const app = express();
 const database = require('./loaders/database');
 const server = require('./loaders/server');
 const env = require('./loaders/env');
+const getRoutes = require('./routes');
 
 // load environment variables.
 
@@ -15,5 +16,9 @@ database();
 // create server connection
 
 server(app);
+
+// get all api routes
+
+getRoutes(app);
 
 module.exports = app;
