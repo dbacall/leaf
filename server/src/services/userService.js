@@ -1,0 +1,113 @@
+const Service = require('./service');
+const validateRegisterInput = require('../validation/register');
+// const validateLoginInput = require('../validation/login');
+const bcrypt = require('bcryptjs');
+// const jwt = require('jsonwebtoken');
+// const keys = require('../config/keys');
+
+class UserService extends Service {
+  constructor(model) {
+    super(model);
+    this.register = this.register.bind(this);
+    this.saveUser = this.saveUser.bind(this);
+    this.hashPassword = this.hashPassword.bind(this);
+  }
+
+  async register(data) {
+    // Form validation
+    const { errors, isValid } = validateRegisterInput(data);
+    // Check validation
+    if (!isValid) {
+      return { errors };
+    }
+    let response = {};
+    const newUser = new this.model(data);
+
+    await this.model
+      .findOne({ email: data.email })
+      .then((user) => {
+        if (user) {
+          console.log('user exists', user);
+          throw new Error('Nah bruv');
+        }
+      })
+      .then(() => {
+        return this.hashPassword(newUser.password);
+      })
+      .then((hashedPassword) => {
+        newUser.password = hashedPassword;
+        return this.saveUser(newUser);
+      })
+      .then((savedUser) => {
+        response = savedUser;
+      })
+      .catch((error) => {
+        return { error };
+      });
+
+    return response;
+  }
+
+  async hashPassword(password) {
+    const hashedPassword = await new Promise((resolve, reject) => {
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(password, salt, (error, hash) => {
+          if (err) reject(error);
+          resolve(hash);
+        });
+      });
+    });
+    return hashedPassword;
+  }
+
+  async saveUser(newUser) {
+    let user = await newUser.save();
+    if (user) {
+      return {
+        error: false,
+        status: 200,
+        data: user,
+      };
+    } else {
+      return {
+        error: true,
+        statusCode: 500,
+        message: error.errmsg || 'Not able to create user in service',
+        errors,
+      };
+    }
+  }
+}
+
+module.exports = UserService;
+
+// (req, res) => {
+//   // Form validation
+//   const { errors, isValid } = validateRegisterInput(req.body);
+//   // Check validation
+//   if (!isValid) {
+//     return res.status(400).json(errors);
+//   }
+//   User.findOne({ email: req.body.email }).then((user) => {
+//     if (user) {
+//       return res.status(400).json({ email: 'Email already exists' });
+//     } else {
+//       const newUser = new User({
+//         firstName: req.body.firstName,
+//         surname: req.body.surname,
+//         email: req.body.email,
+//         password: req.body.password,
+//       });
+//       // Hash password before saving in database
+//       bcrypt.genSalt(10, (err, salt) => {
+//         bcrypt.hash(newUser.password, salt, (err, hash) => {
+//           if (err) throw err;
+//           newUser.password = hash;
+//           newUser
+//             .save()
+//             .then((user) => res.json(user))
+//             .catch((err) => console.log(err));
+//         });
+//       });
+//     }
+//   });

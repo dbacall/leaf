@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const User = require('../../models/User');
 
 describe('Register', () => {
-  it('should register a user', async () => {
+  it.only('should register a user', async () => {
     const newUser = await registerUser(
       'David',
       'Bacall',
@@ -17,7 +17,7 @@ describe('Register', () => {
       expect(user.surname).to.equal('Bacall');
       expect(user.email).to.equal('dbacall@hotmail.co.uk');
       expect(user.password).not.to.equal('password');
-      expect(user.id).to.eq(newUser.id);
+      expect(user.id).to.eq(newUser.data.id);
     });
   });
 

@@ -6,13 +6,14 @@ before(async () => {
   global.loginUser = require('./helpers/loginUser');
   global.addSundayLeague = require('./helpers/addSundayLeague');
   global.addSundayLeagueTeam = require('./helpers/addSundayLeagueTeam');
-})
-
-afterEach(async () => {
-  await mongoose.connection.dropDatabase(() => { });
 });
 
-after(() => {
+afterEach(async () => {
+  await mongoose.connection.dropDatabase(() => {});
+});
+
+after(async () => {
+  await mongoose.connection.dropDatabase(() => {});
   mongoose.connection.close(() => {
     console.log('Test database connection closed');
   });

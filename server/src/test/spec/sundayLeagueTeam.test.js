@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const SundayLeagueTeam = require('../../models/sundayLeagueTeam');
 
 describe('Team', () => {
-  it.only('should let a user add a team to a league', async () => {
+  it('should let a user add a team to a league', async () => {
     const user = await registerUser(
       'David',
       'Bacall',
