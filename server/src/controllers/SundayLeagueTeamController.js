@@ -1,5 +1,4 @@
 const SundayLeagueTeam = require('../models/SundayLeagueTeam');
-const SundayLeague = require('../models/SundayLeague');
 
 const sundayLeagueTeamController = {
   addTeam: async (req, res) => {

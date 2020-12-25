@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const Sundayleague = require('../../models/SundayLeague');
+const SundayLeague = require('../../models/SundayLeague');
 const User = require('../../models/User');
 const supertest = require('supertest');
 const app = require('../../app');
@@ -19,7 +19,7 @@ describe('Sunday League', () => {
     expect(leagueAdded.status).to.equal(200);
     expect(leagueAdded.body.success).to.be.true;
 
-    var league = await Sundayleague.findOne({ leagueName: 'league1' }).populate(
+    var league = await SundayLeague.findOne({ leagueName: 'league1' }).populate(
       'owner'
     );
 
@@ -27,7 +27,7 @@ describe('Sunday League', () => {
     expect(league.owner.email).to.equal('dbacall@hotmail.co.uk');
   });
 
-  it('retrieves a users owned sunday leagues', async () => {
+  it.only('retrieves a users owned sunday leagues', async () => {
     const user = await registerUser(
       'David',
       'Bacall',
@@ -66,7 +66,7 @@ describe('Sunday League', () => {
     addSundayLeagueTeam('team1', leagueId);
     addSundayLeagueTeam('team2', leagueId);
 
-    const league = await Sundayleague.findOne({
+    const league = await SundayLeague.findOne({
       leagueName: 'league1',
     }).populate('teams');
 

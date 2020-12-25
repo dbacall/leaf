@@ -3,6 +3,6 @@ const router = express.Router();
 const SundayLeagueController = require('../controllers/SundayLeagueController');
 
 router.post('/new', SundayLeagueController.create);
-router.get('/:id', SundayLeagueController.getOwnedLeagues);
+// router.get('/:id', SundayLeagueController.getOwnedLeagues);
 
 module.exports = router;

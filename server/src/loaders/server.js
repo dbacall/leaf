@@ -1,10 +1,9 @@
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const cors = require('cors');
 const users = require('../routes/users');
 const sundayLeagues = require('../routes/sundayLeagues');
 const sundayLeagueTeam = require('../routes/sundayLeagueTeam');
-
-const cors = require('cors');
 
 module.exports = (app) => {
   app.use(cors());
