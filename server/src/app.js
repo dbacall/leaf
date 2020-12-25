@@ -3,7 +3,7 @@ const app = express();
 const database = require('./loaders/database');
 const server = require('./loaders/server');
 const env = require('./loaders/env');
-const getRoutes = require('./routes');
+const getRoutes = require('./api');
 
 // load environment variables.
 
