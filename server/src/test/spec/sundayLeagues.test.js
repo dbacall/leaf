@@ -16,8 +16,8 @@ describe('Sunday League', () => {
 
     const leagueAdded = await addSundayLeague('league1', user._id);
 
-    expect(leagueAdded.status).to.equal(200);
-    expect(leagueAdded.body.success).to.be.true;
+    expect(leagueAdded.body.status).to.equal(200);
+    expect(leagueAdded.body.error).to.be.false;
 
     var league = await SundayLeague.findOne({ leagueName: 'league1' }).populate(
       'owner'
@@ -27,7 +27,7 @@ describe('Sunday League', () => {
     expect(league.owner.email).to.equal('dbacall@hotmail.co.uk');
   });
 
-  it.only('retrieves a users owned sunday leagues', async () => {
+  it('retrieves a users owned sunday leagues', async () => {
     const user = await registerUser(
       'David',
       'Bacall',
