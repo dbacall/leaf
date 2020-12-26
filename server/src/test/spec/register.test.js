@@ -53,7 +53,7 @@ describe('Register', () => {
       'password'
     );
     expect(response.error).to.be.true;
-    expect(response.message).to.equal('Email already in use.');
+    expect(response.message).to.equal('Email already in use');
   });
 
   it('should return an error if the email is invalid', async () => {

@@ -22,7 +22,7 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'Invalid registration entries.',
+        message: 'Invalid registration entries',
         errors,
       };
     }
@@ -35,7 +35,7 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'Email already in use.',
+        message: 'Email already in use',
       };
     }
 
@@ -53,7 +53,7 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'Invalid registration entries.',
+        message: 'Invalid registration entries',
         errors,
       };
     }
@@ -67,15 +67,13 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'Email not found.',
+        message: 'Email not found',
       };
     }
 
     const checkPassword = promisify(bcrypt.compare);
 
     const passwordsMatch = await checkPassword(password, user.password);
-
-    let response;
 
     if (passwordsMatch) {
       const payload = { user };
@@ -92,43 +90,13 @@ class UserService extends Service {
         token: 'Bearer ' + token,
       };
     } else {
-      response = {
+      return {
         error: true,
         statusCode: 500,
-        message: error.errmsg || 'Password incorrect.',
-        errors,
+        message: 'Password incorrect',
       };
     }
-    return response;
   }
-
-  // async jwtSign(payload) {
-  //   return await new Promise((resolve, reject) => {
-  //     jwt.sign(
-  //       payload,
-  //       keys.secretOrKey,
-  //       {
-  //         expiresIn: 31556926, // 1 year in seconds
-  //       },
-  //       (error, token) => {
-  //         if (error) reject();
-  //         resolve({
-  //           error: false,
-  //           status: 200,
-  //           token: 'Bearer ' + token,
-  //         });
-  //       }
-  //     );
-  //   });
-  // }
-
-  // async checkPassword(password, password2) {
-  //   return await new Promise((resolve, reject) => {
-  //     const passwordCorrect = bcrypt.compare(password, password2);
-  //     if (passwordCorrect) resolve(true);
-  //     reject(false);
-  //   });
-  // }
 
   async hashPassword(password) {
     const hashedPassword = await new Promise((resolve, reject) => {
@@ -156,7 +124,7 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: error.errmsg || 'Not able to create user in service',
+        message: 'Not able to create user in service',
         errors,
       };
     }

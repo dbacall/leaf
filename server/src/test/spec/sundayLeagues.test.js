@@ -61,7 +61,7 @@ describe('Sunday League', () => {
       'password'
     );
 
-    const sundayLeague = await addSundayLeague('league1', user.data._id);
+    const sundayLeague = await addSundayLeague('league1', user.data.id);
     const leagueId = sundayLeague.body.data.id;
     addSundayLeagueTeam('team1', leagueId);
     addSundayLeagueTeam('team2', leagueId);

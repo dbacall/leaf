@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 
 describe('Login', () => {
-  it.only('should login a registered user', async () => {
+  it('should login a registered user', async () => {
     await registerUser(
       'David',
       'Bacall',
@@ -20,7 +20,8 @@ describe('Login', () => {
   it('should return an error if user is not registered', async () => {
     var data = await loginUser('dbacall@hotmail.co.uk', 'password');
 
-    expect(data.emailnotfound).to.equal('Email not found');
+    expect(data.error).to.be.true;
+    expect(data.message).to.equal('Email not found');
   });
 
   it('should return an error if user inputs wrong password', async () => {
@@ -34,7 +35,8 @@ describe('Login', () => {
 
     var data = await loginUser('dbacall@hotmail.co.uk', 'passwo');
 
-    expect(data.passwordIncorrect).to.equal('Password incorrect');
+    expect(data.error).to.be.true;
+    expect(data.message).to.equal('Password incorrect');
   });
 
   it('should return errors if email and password field are left empty', async () => {
@@ -48,7 +50,8 @@ describe('Login', () => {
 
     var data = await loginUser('', '');
 
-    expect(data.email).to.equal('Email field is required');
-    expect(data.password).to.equal('Password field is required');
+    expect(data.error).to.be.true;
+    expect(data.errors.email).to.equal('Email field is required');
+    expect(data.errors.password).to.equal('Password field is required');
   });
 });
