@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cors = require('cors');
+var compression = require('compression');
 
 module.exports = (app) => {
   app.use(cors());
@@ -12,6 +13,9 @@ module.exports = (app) => {
   );
 
   app.use(bodyParser.json());
+
+  // compress all responses
+  app.use(compression());
 
   // Passport middleware
   app.use(passport.initialize());
