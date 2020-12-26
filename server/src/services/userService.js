@@ -39,7 +39,7 @@ class UserService extends Service {
 
     newUser.password = await this.hashPassword(newUser.password);
 
-    const savedUser = this.saveUser(newUser);
+    const savedUser = await this.saveUser(newUser);
 
     return savedUser;
   }
@@ -78,34 +78,3 @@ class UserService extends Service {
 }
 
 module.exports = UserService;
-
-// (req, res) => {
-//   // Form validation
-//   const { errors, isValid } = validateRegisterInput(req.body);
-//   // Check validation
-//   if (!isValid) {
-//     return res.status(400).json(errors);
-//   }
-//   User.findOne({ email: req.body.email }).then((user) => {
-//     if (user) {
-//       return res.status(400).json({ email: 'Email already exists' });
-//     } else {
-//       const newUser = new User({
-//         firstName: req.body.firstName,
-//         surname: req.body.surname,
-//         email: req.body.email,
-//         password: req.body.password,
-//       });
-//       // Hash password before saving in database
-//       bcrypt.genSalt(10, (err, salt) => {
-//         bcrypt.hash(newUser.password, salt, (err, hash) => {
-//           if (err) throw err;
-//           newUser.password = hash;
-//           newUser
-//             .save()
-//             .then((user) => res.json(user))
-//             .catch((err) => console.log(err));
-//         });
-//       });
-//     }
-//   });
