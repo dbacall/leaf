@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 
 describe('Login', () => {
-  it('should login a registered user', async () => {
+  it.only('should login a registered user', async () => {
     await registerUser(
       'David',
       'Bacall',
@@ -12,7 +12,8 @@ describe('Login', () => {
 
     var data = await loginUser('dbacall@hotmail.co.uk', 'password');
 
-    expect(data.success).to.be.true;
+    expect(data.error).to.be.false;
+    expect(data.statusCode).to.equal(200);
     expect(data.token).to.exist;
   });
 

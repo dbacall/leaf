@@ -8,10 +8,17 @@ class UserController extends Controller {
   constructor(service) {
     super(service);
     this.register = this.register.bind(this);
+    this.login = this.login.bind(this);
   }
 
   async register(req, res) {
     let response = await this.service.register(req.body);
+    if (response.error) return res.status(response.statusCode).send(response);
+    return res.status(201).send(response);
+  }
+
+  async login(req, res) {
+    let response = await this.service.login(req.body);
     if (response.error) return res.status(response.statusCode).send(response);
     return res.status(201).send(response);
   }
