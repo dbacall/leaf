@@ -63,8 +63,8 @@ describe('Sunday League', () => {
 
     const sundayLeague = await addSundayLeague('league1', user.data.id);
     const leagueId = sundayLeague.body.data.id;
-    addSundayLeagueTeam('team1', leagueId);
-    addSundayLeagueTeam('team2', leagueId);
+    await addSundayLeagueTeam('team1', leagueId);
+    await addSundayLeagueTeam('team2', leagueId);
 
     const league = await SundayLeague.findOne({
       leagueName: 'league1',
