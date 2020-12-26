@@ -1,6 +1,6 @@
-const users = require('./user');
-const sundayLeagues = require('./sundayLeagues');
-const sundayLeagueTeam = require('./sundayLeagueTeam');
+const users = require('../api/user');
+const sundayLeagues = require('../api/sundayLeagues');
+const sundayLeagueTeam = require('../api/sundayLeagueTeam');
 
 module.exports = (app) => {
   // Routes
