@@ -14,7 +14,7 @@ describe('Sunday League', () => {
       'password'
     );
 
-    const leagueAdded = await addSundayLeague('league1', user._id);
+    const leagueAdded = await addSundayLeague('league1', user.data._id);
 
     expect(leagueAdded.body.status).to.equal(200);
     expect(leagueAdded.body.error).to.be.false;
@@ -36,7 +36,7 @@ describe('Sunday League', () => {
       'password'
     );
 
-    await addSundayLeague('league1', user._id);
+    await addSundayLeague('league1', user.data._id);
 
     const result = await User.findOne({
       email: 'dbacall@hotmail.co.uk',
@@ -46,7 +46,7 @@ describe('Sunday League', () => {
     expect(result.leagues[0].leagueName).to.eq('league1');
 
     await supertest(app)
-      .get(`/sunday-leagues/${user._id}`)
+      .get(`/sunday-leagues/${user.data.id}`)
       .then((res) => {
         expect(res.body.data).to.be.length(1);
       });
@@ -61,7 +61,7 @@ describe('Sunday League', () => {
       'password'
     );
 
-    const sundayLeague = await addSundayLeague('league1', user._id);
+    const sundayLeague = await addSundayLeague('league1', user.data._id);
     const leagueId = sundayLeague.body.data.id;
     addSundayLeagueTeam('team1', leagueId);
     addSundayLeagueTeam('team2', leagueId);

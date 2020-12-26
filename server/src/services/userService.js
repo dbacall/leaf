@@ -33,7 +33,7 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'User already exists.',
+        message: 'Email already in use.',
       };
     }
 

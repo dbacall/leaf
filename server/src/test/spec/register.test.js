@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const User = require('../../models/User');
 
 describe('Register', () => {
-  it.only('should register a user', async () => {
+  it('should register a user', async () => {
     const newUser = await registerUser(
       'David',
       'Bacall',
@@ -45,55 +45,60 @@ describe('Register', () => {
       'password',
       'password'
     );
-    const data = await registerUser(
+    const response = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
       'password',
       'password'
     );
-    expect(data.email).to.equal('Email already exists');
+    expect(response.error).to.be.true;
+    expect(response.message).to.equal('Email already in use.');
   });
 
   it('should return an error if the email is invalid', async () => {
-    const data = await registerUser(
+    const response = await registerUser(
       'David',
       'Bacall',
       'dbacallhotmail.co.uk',
       'password',
       'password'
     );
-    expect(data.email).to.equal('Email is invalid');
+    expect(response.errors.email).to.equal('Email is invalid');
   });
 
   it("should return an error if a users passwords don't match", async () => {
-    const data = await registerUser(
+    const response = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
       'password',
       'passworfdds'
     );
-    expect(data.password2).to.equal('Passwords must match');
+    expect(response.errors.password2).to.equal('Passwords must match');
   });
 
   it('should return an error if the password is less than 6 characters', async () => {
-    const data = await registerUser(
+    const response = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
       'passw',
       'passw'
     );
-    expect(data.password).to.equal('Password must be at least 6 characters');
+    expect(response.errors.password).to.equal(
+      'Password must be at least 6 characters'
+    );
   });
 
   it('should return errors if fields are left empty', async () => {
-    const data = await registerUser('', '', '', '', '');
-    expect(data.firstName).to.equal('First Name field is required');
-    expect(data.surname).to.equal('Surname field is required');
-    expect(data.email).to.equal('Email field is required');
-    expect(data.password).to.equal('Password field is required');
-    expect(data.password2).to.equal('Confirm password field is required');
+    const response = await registerUser('', '', '', '', '');
+    expect(response.errors.firstName).to.equal('First Name field is required');
+    expect(response.errors.surname).to.equal('Surname field is required');
+    expect(response.errors.email).to.equal('Email field is required');
+    expect(response.errors.password).to.equal('Password field is required');
+    expect(response.errors.password2).to.equal(
+      'Confirm password field is required'
+    );
   });
 });
