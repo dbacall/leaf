@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Home from './component';
+import Home from './homeComponent';
 
 const HomeContainer = () => {
   const user = useSelector((state) => state.auth.user);

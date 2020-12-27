@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import PrivateRoute from './private-route/PrivateRoute';
-import Navbar from '../components/navbar/';
-import Register from '../components/register/';
-import Login from '../components/login/';
-import Home from '../components/home/';
-import MySundayLeagues from '../components/mySundayLeagues';
-import SundayLeague from '../components/sundayLeague';
+import PrivateRoute from './PrivateRoute';
+import Navbar from '../components/navbar/navbarContainer';
+import Register from '../components/register/registerContainer';
+import Login from '../components/login/loginContainer';
+import Home from '../components/home/homeContainer';
+import MySundayLeagues from '../components/mySundayLeagues/mySundayLeaguesContainer';
+import SundayLeague from '../components/sundayLeague/sundayLeagueContainer';
 
 const RouterConfig = () => {
   return (

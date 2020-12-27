@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/authActions';
-import './styles.css';
+import './navbarStyles.css';
 
 class Navbar extends Component {
   onLogoutClick = (e) => {

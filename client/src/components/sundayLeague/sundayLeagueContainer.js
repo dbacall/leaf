@@ -1,5 +1,5 @@
 import React from 'react';
-import SundayLeague from './component';
+import SundayLeague from './sundayLeagueComponent';
 import axios from 'axios';
 import { config } from '../../config';
 

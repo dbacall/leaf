@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles.css';
+import './sundayLeagueStyles.css';
 
 const SundayLeague = ({ league, submitTeam }) => {
   const [addTeam, setAddTeam] = useState(false);
