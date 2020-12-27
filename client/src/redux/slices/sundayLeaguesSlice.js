@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import api from '../../services/api';
 
 const initialState = {
   leagues: [],
@@ -8,11 +8,9 @@ const initialState = {
 
 export const fetchSundayLeagues = createAsyncThunk(
   'sundayLeagues/fetchSundayLeagues',
-  async (id) => {
-    const response = await axios.get(
-      `http://localhost:5000/sunday-leagues/${id}`
-    );
-    return response.data;
+  (id) => {
+    const response = api.request('get', null, `/sunday-leagues/${id}`);
+    return response;
   }
 );
 

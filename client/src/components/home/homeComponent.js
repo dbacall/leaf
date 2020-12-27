@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
 import './homeStyles.css';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import api from '../../services/api';
 
 const Home = ({ user }) => {
   const [createLeague, setCreateLeague] = useState(false);
   const [leagueName, setLeagueName] = useState('');
 
-  const submitLeague = () => {
+  const submitLeague = (e) => {
+    e.preventDefault();
     const data = {
       leagueName: leagueName,
       owner: user.id,
     };
 
-    axios.post('http://localhost:5000/sunday-leagues/new', data).then((res) => {
-      console.log('league added');
-    });
+    const path = '/sunday-leagues/new';
+
+    const response = api.request('post', data, path);
+
+    console.log(response);
+
+    // axios.get(`http://localhost:5000/sunday-leagues/${user.id}`).then((res) => {
+    //   console.log('league added', res);
+    // });
   };
 
   return (

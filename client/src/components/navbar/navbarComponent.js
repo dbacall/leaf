@@ -11,7 +11,6 @@ class Navbar extends Component {
   };
 
   renderLogOutButton = (user) => {
-    console.log('in logout button', this.props);
     if (user && typeof user.id === 'string') {
       return (
         <button

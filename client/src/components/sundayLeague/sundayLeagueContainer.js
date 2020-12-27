@@ -1,19 +1,17 @@
 import React from 'react';
 import SundayLeague from './sundayLeagueComponent';
-import axios from 'axios';
-import { config } from '../../config';
+import api from '../../services/api';
 
 const SundayLeagueContainer = (props) => {
-  const url = config;
-
   const submitTeam = async (teamName) => {
     const data = {
-      teamName: teamName,
+      teamName,
       league: props.location.state.league.id,
     };
-    axios.post(`${url}/sunday-leagues/team`, data).then((res) => {
-      console.log('Team successfully added.');
-    });
+
+    const path = '/sunday-leagues/team';
+
+    api.request('post', data, path);
   };
 
   return (

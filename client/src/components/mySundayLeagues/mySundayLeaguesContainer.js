@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MySundayLeagues from './mySundayLeaguesComponent';
 import { fetchSundayLeagues } from '../../redux/slices/sundayLeaguesSlice';
-import axios from 'axios';
 
 const MySundayLeaguesContainer = () => {
   const user = useSelector((state) => state.auth.user);
@@ -11,7 +10,6 @@ const MySundayLeaguesContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('user', user);
     dispatch(fetchSundayLeagues(user.id));
   }, [user]);
 
