@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import MySundayLeagues from '../components/mySundayLeagues';
-import { fetchSundayLeagues } from '../redux/slices/sundayLeaguesSlice';
+import MySundayLeagues from './component';
+import { fetchSundayLeagues } from '../../redux/slices/sundayLeaguesSlice';
 import axios from 'axios';
 
 const MySundayLeaguesContainer = () => {
@@ -11,6 +11,7 @@ const MySundayLeaguesContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('user', user);
     dispatch(fetchSundayLeagues(user.id));
   }, [user]);
 

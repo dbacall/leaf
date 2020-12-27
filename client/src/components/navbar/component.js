@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser } from '../redux/actions/authActions';
-import './styles/navbar.css';
+import { logoutUser } from '../../redux/actions/authActions';
+import './styles.css';
 
 class Navbar extends Component {
   onLogoutClick = (e) => {
@@ -11,7 +11,8 @@ class Navbar extends Component {
   };
 
   renderLogOutButton = (user) => {
-    if (typeof user.id === 'string') {
+    console.log('in logout button', this.props);
+    if (user && typeof user.id === 'string') {
       return (
         <button
           style={{

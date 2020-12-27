@@ -29,8 +29,7 @@ const sundayLeaguesSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchSundayLeagues.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.leagues = action.payload;
+        state.leagues = action.payload.data;
         state.status = 'idle';
       });
   },

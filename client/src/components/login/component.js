@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginUser } from '../redux/actions/authActions';
+import { loginUser } from '../../redux/actions/authActions';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -17,7 +17,8 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/');
+      console.log(this.props);
+      this.props.push('/');
     }
 
     if (nextProps.errors) {
@@ -37,6 +38,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password,
     };
+    console.log(userData);
 
     this.props.loginUser(userData);
   };

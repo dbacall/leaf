@@ -33,6 +33,8 @@ export const loginUser = (userData) => (dispatch) => {
       dispatch(setCurrentUser(decoded));
     })
     .catch((err) =>
+      // console.log(res);
+
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data,
@@ -43,7 +45,7 @@ export const loginUser = (userData) => (dispatch) => {
 export const setCurrentUser = (decoded) => {
   return {
     type: SET_CURRENT_USER,
-    payload: decoded,
+    payload: decoded.user,
   };
 };
 // User loading

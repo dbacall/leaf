@@ -8,11 +8,11 @@ import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './redux/actions/authActions';
 import PrivateRoute from './components/private-route/PrivateRoute';
 import './App.css';
-import Navbar from './components/navbar';
+import Navbar from './components/navbar/';
 import Register from './components/register';
-import Login from './components/login';
-import Home from './containers/homeContainer';
-import MySundayLeagues from './containers/mySundayLeaguesContainer';
+import Login from './components/login/';
+import Home from './components/home';
+import MySundayLeagues from './components/mySundayLeagues';
 import SundayLeague from './containers/sundayLeagueContainer';
 
 if (localStorage.jwtToken) {
