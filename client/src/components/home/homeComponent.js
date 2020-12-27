@@ -1,28 +1,16 @@
 import React, { useState } from 'react';
 import './homeStyles.css';
 import { Link } from 'react-router-dom';
-import api from '../../services/api';
 
-const Home = ({ user }) => {
+const Home = ({ user, submitLeague }) => {
   const [createLeague, setCreateLeague] = useState(false);
   const [leagueName, setLeagueName] = useState('');
 
-  const submitLeague = (e) => {
+  const submitForm = (e) => {
     e.preventDefault();
-    const data = {
-      leagueName: leagueName,
-      owner: user.id,
-    };
-
-    const path = '/sunday-leagues/new';
-
-    const response = api.request('post', data, path);
-
-    console.log(response);
-
-    // axios.get(`http://localhost:5000/sunday-leagues/${user.id}`).then((res) => {
-    //   console.log('league added', res);
-    // });
+    submitLeague(leagueName, user.id);
+    setLeagueName('');
+    setCreateLeague(false);
   };
 
   return (
@@ -35,7 +23,7 @@ const Home = ({ user }) => {
       </button>
       {createLeague ? (
         <div>
-          <form onSubmit={submitLeague}>
+          <form onSubmit={submitForm}>
             <input
               className="home-input"
               type="text"
