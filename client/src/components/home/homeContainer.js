@@ -14,7 +14,7 @@ const HomeContainer = () => {
 
     const path = '/sunday-leagues/new';
 
-    const response = api.request('post', data, path);
+    api.request('post', data, path);
   };
 
   return <Home user={user} submitLeague={submitLeague} />;
