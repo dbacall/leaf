@@ -8,7 +8,7 @@ const MySundayLeagues = ({ status, leagues }) => {
     <div>
       <h1>My Sunday Leagues</h1>
 
-      {status == 'loading' ? (
+      {status === 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
       ) : (
         leagues.map((league) => {

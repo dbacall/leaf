@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { registerUser } from '../redux/actions/authActions';
+import { registerUser } from '../../redux/actions/authActions';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import './styles/register.css';
+import './styles.css';
 
 class Register extends Component {
   constructor(props) {

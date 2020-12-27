@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import SundayLeague from '../components/sundayLeague';
+import React from 'react';
+import SundayLeague from './component';
 import axios from 'axios';
-import { config } from '../config';
+import { config } from '../../config';
 
 const SundayLeagueContainer = (props) => {
   const url = config;
