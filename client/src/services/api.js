@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { config } from '../config/config';
 
-const url = config;
+const url = process.env.API_URL;
 
 const api = {
   request: async (method, data = null, path) => {

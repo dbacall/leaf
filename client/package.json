@@ -1,5 +1,5 @@
 {
-  "name": "Fantasy Sunday League",
+  "name": "Fantasy-Sunday-League",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,8 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^6.0.0",
     "is-empty": "^1.2.0",
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
@@ -27,7 +29,7 @@
     "unirest": "^0.6.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
