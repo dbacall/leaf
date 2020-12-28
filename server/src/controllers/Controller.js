@@ -13,7 +13,9 @@ class Controller {
   }
 
   async getAllById(req, res) {
-    let response = await this.service.getAllById(req, 'owner');
+    console.log(req.params);
+    let response = await this.service.getAllById(req);
+    console.log(response);
     if (response.error) return res.status(response.statusCode).send(response);
     return res.status(201).send(response.data);
   }

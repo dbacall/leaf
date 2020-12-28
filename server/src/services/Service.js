@@ -36,13 +36,15 @@ class Service {
     }
   }
 
-  async getAllById(query, field) {
+  async getAllById(query) {
     try {
-      const leagues = await this.model.find({ [field]: query.params.id });
+      const items = await this.model.find({
+        [query.params.idType]: query.params.id,
+      });
       return {
         error: false,
         statusCode: 200,
-        data: leagues,
+        data: items,
       };
     } catch (errors) {
       return {
