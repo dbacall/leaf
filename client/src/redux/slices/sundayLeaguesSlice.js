@@ -9,8 +9,7 @@ const initialState = {
 export const fetchSundayLeagues = createAsyncThunk(
   'sundayLeagues/fetchSundayLeagues',
   (id) => {
-    const response = api.request('get', null, `/sunday-leagues/${id}`);
-    console.log(process.env.NODE_ENV);
+    const response = api.request('get', null, `/sunday-leagues/${id}/owner`);
     return response;
   }
 );
