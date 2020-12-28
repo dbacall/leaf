@@ -1,23 +1,10 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../../services/api';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchSundayLeagueTeams } from '../thunks/sundayLeagueTeamsThunks';
 
 const initialState = {
   teams: [],
   status: 'loading',
 };
-
-export const fetchSundayLeagueTeams = createAsyncThunk(
-  'sundayLeagueTeams/fetchSundayLeagueTeams',
-  async (id) => {
-    const response = await api.request(
-      'get',
-      null,
-      `/sunday-leagues/team/${id}/league`
-    );
-    console.log('response', response);
-    return response;
-  }
-);
 
 const sundayLeagueTeamsSlice = createSlice({
   name: 'sundayLeagueTeams',

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import SundayLeague from './sundayLeagueComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSundayLeagueTeams } from '../../redux/slices/sundayLeagueTeamsSlice';
+import { fetchSundayLeagueTeams } from '../../redux/thunks/sundayLeagueTeamsThunks';
 
 const SundayLeagueContainer = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +14,11 @@ const SundayLeagueContainer = (props) => {
 
   const isInitialMount = useRef(true);
   useEffect(() => {
-    if (isInitialMount || teamAdded) {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      dispatch(fetchSundayLeagueTeams(leagueId));
+    }
+    if (teamAdded) {
       dispatch(fetchSundayLeagueTeams(leagueId));
       setTeamAdded(false);
     }
