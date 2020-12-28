@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './sundayLeagueStyles.css';
+import ReactLoading from 'react-loading';
+import { Link } from 'react-router-dom';
 
-const SundayLeague = ({ league, submitTeam }) => {
+const SundayLeague = ({ league, submitTeam, status, teams }) => {
   const [addTeam, setAddTeam] = useState(false);
   const [teamName, setTeamName] = useState('');
 
@@ -30,6 +32,24 @@ const SundayLeague = ({ league, submitTeam }) => {
         </div>
       ) : null}
       <h2>Teams</h2>
+      {status === 'loading' ? (
+        <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
+      ) : (
+        teams.map((team) => {
+          return (
+            <div>
+              <Link
+                to={{
+                  pathname: `/sunday-league/${league._id}`,
+                  state: { league: league },
+                }}
+              >
+                {team.teamName}
+              </Link>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };
