@@ -6,6 +6,7 @@ describe('Home component tests:', () => {
   const props = {
     user: { firstName: 'David' },
   };
+
   it('should show the form when add league button clicked', () => {
     const wrap = shallow(<Home {...props} />);
     wrap.find('button').first().simulate('click');

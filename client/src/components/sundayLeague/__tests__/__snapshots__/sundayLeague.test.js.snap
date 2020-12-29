@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sundayLeague component tests: should show teams if in props 1`] = `
+<div>
+  <h1>
+    league1
+  </h1>
+  <button
+    onClick={[Function]}
+  >
+    Add Team
+  </button>
+  <h2>
+    Teams
+  </h2>
+  <div
+    key="0"
+  >
+    <Link
+      to={
+        Object {
+          "pathname": "/sunday-league/undefined",
+          "state": Object {
+            "league": Object {
+              "leagueName": "league1",
+            },
+          },
+        }
+      }
+    >
+      team1
+    </Link>
+  </div>
+  <div
+    key="1"
+  >
+    <Link
+      to={
+        Object {
+          "pathname": "/sunday-league/undefined",
+          "state": Object {
+            "league": Object {
+              "leagueName": "league1",
+            },
+          },
+        }
+      }
+    >
+      team2
+    </Link>
+  </div>
+</div>
+`;
+
+exports[`sundayLeague component tests: should show the form when add team button clicked 1`] = `
+<div>
+  <h1>
+    league1
+  </h1>
+  <button
+    onClick={[Function]}
+  >
+    Add Team
+  </button>
+  <div>
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        className="add-team-input"
+        onChange={[Function]}
+        placeholder="Team name here..."
+        type="text"
+        value=""
+      />
+      <button
+        className="team-submit-btn"
+      >
+        Add
+      </button>
+    </form>
+  </div>
+  <h2>
+    Teams
+  </h2>
+</div>
+`;

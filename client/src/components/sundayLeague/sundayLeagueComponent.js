@@ -27,17 +27,17 @@ const SundayLeague = ({ league, submitTeam, status, teams }) => {
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
             />
-            <button>Add</button>
+            <button className="team-submit-btn">Add</button>
           </form>
         </div>
       ) : null}
       <h2>Teams</h2>
       {status === 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
-      ) : (
-        teams.map((team) => {
+      ) : teams ? (
+        teams.map((team, index) => {
           return (
-            <div>
+            <div key={index}>
               <Link
                 to={{
                   pathname: `/sunday-league/${league._id}`,
@@ -49,7 +49,7 @@ const SundayLeague = ({ league, submitTeam, status, teams }) => {
             </div>
           );
         })
-      )}
+      ) : null}
     </div>
   );
 };
