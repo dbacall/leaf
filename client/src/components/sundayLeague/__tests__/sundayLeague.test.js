@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { shallow } from 'enzyme';
+import React from 'react';
+import { shallow, mount } from 'enzyme';
 import SundayLeague from '../sundayLeagueComponent';
 
 describe('sundayLeague component tests:', () => {
@@ -23,13 +23,16 @@ describe('sundayLeague component tests:', () => {
   });
 
   it('should submit the team', () => {
-    // const submitTeam = jest.fn();
-    // const wrap = shallow(<SundayLeague {...props} submitTeam={submitTeam} />);
-    // wrap.find('button').simulate('click');
-    // wrap.find('input').simulate('change', {
-    //   target: { value: 'team1' },
-    // });
-    // wrap.find('button').at(1).simulate('click');
+    const submitTeam = jest.fn();
+    const event = { preventDefault: jest.fn() };
+    const wrap = shallow(<SundayLeague {...props} submitTeam={submitTeam} />);
+    wrap.find('button').simulate('click');
+    wrap.find('input').simulate('change', {
+      target: { value: 'team1' },
+    });
+    wrap.find('form').simulate('submit', event);
+    expect(submitTeam).toHaveBeenCalled();
+    expect(submitTeam).toHaveBeenCalledWith('team1');
   });
 
   it('should show teams if in props', () => {
