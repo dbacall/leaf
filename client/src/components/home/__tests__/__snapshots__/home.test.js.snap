@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component tests: should show the form when add league button clicked 1`] = `
+<div>
+  <h1>
+    Home
+  </h1>
+  <Link
+    to="/my-sunday-leagues"
+  >
+    My Sunday Leagues
+  </Link>
+  <h2>
+    Hello 
+    David
+  </h2>
+  <button
+    onClick={[Function]}
+  >
+    Create Sunday League
+  </button>
+  <div>
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        className="home-input"
+        onChange={[Function]}
+        placeholder="Your league name here..."
+        type="text"
+        value=""
+      />
+      <button>
+        Create
+      </button>
+    </form>
+  </div>
+</div>
+`;
