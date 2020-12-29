@@ -16,12 +16,12 @@ describe('Home component tests:', () => {
     const wrap = shallow(<Home {...props} />);
     wrap.find('button').first().simulate('click');
 
-    expect(wrap.find('input').props().value).toEqual('');
+    expect(wrap.find('input').prop('value')).toEqual('');
 
     wrap.find('input').simulate('change', {
       target: { value: 'league1' },
     });
 
-    expect(wrap.find('input').props().value).toEqual('league1');
+    expect(wrap.find('input').prop('value')).toEqual('league1');
   });
 });
