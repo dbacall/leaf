@@ -17,27 +17,43 @@ export const registerUser = (userData, history) => (dispatch) => {
     );
 };
 // Login - get user token
-export const loginUser = (userData) => (dispatch) => {
+export const loginUser = (userData) => async (dispatch) => {
   const path = '/users/login';
-  api
-    .request('post', userData, path)
-    .then((res) => {
-      const { token } = res.data;
+  const response = await api.request('post', userData, path);
+  console.log('response', response);
+  if (response.error) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: response.errors,
+    });
+  } else {
+    const { token } = response.data;
 
-      localStorage.setItem('jwtToken', token);
-      // Set token to Auth header
-      setAuthToken(token);
+    localStorage.setItem('jwtToken', token);
+    // Set token to Auth header
+    setAuthToken(token);
 
-      const decoded = jwt_decode(token);
+    const decoded = jwt_decode(token);
 
-      dispatch(setCurrentUser(decoded));
-    })
-    .catch((err) =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-      })
-    );
+    dispatch(setCurrentUser(decoded));
+  }
+  //   const { token } = res.data;
+
+  //   localStorage.setItem('jwtToken', token);
+  //   // Set token to Auth header
+  //   setAuthToken(token);
+
+  //   const decoded = jwt_decode(token);
+
+  //   dispatch(setCurrentUser(decoded));
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  //   dispatch({
+  //     type: GET_ERRORS,
+  //     payload: err.message,
+  //   });
+  // });
 };
 // Set logged in user
 export const setCurrentUser = (decoded) => {

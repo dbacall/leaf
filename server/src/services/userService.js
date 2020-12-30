@@ -53,7 +53,6 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'Invalid registration entries',
         errors,
       };
     }
@@ -93,7 +92,7 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'Password incorrect',
+        errors: { password: 'Password incorrect' },
       };
     }
   }
