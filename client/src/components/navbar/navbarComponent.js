@@ -7,22 +7,26 @@ import { ReactComponent as MenuIcon } from '../../assets/menu.svg';
 const Navbar = ({ user, logout }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
-  const menuActive = mobileMenu ? styles.active : '';
+  const openMenu = () => {
+    setMobileMenu(true);
+  };
 
-  const handleMenu = () => {
-    setMobileMenu(!mobileMenu);
+  const closeMenu = () => {
+    setMobileMenu(false);
   };
 
   const onLogoutClick = (e) => {
     e.preventDefault();
     logout();
-    handleMenu();
+    closeMenu();
   };
+
+  const menuActive = mobileMenu ? styles.active : '';
 
   return (
     <section className={styles.navbar}>
       <nav>
-        <Link to="/" className={styles.title} onClick={handleMenu}>
+        <Link to="/" className={styles.title} onClick={closeMenu}>
           <span>Fantasy Me</span>
         </Link>
         {user ? (
@@ -30,11 +34,11 @@ const Navbar = ({ user, logout }) => {
             <Link
               to="/my-sunday-leagues"
               className={styles.navButton}
-              onClick={handleMenu}
+              onClick={closeMenu}
             >
               My Sunday Leagues
             </Link>
-            <Link to="/" className={styles.navButton} onClick={handleMenu}>
+            <Link to="/" className={styles.navButton} onClick={closeMenu}>
               My Fantasy Leagues
             </Link>
             <a className={styles.navButton} onClick={onLogoutClick}>
@@ -43,7 +47,10 @@ const Navbar = ({ user, logout }) => {
           </div>
         ) : null}
         {user ? (
-          <div className={styles.mobileMenuIcon} onClick={handleMenu}>
+          <div
+            className={styles.mobileMenuIcon}
+            onClick={mobileMenu ? closeMenu : openMenu}
+          >
             {mobileMenu ? (
               <CloseMenu className={styles.menuIcon} />
             ) : (
