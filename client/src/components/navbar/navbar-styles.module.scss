@@ -6,7 +6,6 @@ section.navbar {
     height: 80px;
     display: flex;
     align-items: stretch;
-    text-align: center;
 
     .title {
       flex: 1;
@@ -14,7 +13,7 @@ section.navbar {
       align-items: center;
       color: $purple;
       font-family: $heading-font;
-      font-size: $bigger-font-size;
+      font-size: $big-font-size;
       letter-spacing: 10px;
       text-transform: uppercase;
 
@@ -49,6 +48,8 @@ section.navbar {
     }
 
     @include media-tablet() {
+      // justify-content: center;
+
       .title {
         flex: 6;
       }
@@ -61,14 +62,14 @@ section.navbar {
         top: 80px;
         left: -100%;
         opacity: 0;
-        transition: all 1s ease;
+        transition: all 0.8s ease;
         flex-direction: column;
 
         &.active {
           background: $green;
           left: 0;
           opacity: 1;
-          transition: all 1s ease;
+          transition: all 0.8s ease;
           z-index: 1;
           padding-left: 0px;
         }
