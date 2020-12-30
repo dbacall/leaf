@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './navbar-styles.module.scss';
 import { ReactComponent as CloseMenu } from '../../assets/x-mark.svg';
 import { ReactComponent as MenuIcon } from '../../assets/menu.svg';
+import classNames from 'classnames';
 
 const Navbar = ({ user, logout }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -21,16 +22,18 @@ const Navbar = ({ user, logout }) => {
     closeMenu();
   };
 
-  const menuActive = mobileMenu ? styles.active : '';
-
   return (
     <section className={styles.navbar}>
       <nav>
         <Link to="/" className={styles.title} onClick={closeMenu}>
-          <span>Fantasy Me</span>
+          <span>Fantasy Sunday League</span>
         </Link>
         {user ? (
-          <div className={`${styles.navButtons} ${menuActive}`}>
+          <div
+            className={classNames(styles.navButtons, {
+              [styles.active]: mobileMenu,
+            })}
+          >
             <Link
               to="/my-sunday-leagues"
               className={styles.navButton}
