@@ -3,18 +3,19 @@
 $margin: 20px;
 $padding: 20px;
 
-$base-font-size: 18px;
-$biggest-font-size: $base-font-size + 27px; // base * 2.5
-$bigger-font-size: $base-font-size + 18px; // base * 2
-$big-font-size: $base-font-size + 9px; // base * 1.5
+$base-font-size: 20px;
+$biggest-font-size: $base-font-size + 27px;
+$bigger-font-size: $base-font-size + 18px;
+$big-font-size: $base-font-size + 9px;
 $regular-font-size: $base-font-size;
-$small-font-size: $base-font-size - 3px; // base * 0.85
+$small-font-size: $base-font-size - 3px;
 
 $base-font-weight: 400;
 
 //fonts
 
 $heading-font: 'creteround';
+$regular-font: 'cabin';
 
 // colours
 
