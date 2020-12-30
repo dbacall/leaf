@@ -1,0 +1,25 @@
+// dimensions
+
+$margin: 20px;
+$padding: 20px;
+
+$base-font-size: 18px;
+$biggest-font-size: $base-font-size + 27px; // base * 2.5
+$bigger-font-size: $base-font-size + 18px; // base * 2
+$big-font-size: $base-font-size + 9px; // base * 1.5
+$regular-font-size: $base-font-size;
+$small-font-size: $base-font-size - 3px; // base * 0.85
+
+$base-font-weight: 400;
+
+//fonts
+
+$heading-font: 'creteround';
+
+// colours
+
+$green: #30c587;
+$olive: #37371f;
+$purple: #802392;
+// 7e52a0;
+$linen: #f5e9e2;
