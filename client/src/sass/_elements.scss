@@ -1,8 +1,11 @@
 @import './variables';
 
 body {
+  font-family: $regular-font;
+  font-size: $regular-font-size;
   color: $olive;
   background: $linen;
+
   a {
     color: $olive;
     text-decoration: none;

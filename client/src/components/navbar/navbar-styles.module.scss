@@ -33,16 +33,79 @@ section.navbar {
 
       .navButton {
         flex: 1;
-        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: $regular-font-size;
         letter-spacing: 1px;
 
         &:hover {
           background-color: lighten($green, 5%);
         }
+      }
+    }
+
+    .mobileMenuIcon {
+      display: none;
+    }
+
+    @include media-tablet() {
+      // display: block;
+      .title {
+        flex: 6;
+      }
+
+      .navButtons {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        opacity: 0;
+        transition: all 0.5s ease;
+        flex-direction: column;
+
+        &.active {
+          background: $green;
+          left: 0;
+          opacity: 1;
+          transition: all 0.5s ease;
+          z-index: 1;
+          padding-left: 0px;
+        }
+
+        .menuIcon {
+          width: 45px;
+          height: 45px;
+        }
+
+        .navButton {
+          flex: none;
+          height: 4em;
+        }
+      }
+
+      .mobileMenuIcon {
+        display: flex;
+        z-index: 9999;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    @include media-mobile() {
+      .title {
+        font-size: $regular-font-size;
+      }
+
+      .menuIcon {
+        width: 20px;
+        height: 20px;
       }
     }
   }
