@@ -1,0 +1,49 @@
+@import '../../sass/app';
+
+section.navbar {
+  nav {
+    background-color: $green;
+    height: 80px;
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+
+    .title {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      color: $purple;
+      font-family: $heading-font;
+      font-size: $bigger-font-size;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+
+      &:hover {
+        background-color: lighten($green, 5%);
+      }
+
+      span {
+        margin-left: $margin * 4;
+      }
+    }
+
+    .navButtons {
+      flex: 1;
+      display: flex;
+
+      .navButton {
+        flex: 1;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $regular-font-size;
+        letter-spacing: 1px;
+
+        &:hover {
+          background-color: lighten($green, 5%);
+        }
+      }
+    }
+  }
+}

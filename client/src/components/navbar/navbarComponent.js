@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/authActions';
-import './navbarStyles.css';
+import styles from './navbar-styles.module.scss';
 
 class Navbar extends Component {
   onLogoutClick = (e) => {
@@ -10,44 +10,29 @@ class Navbar extends Component {
     this.props.logoutUser();
   };
 
-  renderLogOutButton = (user) => {
-    if (user && typeof user.id === 'string') {
-      return (
-        <button
-          style={{
-            width: '150px',
-            borderRadius: '3px',
-            letterSpacing: '1.5px',
-            marginTop: '1rem',
-          }}
-          onClick={this.onLogoutClick}
-          className="btn btn-success log-out-btn"
-        >
-          Logout
-        </button>
-      );
-    }
-  };
-
   render() {
     const { user } = this.props.auth;
     return (
-      <div className="navbar-fixed">
-        <nav className="z-depth-0">
-          <div className="nav-wrapper white">
-            <Link
-              to="/"
-              style={{
-                fontFamily: 'monospace',
-              }}
-              className="col s5 brand-logo center black-text"
-            >
-              Fantasy Me
-            </Link>
-          </div>
-          {this.renderLogOutButton(user)}
+      <section className={styles.navbar}>
+        <nav>
+          <Link to="/" className={styles.title}>
+            <span>Fantasy Me</span>
+          </Link>
+          {user ? (
+            <div className={styles.navButtons}>
+              <Link to="/my-sunday-leagues" className={styles.navButton}>
+                My Sunday Leagues
+              </Link>
+              <Link to="/" className={styles.navButton}>
+                My Fantasy Leagues
+              </Link>
+              <a onClick={this.onLogoutClick} className={styles.navButton}>
+                Logout
+              </a>
+            </div>
+          ) : null}
         </nav>
-      </div>
+      </section>
     );
   }
 }

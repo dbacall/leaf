@@ -5,7 +5,7 @@ import store from './redux/store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './redux/actions/authActions';
-import './App.css';
+import './App.scss';
 import RouterConfig from './navigation/RouterConfig';
 
 if (localStorage.jwtToken) {

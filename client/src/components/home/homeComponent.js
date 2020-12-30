@@ -15,9 +15,6 @@ const Home = ({ user, submitLeague }) => {
 
   return (
     <div>
-      <h1>Home</h1>
-      <Link to="/my-sunday-leagues">My Sunday Leagues</Link>
-      <h2>Hello {user.firstName}</h2>
       <button onClick={() => setCreateLeague(!createLeague)}>
         Create Sunday League
       </button>
