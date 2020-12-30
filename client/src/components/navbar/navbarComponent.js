@@ -5,7 +5,7 @@ import { ReactComponent as CloseMenu } from '../../assets/icons/x-mark.svg';
 import { ReactComponent as MenuIcon } from '../../assets/icons/menu.svg';
 import classNames from 'classnames';
 
-const Navbar = ({ user, logout }) => {
+const Navbar = ({ auth, logout }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const openMenu = () => {
@@ -28,7 +28,7 @@ const Navbar = ({ user, logout }) => {
         <Link to="/" className={styles.title} onClick={closeMenu}>
           <span>Fantasy Sunday League</span>
         </Link>
-        {user ? (
+        {auth.isAuthenticated ? (
           <div
             className={classNames(styles.navButtons, {
               [styles.active]: mobileMenu,
@@ -49,7 +49,7 @@ const Navbar = ({ user, logout }) => {
             </a>
           </div>
         ) : null}
-        {user ? (
+        {auth.isAuthenticated ? (
           <div
             className={styles.mobileMenuIcon}
             onClick={mobileMenu ? closeMenu : openMenu}

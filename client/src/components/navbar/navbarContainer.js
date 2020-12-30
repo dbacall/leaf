@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/actions/authActions';
 
 const NavbarContainer = () => {
-  const user = useSelector((state) => state.auth.user);
+  const auth = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
@@ -12,7 +12,7 @@ const NavbarContainer = () => {
     dispatch(logoutUser());
   };
 
-  return <Navbar user={user} logout={logout} />;
+  return <Navbar auth={auth} logout={logout} />;
 };
 
 export default NavbarContainer;
