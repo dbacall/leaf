@@ -7,25 +7,10 @@ const Login = ({ auth, loginErrors, push, loginUser }) => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.auth.isAuthenticated) {
-  //     console.log(this.props);
-  //     this.props.push('/');
-  //   }
-
-  //   if (nextProps.errors) {
-  //     this.setState({
-  //       errors: nextProps.errors,
-  //     });
-  //   }
-  // }
-
   useEffect(() => {
     console.log(loginErrors);
     if (auth.isAuthenticated) push('/');
   }, [auth]);
-
-  // const initialMount = useRef(true);
 
   useEffect(() => {
     if (loginErrors) setErrors(loginErrors);
@@ -68,6 +53,7 @@ const Login = ({ auth, loginErrors, push, loginUser }) => {
                 className={classnames('', {
                   invalid: errors.email || errors.emailnotfound,
                 })}
+                style={{ color: 'black' }}
               />
               <label htmlFor="email">Email</label>
               <span className="red-text">
@@ -85,6 +71,7 @@ const Login = ({ auth, loginErrors, push, loginUser }) => {
                 className={classnames('', {
                   invalid: errors.password || errors.passwordincorrect,
                 })}
+                style={{ color: 'black' }}
               />
               <label htmlFor="password">Password</label>
               <span className="red-text">
