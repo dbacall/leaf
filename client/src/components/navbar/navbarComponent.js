@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './navbar-styles.module.scss';
-import { ReactComponent as CloseMenu } from '../../assets/x-mark.svg';
-import { ReactComponent as MenuIcon } from '../../assets/menu.svg';
+import { ReactComponent as CloseMenu } from '../../assets/icons/x-mark.svg';
+import { ReactComponent as MenuIcon } from '../../assets/icons/menu.svg';
 import classNames from 'classnames';
 
 const Navbar = ({ user, logout }) => {
