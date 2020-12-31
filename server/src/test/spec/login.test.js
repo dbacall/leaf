@@ -36,7 +36,7 @@ describe('Login', () => {
     var data = await loginUser('dbacall@hotmail.co.uk', 'passwo');
 
     expect(data.error).to.be.true;
-    expect(data.message).to.equal('Password incorrect');
+    expect(data.errors.password).to.equal('Password incorrect');
   });
 
   it('should return errors if email and password field are left empty', async () => {

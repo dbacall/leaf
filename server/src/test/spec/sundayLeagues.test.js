@@ -44,11 +44,11 @@ describe('Sunday League', () => {
 
     expect(result.leagues).to.be.length(1);
     expect(result.leagues[0].leagueName).to.eq('league1');
-
     await supertest(app)
-      .get(`/sunday-leagues/${user.data.id}`)
+      .get(`/sunday-leagues/${user.data.id}/owner`)
       .then((res) => {
-        expect(res.body.data).to.be.length(1);
+        expect(res.body).to.be.length(1);
+        expect(res.body[0].leagueName).to.eq('league1');
       });
   });
 
