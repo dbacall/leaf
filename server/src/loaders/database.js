@@ -3,15 +3,17 @@ const mongoose = require('mongoose');
 module.exports = () => {
   // set up database connection
 
+  const url = process.env.DB_URL;
+
   mongoose
-    .connect(process.env.DB_URL, {
+    .connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
     .then(() => {
-      process.env.ENV_FILE === 'test'
-        ? console.log('Test MongoDB successfully connected')
-        : console.log('MongoDB successfully connected');
+      console.log(
+        `Successfully connected to ${process.env.NODE_ENV} mongoDB database.`
+      );
     })
     .catch((err) => console.log(err));
 };
