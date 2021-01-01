@@ -22,7 +22,6 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'Invalid registration entries',
         errors,
       };
     }
@@ -35,7 +34,7 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'Email already in use',
+        errors: { email: 'Email already in use' },
       };
     }
 
