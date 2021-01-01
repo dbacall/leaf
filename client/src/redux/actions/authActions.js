@@ -27,7 +27,10 @@ export const loginUser = (userData) => async (dispatch) => {
 
   const response = await api.request('post', userData, path);
 
+  console.log('response', response);
+
   if (response.error) {
+    console.log('errpr', response.errors);
     dispatch({
       type: GET_ERRORS,
       payload: response.errors,
@@ -56,6 +59,13 @@ export const setUserLoading = () => {
   return {
     type: USER_LOADING,
   };
+};
+
+export const resetErrors = () => (dispatch) => {
+  dispatch({
+    type: GET_ERRORS,
+    payload: {},
+  });
 };
 
 export const logoutUser = () => (dispatch) => {
