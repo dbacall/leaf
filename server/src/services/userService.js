@@ -65,7 +65,7 @@ class UserService extends Service {
       return {
         error: true,
         statusCode: 500,
-        message: 'Email not found',
+        errors: { email: 'Email not found' },
       };
     }
 
