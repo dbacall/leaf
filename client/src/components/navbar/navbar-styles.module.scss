@@ -33,7 +33,7 @@ section.navbar {
       display: flex;
 
       .navButton {
-        color: $black;
+        color: $light-blue;
         text-decoration: none;
         flex: 1;
         display: flex;
@@ -43,7 +43,7 @@ section.navbar {
 
         &:hover {
           background-color: lighten($dark-blue, 5%);
-          color: $black;
+          color: $light-blue;
           text-decoration: none;
           cursor: pointer;
         }
