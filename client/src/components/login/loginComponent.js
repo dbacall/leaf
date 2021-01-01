@@ -3,18 +3,9 @@ import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import styles from './login.module.scss';
 
-const Login = ({ auth, loginErrors, push, loginUser }) => {
+const Login = ({ errors, loginUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
-
-  useEffect(() => {
-    if (auth.isAuthenticated) push('/');
-  }, [auth]);
-
-  useEffect(() => {
-    if (loginErrors) setErrors(loginErrors);
-  }, [loginErrors]);
 
   const onSubmit = (e) => {
     e.preventDefault();
