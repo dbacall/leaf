@@ -26,16 +26,12 @@ const Login = ({ auth, loginErrors, push, loginUser }) => {
     loginUser(userData);
   };
 
-  // useEffect(() => {
-  //   if (loginErrors) setErrors(loginErrors);
-  // }, [loginErrors]);
-
   return (
     <section className={styles.login}>
       <div className={styles.formContainer}>
-        <div className="col s12" style={{ paddingLeft: '11.250px' }}>
+        <div>
           <h3>Login</h3>
-          <p className="grey-text text-darken-1">
+          <p>
             Don't have an account? <Link to="/register">Register</Link>
           </p>
         </div>
