@@ -3,11 +3,12 @@
 body {
   font-family: $regular-font;
   font-size: $regular-font-size;
-  color: $black;
+  color: $olive;
   background: $linen;
 
   button {
-    background-color: $green;
+    color: $dark-blue;
+    background-color: $light-blue;
     border-radius: $border-radius;
     padding: $padding / 3 $padding * 2;
 
@@ -23,6 +24,14 @@ body {
 
     &:focus {
       outline: none;
+    }
+  }
+
+  a {
+    color: $acid-yellow;
+
+    &:hover {
+      color: $acid-yellow;
     }
   }
 
