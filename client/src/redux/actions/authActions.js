@@ -2,21 +2,26 @@ import api from '../../services/api';
 import setAuthToken from '../../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types';
-// Register User
-export const registerUser = (userData, history) => (dispatch) => {
+
+export const registerUser = (userData, history) => async (dispatch) => {
   const path = '/users/register';
 
-  api
-    .request('post', userData, path)
-    .then((res) => history.push('/login')) // re-direct to login on successful register
-    .catch((err) =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-      })
-    );
+  const response = await api.request('post', userData, path);
+
+  if (response.error) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: response.errors,
+    });
+  } else {
+    history.push('/login');
+    dispatch({
+      type: GET_ERRORS,
+      payload: {},
+    });
+  }
 };
-// Login - get user token
+
 export const loginUser = (userData) => async (dispatch) => {
   const path = '/users/login';
 
