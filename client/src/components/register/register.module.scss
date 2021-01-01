@@ -1,0 +1,44 @@
+section.register {
+  .formContainer {
+    width: 40%;
+    margin: auto;
+    margin-top: $margin * 6;
+    text-align: center;
+
+    input {
+      display: block;
+      margin: auto;
+      color: $black;
+      border-radius: $border-radius;
+      padding: $padding / 3;
+      width: 60%;
+
+      &:last-of-type {
+        margin-top: $margin;
+      }
+    }
+
+    .submitBtn {
+      margin-top: $margin / 3;
+      width: 60%;
+
+      &:active {
+        border: none;
+      }
+    }
+  }
+
+  @include media-mobile() {
+    .formContainer {
+      width: 100%;
+
+      input {
+        width: 80%;
+      }
+
+      .submitBtn {
+        width: 80%;
+      }
+    }
+  }
+}
