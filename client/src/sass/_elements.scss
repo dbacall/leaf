@@ -3,17 +3,33 @@
 body {
   font-family: $regular-font;
   font-size: $regular-font-size;
-  color: $olive;
+  color: $black;
   background: $linen;
 
-  a {
-    color: $olive;
-    text-decoration: none;
+  button {
+    background-color: $green;
+    border-radius: $border-radius;
+    padding: $padding / 3 $padding * 2;
 
     &:hover {
-      color: $olive;
-      text-decoration: none;
-      cursor: pointer;
+      box-shadow: inset 0px 100px 0px rgba(255, 255, 255, 0.2);
+    }
+
+    &:active {
+      transition: none;
+      box-shadow: inset 0px 100px 0px rgba(0, 0, 0, 0.1);
+      transform: scale(0.99) translateY(-1px);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input {
+    &:focus {
+      outline: none;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
     }
   }
 }
