@@ -99,7 +99,9 @@ const Register = ({ registerErrors, registerUser }) => {
             })}
           />
           <p className={styles.warning}>{errors.password2}</p>
-          <button type="submit">Sign up</button>
+          <button type="submit" className={styles.submitBtn}>
+            Sign up
+          </button>
         </form>
       </div>
     </section>

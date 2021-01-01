@@ -28,6 +28,20 @@ section.register {
     }
   }
 
+  @include media-tablet() {
+    .formContainer {
+      width: 60%;
+
+      input {
+        width: 80%;
+      }
+
+      .submitBtn {
+        width: 80%;
+      }
+    }
+  }
+
   @include media-mobile() {
     .formContainer {
       width: 100%;
