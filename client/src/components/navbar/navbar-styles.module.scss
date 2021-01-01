@@ -11,11 +11,13 @@ section.navbar {
       flex: 1;
       display: flex;
       align-items: center;
-      color: $purple;
+      color: $blue;
       font-family: $heading-font;
       font-size: $big-font-size;
       letter-spacing: 10px;
       text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
 
       &:hover {
         background-color: lighten($green, 5%);
@@ -31,6 +33,8 @@ section.navbar {
       display: flex;
 
       .navButton {
+        color: $black;
+        text-decoration: none;
         flex: 1;
         display: flex;
         align-items: center;
@@ -39,6 +43,9 @@ section.navbar {
 
         &:hover {
           background-color: lighten($green, 5%);
+          color: $black;
+          text-decoration: none;
+          cursor: pointer;
         }
       }
     }
@@ -48,8 +55,6 @@ section.navbar {
     }
 
     @include media-tablet() {
-      // justify-content: center;
-
       .title {
         flex: 6;
       }
@@ -100,7 +105,18 @@ section.navbar {
 
     @include media-mobile() {
       .title {
-        font-size: $regular-font-size;
+        visibility: hidden;
+        position: relative;
+      }
+
+      .title:after {
+        font-size: $bigger-font-size;
+        visibility: visible;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        content: 'FSL';
       }
 
       .menuIcon {
