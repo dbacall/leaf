@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import styles from './login.module.scss';
 
 const Login = ({ auth, loginErrors, push, loginUser }) => {
   const [email, setEmail] = useState('');
@@ -8,7 +9,6 @@ const Login = ({ auth, loginErrors, push, loginUser }) => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    console.log(loginErrors);
     if (auth.isAuthenticated) push('/');
   }, [auth]);
 
@@ -31,72 +31,53 @@ const Login = ({ auth, loginErrors, push, loginUser }) => {
   // }, [loginErrors]);
 
   return (
-    <div className="container">
-      <div style={{ marginTop: '4rem' }} className="row">
-        <div className="col s8 offset-s2">
-          <div className="col s12" style={{ paddingLeft: '11.250px' }}>
-            <h4>
-              <b>Login</b> below
-            </h4>
-            <p className="grey-text text-darken-1">
-              Don't have an account? <Link to="/register">Register</Link>
-            </p>
-          </div>
-          <form noValidate onSubmit={onSubmit}>
-            <div className="input-field col s12">
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                error={errors.email}
-                id="email"
-                type="email"
-                className={classnames('', {
-                  invalid: errors.email || errors.emailnotfound,
-                })}
-                style={{ color: 'black' }}
-              />
-              <label htmlFor="email">Email</label>
-              <span className="red-text">
-                {errors.email}
-                {errors.emailnotfound}
-              </span>
-            </div>
-            <div className="input-field col s12">
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                error={errors.password}
-                id="password"
-                type="password"
-                className={classnames('', {
-                  invalid: errors.password || errors.passwordincorrect,
-                })}
-                style={{ color: 'black' }}
-              />
-              <label htmlFor="password">Password</label>
-              <span className="red-text">
-                {errors.password}
-                {errors.passwordincorrect}
-              </span>
-            </div>
-            <div className="col s12" style={{ paddingLeft: '11.250px' }}>
-              <button
-                style={{
-                  width: '150px',
-                  borderRadius: '3px',
-                  letterSpacing: '1.5px',
-                  marginTop: '1rem',
-                }}
-                type="submit"
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-              >
-                Login
-              </button>
-            </div>
-          </form>
+    <section className={styles.login}>
+      <div className={styles.formContainer}>
+        <div className="col s12" style={{ paddingLeft: '11.250px' }}>
+          <h3>Login</h3>
+          <p className="grey-text text-darken-1">
+            Don't have an account? <Link to="/register">Register</Link>
+          </p>
         </div>
+        <form noValidate onSubmit={onSubmit}>
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            error={errors.email}
+            id="email"
+            type="email"
+            placeholder="Email"
+            className={classnames('', {
+              [styles.inputWarning]: errors.email || errors.emailnotfound,
+            })}
+          />
+          <p className={styles.warning}>
+            {errors.email}
+            {errors.emailnotfound}
+          </p>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            error={errors.password}
+            id="password"
+            type="password"
+            placeholder="Password"
+            className={classnames('', {
+              [styles.inputWarning]:
+                errors.password || errors.passwordincorrect,
+            })}
+            style={{ color: 'black' }}
+          />
+          <p className={styles.warning}>
+            {errors.password}
+            {errors.passwordincorrect}
+          </p>
+          <button type="submit" className={styles.submitBtn}>
+            Login
+          </button>
+        </form>
       </div>
-    </div>
+    </section>
   );
 };
 
