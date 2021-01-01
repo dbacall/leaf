@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import styles from './register.module.scss';
 
-const Register = ({ registerErrors, registerUser }) => {
+const Register = ({ errors, registerUser }) => {
   const [firstName, setFirstName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [errors, setErrors] = useState({});
-
-  useEffect(() => {
-    if (registerErrors) setErrors(registerErrors);
-  }, [registerErrors]);
 
   const onSubmit = (e) => {
     e.preventDefault();
