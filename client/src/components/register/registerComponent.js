@@ -1,139 +1,109 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { registerUser } from '../../redux/actions/authActions';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import styles from './register.module.scss';
 
-class Register extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: '',
-      surname: '',
-      email: '',
-      password: '',
-      password2: '',
-      errors: {},
-    };
-  }
+const Register = ({ registerErrors, registerUser }) => {
+  const [firstName, setFirstName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [errors, setErrors] = useState({});
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors,
-      });
-    }
-  }
+  useEffect(() => {
+    if (registerErrors) setErrors(registerErrors);
+  }, [registerErrors]);
 
-  onChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
-
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
     const newUser = {
-      firstName: this.state.firstName,
-      surname: this.state.surname,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2,
+      firstName,
+      surname,
+      email,
+      password,
+      password2,
     };
 
-    this.props.registerUser(newUser, this.props.history);
+    registerUser(newUser);
   };
 
-  render() {
-    const { errors } = this.state;
-    return (
-      <section className={styles.register}>
-        <div className={styles.formContainer}>
-          <div>
-            <h4>Register</h4>
-            <p>
-              Already have an account? <Link to="/login">Log in</Link>
-            </p>
-          </div>
-          <form noValidate onSubmit={this.onSubmit}>
-            <input
-              onChange={this.onChange}
-              value={this.state.firstName}
-              error={errors.firstName}
-              id="firstName"
-              type="text"
-              placeholder="First Name"
-              className={classnames('', {
-                [styles.inputWarning]: errors.name,
-              })}
-            />
-            <p className={styles.warning}>{errors.firstName}</p>
-            <input
-              onChange={this.onChange}
-              value={this.state.surname}
-              error={errors.surname}
-              id="surname"
-              type="text"
-              placeholder="Surname"
-              className={classnames('', {
-                [styles.inputWarning]: errors.surname,
-              })}
-            />
-            <p className={styles.warning}>{errors.surname}</p>
-            <input
-              onChange={this.onChange}
-              value={this.state.email}
-              error={errors.email}
-              id="email"
-              type="email"
-              placeholder="Email"
-              className={classnames('', {
-                [styles.inputWarning]: errors.email,
-              })}
-            />
-            <p className={styles.warning}>{errors.email}</p>
-            <input
-              onChange={this.onChange}
-              value={this.state.password}
-              error={errors.password}
-              id="password"
-              type="password"
-              placeholder="Password"
-              className={classnames('', {
-                [styles.inputWarning]: errors.password,
-              })}
-            />
-            <p className={styles.warning}>{errors.password}</p>
-            <input
-              onChange={this.onChange}
-              value={this.state.password2}
-              error={errors.password2}
-              id="password2"
-              type="password"
-              placeholder="Confirm Password"
-              className={classnames('', {
-                [styles.inputWarning]: errors.password2,
-              })}
-            />
-            <p className={styles.warning}>{errors.password2}</p>
-            <button type="submit">Sign up</button>
-          </form>
+  return (
+    <section className={styles.register}>
+      <div className={styles.formContainer}>
+        <div>
+          <h4>Register</h4>
+          <p>
+            Already have an account? <Link to="/login">Log in</Link>
+          </p>
         </div>
-      </section>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
-});
-
-Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+        <form noValidate onSubmit={onSubmit}>
+          <input
+            onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
+            error={errors.firstName}
+            id="firstName"
+            type="text"
+            placeholder="First Name"
+            className={classnames('', {
+              [styles.inputWarning]: errors.name,
+            })}
+          />
+          <p className={styles.warning}>{errors.firstName}</p>
+          <input
+            onChange={(e) => setSurname(e.target.value)}
+            value={surname}
+            error={errors.surname}
+            id="surname"
+            type="text"
+            placeholder="Surname"
+            className={classnames('', {
+              [styles.inputWarning]: errors.surname,
+            })}
+          />
+          <p className={styles.warning}>{errors.surname}</p>
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            error={errors.email}
+            id="email"
+            type="email"
+            placeholder="Email"
+            className={classnames('', {
+              [styles.inputWarning]: errors.email,
+            })}
+          />
+          <p className={styles.warning}>{errors.email}</p>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            error={errors.password}
+            id="password"
+            type="password"
+            placeholder="Password"
+            className={classnames('', {
+              [styles.inputWarning]: errors.password,
+            })}
+          />
+          <p className={styles.warning}>{errors.password}</p>
+          <input
+            onChange={(e) => setPassword2(e.target.value)}
+            value={password2}
+            error={errors.password2}
+            id="password2"
+            type="password"
+            placeholder="Confirm Password"
+            className={classnames('', {
+              [styles.inputWarning]: errors.password2,
+            })}
+          />
+          <p className={styles.warning}>{errors.password2}</p>
+          <button type="submit">Sign up</button>
+        </form>
+      </div>
+    </section>
+  );
 };
 
-export default connect(mapStateToProps, { registerUser })(withRouter(Register));
+export default Register;
