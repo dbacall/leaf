@@ -53,7 +53,6 @@ const Login = ({ errors, loginUser }) => {
               [styles.inputWarning]:
                 errors.password || errors.passwordincorrect,
             })}
-            style={{ color: 'black' }}
           />
           <p className={styles.warning}>
             {errors.password}
