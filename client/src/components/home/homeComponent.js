@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 const Home = ({ user, submitLeague }) => {
   const [createLeague, setCreateLeague] = useState(false);
-  const [leagueName, setLeagueName] = useState('');
+  const [name, setName] = useState('');
 
   const submitForm = (e) => {
     e.preventDefault();
-    submitLeague(leagueName, user.id);
-    setLeagueName('');
+    submitLeague(name, user.id);
+    setName('');
     setCreateLeague(false);
   };
 
@@ -25,8 +25,8 @@ const Home = ({ user, submitLeague }) => {
               className="home-input"
               type="text"
               placeholder="Your league name here..."
-              value={leagueName}
-              onChange={(e) => setLeagueName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <button>Create</button>
           </form>

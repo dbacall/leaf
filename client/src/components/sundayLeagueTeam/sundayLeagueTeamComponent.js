@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 
 const SundayLeagueTeam = ({ team }) => {
   const [addPlayer, setAddPlayer] = useState(false);
-  const [playerName, setPlayerName] = useState('');
+  const [name, setName] = useState('');
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
-  //   submitTeam(teamName);
-  //   setTeamName('');
+  //   submitTeam(name);
+  //   setName('');
   // };
 
   return (
     <div>
-      <h1>{team.teamName}</h1>
+      <h1>{team.name}</h1>
       <button onClick={() => setAddPlayer(!addPlayer)}>Add Player</button>
       {addPlayer ? (
         <div>
@@ -23,8 +23,8 @@ const SundayLeagueTeam = ({ team }) => {
               className="add-team-input"
               type="text"
               placeholder="Team name here..."
-              value={playerName}
-              onChange={(e) => setPlayerName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <button className="team-submit-btn">Add</button>
           </form>
@@ -43,7 +43,7 @@ const SundayLeagueTeam = ({ team }) => {
                   state: { league: league },
                 }}
               >
-                {player.playerName}
+                {player.name}
               </Link>
             </div>
           );

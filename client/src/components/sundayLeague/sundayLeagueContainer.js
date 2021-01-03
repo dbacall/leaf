@@ -4,30 +4,30 @@ import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSundayLeagueTeams } from '../../redux/thunks/sundayLeagueTeamsThunks';
 
-const SundayLeagueContainer = (props) => {
+const SundayLeagueContainer = ({ location }) => {
   const dispatch = useDispatch();
 
   const [teamAdded, setTeamAdded] = useState(false);
 
   const sundayLeagueTeams = useSelector((state) => state.sundayLeagueTeams);
-  const leagueId = props.location.state.league.id;
+  const league = location.state.league;
 
   const isInitialMount = useRef(true);
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
-      dispatch(fetchSundayLeagueTeams(leagueId));
+      dispatch(fetchSundayLeagueTeams(league.id));
     }
     if (teamAdded) {
-      dispatch(fetchSundayLeagueTeams(leagueId));
+      dispatch(fetchSundayLeagueTeams(league.id));
       setTeamAdded(false);
     }
   }, [teamAdded]);
 
-  const submitTeam = async (teamName) => {
+  const submitTeam = async (name) => {
     const data = {
-      teamName,
-      league: leagueId,
+      name,
+      league: league.id,
     };
 
     const path = '/sunday-leagues/team';
@@ -39,7 +39,7 @@ const SundayLeagueContainer = (props) => {
 
   return (
     <SundayLeague
-      league={props.location.state.league}
+      league={league}
       submitTeam={submitTeam}
       teams={sundayLeagueTeams.teams}
       status={sundayLeagueTeams.status}

@@ -21,7 +21,7 @@ describe('Login', () => {
     var data = await loginUser('dbacall@hotmail.co.uk', 'password');
 
     expect(data.error).to.be.true;
-    expect(data.message).to.equal('Email not found');
+    expect(data.errors.email).to.equal('Email not found');
   });
 
   it('should return an error if user inputs wrong password', async () => {

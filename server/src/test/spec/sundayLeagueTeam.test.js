@@ -16,10 +16,10 @@ describe('Team', () => {
     await addSundayLeagueTeam('team1', leagueAdded.body.data.id);
 
     const result = await SundayLeagueTeam.findOne({
-      teamName: 'team1',
+      name: 'team1',
     });
 
-    expect(result.teamName).to.equal('team1');
+    expect(result.name).to.equal('team1');
     expect(result.league.toString()).to.eq(leagueAdded.body.data.id);
   });
 });

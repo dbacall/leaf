@@ -19,7 +19,7 @@ const MySundayLeagues = ({ status, leagues }) => {
                   state: { league },
                 }}
               >
-                {league.leagueName}
+                {league.name}
               </Link>
             </div>
           );

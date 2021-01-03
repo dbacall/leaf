@@ -19,10 +19,10 @@ exports[`sundayLeague component tests: should show teams if in props 1`] = `
     <Link
       to={
         Object {
-          "pathname": "/sunday-league/undefined",
+          "pathname": "/sunday-league-team/undefined",
           "state": Object {
-            "league": Object {
-              "leagueName": "league1",
+            "team": Object {
+              "name": "team1",
             },
           },
         }
@@ -37,10 +37,10 @@ exports[`sundayLeague component tests: should show teams if in props 1`] = `
     <Link
       to={
         Object {
-          "pathname": "/sunday-league/undefined",
+          "pathname": "/sunday-league-team/undefined",
           "state": Object {
-            "league": Object {
-              "leagueName": "league1",
+            "team": Object {
+              "name": "team2",
             },
           },
         }

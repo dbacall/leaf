@@ -4,7 +4,7 @@ const app = require('../../app');
 module.exports = async (name, id) => {
   var result = {};
   const data = {
-    leagueName: name,
+    name: name,
     owner: id,
   };
   await supertest(app)
@@ -16,4 +16,3 @@ module.exports = async (name, id) => {
 
   return result;
 };
-

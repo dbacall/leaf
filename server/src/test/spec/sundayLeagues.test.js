@@ -19,11 +19,11 @@ describe('Sunday League', () => {
     expect(leagueAdded.body.status).to.equal(200);
     expect(leagueAdded.body.error).to.be.false;
 
-    var league = await SundayLeague.findOne({ leagueName: 'league1' }).populate(
+    var league = await SundayLeague.findOne({ name: 'league1' }).populate(
       'owner'
     );
 
-    expect(league.leagueName).to.equal('league1');
+    expect(league.name).to.equal('league1');
     expect(league.owner.email).to.equal('dbacall@hotmail.co.uk');
   });
 
@@ -43,12 +43,12 @@ describe('Sunday League', () => {
     }).populate('leagues');
 
     expect(result.leagues).to.be.length(1);
-    expect(result.leagues[0].leagueName).to.eq('league1');
+    expect(result.leagues[0].name).to.eq('league1');
     await supertest(app)
       .get(`/sunday-leagues/${user.data.id}/owner`)
       .then((res) => {
         expect(res.body).to.be.length(1);
-        expect(res.body[0].leagueName).to.eq('league1');
+        expect(res.body[0].name).to.eq('league1');
       });
   });
 
@@ -67,11 +67,11 @@ describe('Sunday League', () => {
     await addSundayLeagueTeam('team2', leagueId);
 
     const league = await SundayLeague.findOne({
-      leagueName: 'league1',
+      name: 'league1',
     }).populate('teams');
 
     expect(league.teams).to.have.length(2);
-    expect(league.teams[0].teamName).to.eq('team1');
-    expect(league.teams[1].teamName).to.eq('team2');
+    expect(league.teams[0].name).to.eq('team1');
+    expect(league.teams[1].name).to.eq('team2');
   });
 });

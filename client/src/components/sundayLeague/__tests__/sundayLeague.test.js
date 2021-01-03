@@ -3,8 +3,8 @@ import { shallow, mount } from 'enzyme';
 import SundayLeague from '../sundayLeagueComponent';
 
 describe('sundayLeague component tests:', () => {
-  const props = { league: { leagueName: 'league1' } };
-  const teams = [{ teamName: 'team1' }, { teamName: 'team2' }];
+  const props = { league: { name: 'league1' } };
+  const teams = [{ name: 'team1' }, { name: 'team2' }];
 
   it('should show the form when add team button clicked', () => {
     const wrap = shallow(<SundayLeague {...props} />);

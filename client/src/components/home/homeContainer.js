@@ -6,9 +6,9 @@ import api from '../../services/api';
 const HomeContainer = () => {
   const user = useSelector((state) => state.auth.user);
 
-  const submitLeague = (leagueName, owner) => {
+  const submitLeague = (name, owner) => {
     const data = {
-      leagueName,
+      name,
       owner,
     };
 
