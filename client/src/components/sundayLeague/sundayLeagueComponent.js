@@ -40,8 +40,8 @@ const SundayLeague = ({ league, submitTeam, status, teams }) => {
             <div key={index}>
               <Link
                 to={{
-                  pathname: `/sunday-league/${league._id}`,
-                  state: { league: league },
+                  pathname: `/sunday-league-team/${team._id}`,
+                  state: { team },
                 }}
               >
                 {team.teamName}
