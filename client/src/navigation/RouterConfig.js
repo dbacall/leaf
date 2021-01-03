@@ -7,6 +7,7 @@ import Login from '../components/login/loginContainer';
 import Home from '../components/home/homeContainer';
 import MySundayLeagues from '../components/mySundayLeagues/mySundayLeaguesContainer';
 import SundayLeague from '../components/sundayLeague/sundayLeagueContainer';
+import SundayLeagueTeam from '../components/sundayLeagueTeam/sundayLeagueTeamContainer';
 
 const RouterConfig = () => {
   return (
@@ -24,6 +25,11 @@ const RouterConfig = () => {
             component={MySundayLeagues}
           />
           <PrivateRoute path="/sunday-league/:id" component={SundayLeague} />
+          <PrivateRoute
+            exact
+            path="/sunday-league-team/:id"
+            component={SundayLeagueTeam}
+          />
         </Switch>
       </div>
     </Router>
