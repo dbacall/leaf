@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +16,7 @@ const MySundayLeagues = ({ status, leagues }) => {
               <Link
                 to={{
                   pathname: `/sunday-league/${league._id}`,
-                  state: { league: league },
+                  state: { league },
                 }}
               >
                 {league.leagueName}
@@ -28,16 +27,6 @@ const MySundayLeagues = ({ status, leagues }) => {
       )}
     </div>
   );
-};
-
-MySundayLeagues.propTypes = {
-  leagues: PropTypes.array,
-  status: PropTypes.string,
-};
-
-MySundayLeagues.defaultProps = {
-  leagues: [],
-  status: 'loading',
 };
 
 export default MySundayLeagues;
