@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 import { Link } from 'react-router-dom';
 
-const SundayLeagueTeam = ({ team, submitPlayer }) => {
+const SundayLeagueTeam = ({ team, submitPlayer, players, status }) => {
   const [addPlayer, setAddPlayer] = useState(false);
   const [name, setName] = useState('');
   const [position, setPosition] = useState('');
@@ -69,7 +69,7 @@ const SundayLeagueTeam = ({ team, submitPlayer }) => {
         </div>
       ) : null}
       <h2>Players</h2>
-      {/* {status === 'loading' ? (
+      {status === 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
       ) : players ? (
         players.map((player, index) => {
@@ -77,16 +77,16 @@ const SundayLeagueTeam = ({ team, submitPlayer }) => {
             <div key={index}>
               <Link
                 to={{
-                  pathname: `/sunday-league/${league._id}`,
-                  state: { league: league },
+                  pathname: `/sunday-league/${player._id}`,
+                  state: { player },
                 }}
               >
-                {player.name}
+                {player.name} - {player.position}
               </Link>
             </div>
           );
         })
-      ) : null} */}
+      ) : null}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import authReducer from './reducers/authReducers';
 import errorReducer from './reducers/errorReducers';
 import sundayLeaguesReducer from './slices/sundayLeaguesSlice';
 import sundayLeagueTeamsReducer from './slices/sundayLeagueTeamsSlice';
+import sundayLeaguePlayersReducer from './slices/sundayLeaguePlayersSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     errors: errorReducer,
     sundayLeagues: sundayLeaguesReducer,
     sundayLeagueTeams: sundayLeagueTeamsReducer,
+    sundayLeaguePlayers: sundayLeaguePlayersReducer,
   },
 });
 
