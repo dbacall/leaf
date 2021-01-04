@@ -1,5 +1,3 @@
-// @import '../../sass/app';
-
 section.navbar {
   nav {
     background-color: $dark-blue;
@@ -56,7 +54,11 @@ section.navbar {
 
     @include media-tablet() {
       .title {
-        flex: 6;
+        flex: 1;
+
+        span {
+          margin: auto;
+        }
       }
 
       .navButtons {
@@ -93,9 +95,10 @@ section.navbar {
       .mobileMenuIcon {
         display: flex;
         z-index: 9999;
-        flex: 1;
-        align-items: center;
-        justify-content: center;
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        transform: translate(-50%, -50%);
 
         &:hover {
           cursor: pointer;
