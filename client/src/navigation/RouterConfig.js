@@ -18,7 +18,7 @@ const RouterConfig = () => {
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Switch>
-          <PrivateRoute path="/" component={Home} />
+          <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute path="/my-sunday-leagues" component={MySundayLeagues} />
           <PrivateRoute
             exact
