@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 import { Link } from 'react-router-dom';
 
-const SundayLeagueTeam = ({ team }) => {
+const SundayLeagueTeam = ({ team, submitPlayer }) => {
   const [addPlayer, setAddPlayer] = useState(false);
   const [name, setName] = useState('');
+  const [position, setPosition] = useState('');
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   submitTeam(name);
-  //   setName('');
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submitPlayer(name, position);
+    setName('');
+    setPosition('');
+  };
 
   return (
     <div>
@@ -18,14 +20,50 @@ const SundayLeagueTeam = ({ team }) => {
       <button onClick={() => setAddPlayer(!addPlayer)}>Add Player</button>
       {addPlayer ? (
         <div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               className="add-team-input"
               type="text"
-              placeholder="Team name here..."
+              placeholder="Player name here..."
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            <label>
+              <input
+                type="radio"
+                value="Goalkeeper"
+                checked={position === 'Goalkeeper'}
+                onChange={(e) => setPosition(e.target.value)}
+              />
+              Goalkeeper
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="Defender"
+                checked={position === 'Defender'}
+                onChange={(e) => setPosition(e.target.value)}
+              />
+              Defender
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="Midfielder"
+                checked={position === 'Midfielder'}
+                onChange={(e) => setPosition(e.target.value)}
+              />
+              Midfielder
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="Forward"
+                checked={position === 'Forward'}
+                onChange={(e) => setPosition(e.target.value)}
+              />
+              Forward
+            </label>
             <button className="team-submit-btn">Add</button>
           </form>
         </div>

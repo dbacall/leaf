@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const SundayLeagueTeamContainer = ({ location }) => {
   const dispatch = useDispatch();
 
-  const [teamAdded, setTeamAdded] = useState(false);
+  const [playerAdded, setPlayerAdded] = useState(false);
   console.log('here');
   // const sundayLeagueTeams = useSelector((state) => state.sundayLeagueTeams);
   const team = location.state.team;
@@ -24,23 +24,24 @@ const SundayLeagueTeamContainer = ({ location }) => {
   //   }
   // }, [teamAdded]);
 
-  // const submitTeam = async (name) => {
-  //   const data = {
-  //     name,
-  //     league: leagueId,
-  //   };
+  const submitPlayer = async (name, position) => {
+    const data = {
+      name,
+      position,
+      team: team.id,
+    };
 
-  //   const path = '/sunday-leagues/team';
+    const path = '/sunday-leagues/player';
 
-  //   api.request('post', data, path);
+    api.request('post', data, path);
 
-  //   setTeamAdded(true);
-  // };
+    setPlayerAdded(true);
+  };
 
   return (
     <SundayLeagueTeam
       team={team}
-      // submitTeam={submitTeam}
+      submitPlayer={submitPlayer}
       // teams={sundayLeagueTeams.teams}
       // status={sundayLeagueTeams.status}
     />
