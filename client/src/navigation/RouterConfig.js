@@ -15,19 +15,19 @@ const RouterConfig = () => {
       <div className="App">
         <Navbar />
 
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
         <Switch>
-          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute path="/" component={Home} />
+          <PrivateRoute path="/my-sunday-leagues" component={MySundayLeagues} />
           <PrivateRoute
             exact
-            path="/my-sunday-leagues"
-            component={MySundayLeagues}
+            path="/sunday-league/:id"
+            component={SundayLeague}
           />
-          <PrivateRoute path="/sunday-league/:id" component={SundayLeague} />
           <PrivateRoute
             exact
-            path="/sunday-league-team/:id"
+            path="/sunday-league/team/:id"
             component={SundayLeagueTeam}
           />
         </Switch>
