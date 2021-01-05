@@ -97,8 +97,9 @@ section.navbar {
         z-index: 9999;
         position: absolute;
         top: 40px;
-        right: 30px;
-        transform: translate(-50%, -50%);
+        right: 0;
+        transform: translate(0%, -50%);
+        padding: $padding;
 
         &:hover {
           cursor: pointer;
@@ -120,6 +121,10 @@ section.navbar {
         left: 50%;
         transform: translate(-50%, -50%);
         content: 'FSL';
+      }
+
+      .mobileMenuIcon {
+        transform: translate(-20%, -50%);
       }
 
       .menuIcon {
