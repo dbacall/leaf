@@ -27,10 +27,7 @@ export const loginUser = (userData) => async (dispatch) => {
 
   const response = await api.request('post', userData, path);
 
-  console.log('response', response);
-
   if (response.error) {
-    console.log('errpr', response.errors);
     dispatch({
       type: GET_ERRORS,
       payload: response.errors,
@@ -39,7 +36,7 @@ export const loginUser = (userData) => async (dispatch) => {
     const { token } = response.data;
 
     localStorage.setItem('jwtToken', token);
-    // Set token to Auth header
+
     setAuthToken(token);
 
     const decoded = jwt_decode(token);
