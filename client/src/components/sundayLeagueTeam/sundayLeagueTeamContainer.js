@@ -24,9 +24,10 @@ const SundayLeagueTeamContainer = ({ location }) => {
     }
   }, [playerAdded]);
 
-  const submitPlayer = async (name, position) => {
+  const submitPlayer = async (firstName, surname, position) => {
     const data = {
-      name,
+      firstName,
+      surname,
       position,
       team: team.id,
     };

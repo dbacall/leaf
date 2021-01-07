@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 
 const SundayLeagueTeam = ({ team, submitPlayer, players, status }) => {
   const [addPlayer, setAddPlayer] = useState(false);
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [surname, setSurname] = useState('');
   const [position, setPosition] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitPlayer(name, position);
-    setName('');
+    submitPlayer(firstName, surname, position);
+    setFirstName('');
+    setSurname('');
     setPosition('');
   };
 
@@ -24,9 +26,16 @@ const SundayLeagueTeam = ({ team, submitPlayer, players, status }) => {
             <input
               className="add-team-input"
               type="text"
-              placeholder="Player name here..."
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              placeholder="Player first name here..."
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+              className="add-team-input"
+              type="text"
+              placeholder="Player surname here..."
+              value={surname}
+              onChange={(e) => setSurname(e.target.value)}
             />
             <label>
               <input
@@ -81,7 +90,7 @@ const SundayLeagueTeam = ({ team, submitPlayer, players, status }) => {
                   state: { player },
                 }}
               >
-                {player.name} - {player.position}
+                {player.firstName} {player.surname} - {player.position}
               </Link>
             </div>
           );

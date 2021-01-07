@@ -9,7 +9,6 @@ export const fetchSundayLeaguePlayers = createAsyncThunk(
       null,
       `/sunday-leagues/player/${id}/team`
     );
-    console.log(response);
     return response;
   }
 );
