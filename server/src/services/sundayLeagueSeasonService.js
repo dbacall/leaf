@@ -8,7 +8,13 @@ class SundayLeagueSeasonService extends Service {
 
   async create(data) {
     const response = await super.create(data);
-    console.log(response);
+    if (data.number > 1) {
+      const filter = {
+        number: data.number - 1,
+      };
+      const update = { currentSeason: false };
+      await this.model.findOneAndUpdate(filter, update);
+    }
     return response;
   }
 }
