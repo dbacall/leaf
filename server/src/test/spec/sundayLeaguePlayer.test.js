@@ -19,21 +19,51 @@ describe('Sunday league player tests:', () => {
     );
 
     await addSundayLeaguePlayer(
-      'Bob Smith',
+      'Bob',
+      'Smith',
       'Defender',
       teamAdded.body.data.id
     );
 
     const result = await SundayLeaguePlayer.findOne({
-      name: 'Bob Smith',
+      firstName: 'Bob',
     });
 
-    expect(result.name).to.equal('Bob Smith');
+    expect(result.firstName).to.equal('Bob');
+    expect(result.surname).to.equal('Smith');
     expect(result.position).to.equal('Defender');
     expect(result.team.toString()).to.eq(teamAdded.body.data.id);
   });
 
-  it.only('should throw an error if player name is only one word', async () => {
+  it('should throw an error if first name is empty', async () => {
+    const user = await registerUser(
+      'David',
+      'Bacall',
+      'dbacall@hotmail.co.uk',
+      'password',
+      'password'
+    );
+
+    const leagueAdded = await addSundayLeague('league1', user._id);
+
+    const teamAdded = await addSundayLeagueTeam(
+      'team1',
+      leagueAdded.body.data.id
+    );
+
+    const result = await addSundayLeaguePlayer(
+      '',
+      'Smith',
+      'Defender',
+      teamAdded.body.data.id
+    );
+
+    expect(result.body.errors.firstName.message).to.equal(
+      'First name needs to be entered'
+    );
+  });
+
+  it('should throw an error if surname is empty', async () => {
     const user = await registerUser(
       'David',
       'Bacall',
@@ -51,12 +81,41 @@ describe('Sunday league player tests:', () => {
 
     const result = await addSundayLeaguePlayer(
       'Bob',
+      '',
       'Defender',
       teamAdded.body.data.id
     );
 
-    expect(result.body.errors.name.message).to.equal(
-      'Player name must be a first and last name'
+    expect(result.body.errors.surname.message).to.equal(
+      'Surname needs to be entered'
+    );
+  });
+
+  it.only('should throw an error if position is wrong', async () => {
+    const user = await registerUser(
+      'David',
+      'Bacall',
+      'dbacall@hotmail.co.uk',
+      'password',
+      'password'
+    );
+
+    const leagueAdded = await addSundayLeague('league1', user._id);
+
+    const teamAdded = await addSundayLeagueTeam(
+      'team1',
+      leagueAdded.body.data.id
+    );
+
+    const result = await addSundayLeaguePlayer(
+      'Bob',
+      'Smith',
+      'Shooter',
+      teamAdded.body.data.id
+    );
+
+    expect(result.body.errors.position.message).to.equal(
+      'Position must be goalkeeper, defender, midfielder or forward'
     );
   });
 });

@@ -1,9 +1,10 @@
 const supertest = require('supertest');
 const app = require('../../app');
 
-module.exports = async (name, position, team) => {
+module.exports = async (firstName, surname, position, team) => {
   const data = {
-    name,
+    firstName,
+    surname,
     position,
     team,
   };
