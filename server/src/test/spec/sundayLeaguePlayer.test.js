@@ -91,7 +91,7 @@ describe('Sunday league player tests:', () => {
     );
   });
 
-  it.only('should throw an error if position is wrong', async () => {
+  it('should throw an error if position is wrong', async () => {
     const user = await registerUser(
       'David',
       'Bacall',

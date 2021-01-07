@@ -9,8 +9,18 @@ const sundayLeagueSchema = new Schema({
   },
 });
 
+// team ref
+
 sundayLeagueSchema.virtual('teams', {
   ref: 'SundayLeagueTeam',
+  localField: '_id',
+  foreignField: 'league',
+});
+
+// season ref
+
+sundayLeagueSchema.virtual('seasons', {
+  ref: 'SundayLeagueSeason',
   localField: '_id',
   foreignField: 'league',
 });
