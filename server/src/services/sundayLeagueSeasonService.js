@@ -4,6 +4,7 @@ class SundayLeagueSeasonService extends Service {
   constructor(model) {
     super(model);
     this.create = this.create.bind(this);
+    this.getCurrentSeason = this.getCurrentSeason.bind(this);
   }
 
   async create(data) {
@@ -16,6 +17,25 @@ class SundayLeagueSeasonService extends Service {
       await this.model.findOneAndUpdate(filter, update);
     }
     return response;
+  }
+
+  async getCurrentSeason() {
+    try {
+      const item = await this.model.findOne({
+        currentSeason: true,
+      });
+      return {
+        error: false,
+        statusCode: 200,
+        data: item,
+      };
+    } catch (errors) {
+      return {
+        error: true,
+        statusCode: 500,
+        errors,
+      };
+    }
   }
 }
 
