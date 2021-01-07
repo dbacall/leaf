@@ -5,6 +5,7 @@ import errorReducer from './reducers/errorReducers';
 import sundayLeaguesReducer from './slices/sundayLeaguesSlice';
 import sundayLeagueTeamsReducer from './slices/sundayLeagueTeamsSlice';
 import sundayLeaguePlayersReducer from './slices/sundayLeaguePlayersSlice';
+import sundayLeagueSeasonsReducer from './slices/sundayLeagueSeasonsSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     sundayLeagues: sundayLeaguesReducer,
     sundayLeagueTeams: sundayLeagueTeamsReducer,
     sundayLeaguePlayers: sundayLeaguePlayersReducer,
+    sundayLeagueSeasons: sundayLeagueSeasonsReducer,
   },
 });
 
