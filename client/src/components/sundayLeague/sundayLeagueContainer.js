@@ -12,7 +12,7 @@ const SundayLeagueContainer = ({ location }) => {
 
   const sundayLeagueTeams = useSelector((state) => state.sundayLeagueTeams);
   const { currentLeague } = useSelector((state) => state.sundayLeagues);
-  const league = location.state.league;
+  const { league } = location.state;
 
   const [currentLeagueUpdated, setCurrentLeagueUpdated] = useState(false);
 
