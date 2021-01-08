@@ -14,7 +14,7 @@ const SundayLeagueTeamContainer = ({ location }) => {
 
   const isInitialMount = useRef(true);
   useEffect(() => {
-    if (isInitialMount.current) {
+    if (isInitialMount.current && sundayLeaguePlayers.players.length === 0) {
       isInitialMount.current = false;
       dispatch(fetchSundayLeaguePlayers(team.id));
     }

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchCurrentSeason } from '../thunks/sundayLeagueSeasonsThunks';
 
 const initialState = {
-  season: [],
+  season: {},
   status: 'loading',
 };
 

@@ -16,7 +16,7 @@ const SundayLeagueSeasonContainer = ({ league }) => {
   const season = sundayLeagueSeasons.season;
 
   useEffect(() => {
-    if (isInitialMount.current) {
+    if (isInitialMount.current && Object.keys(season).length === 0) {
       isInitialMount.current = false;
       dispatch(fetchCurrentSeason());
     }

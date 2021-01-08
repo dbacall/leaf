@@ -10,7 +10,9 @@ const MySundayLeaguesContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchSundayLeagues(user.id));
+    if (sundayLeagues.leagues.length === 0) {
+      dispatch(fetchSundayLeagues(user.id));
+    }
   }, [user]);
 
   return (
