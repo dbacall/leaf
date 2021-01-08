@@ -3,6 +3,7 @@ import SundayLeague from './sundayLeagueComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSundayLeagueTeams } from '../../redux/thunks/sundayLeagueTeamsThunks';
+import { updateCurrentLeague } from '../../redux/slices/sundayLeaguesSlice';
 
 const SundayLeagueContainer = ({ location }) => {
   const dispatch = useDispatch();
@@ -10,11 +11,23 @@ const SundayLeagueContainer = ({ location }) => {
   const [teamAdded, setTeamAdded] = useState(false);
 
   const sundayLeagueTeams = useSelector((state) => state.sundayLeagueTeams);
+  const { currentLeague } = useSelector((state) => state.sundayLeagues);
   const league = location.state.league;
 
-  const isInitialMount = useRef(true);
+  const [currentLeagueUpdated, setCurrentLeagueUpdated] = useState(false);
+
   useEffect(() => {
-    if (isInitialMount.current) {
+    dispatch(updateCurrentLeague(league));
+    setCurrentLeagueUpdated(true);
+  }, [league]);
+
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (
+      isInitialMount.current &&
+      (sundayLeagueTeams.teams.length === 0 || currentLeagueUpdated)
+    ) {
       isInitialMount.current = false;
       dispatch(fetchSundayLeagueTeams(league.id));
     }
@@ -22,7 +35,7 @@ const SundayLeagueContainer = ({ location }) => {
       dispatch(fetchSundayLeagueTeams(league.id));
       setTeamAdded(false);
     }
-  }, [teamAdded]);
+  }, [teamAdded, currentLeague]);
 
   const submitTeam = async (name) => {
     const data = {

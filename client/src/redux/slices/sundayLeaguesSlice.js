@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../services/api';
 
 const initialState = {
+  currentLeague: {},
   leagues: [],
   status: 'loading',
 };
@@ -18,8 +19,9 @@ const sundayLeaguesSlice = createSlice({
   name: 'sundayLeagues',
   initialState,
   reducers: {
-    // updateSundayLeagues(state, action) {
-    //   return { ...state, leagues: action.payload };
+    updateCurrentLeague(state, action) {
+      state.currentLeague = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -33,6 +35,6 @@ const sundayLeaguesSlice = createSlice({
   },
 });
 
-export const {} = sundayLeaguesSlice.actions;
+export const { updateCurrentLeague } = sundayLeaguesSlice.actions;
 
 export default sundayLeaguesSlice.reducer;
