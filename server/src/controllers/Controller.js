@@ -6,6 +6,7 @@ class Controller {
     this.update = this.update.bind(this);
     this.delete = this.delete.bind(this);
     this.getAllById = this.getAllById.bind(this);
+    this.getCurrent = this.getCurrent.bind(this);
   }
 
   async getAll(req, res) {
@@ -14,6 +15,12 @@ class Controller {
 
   async getAllById(req, res) {
     let response = await this.service.getAllById(req);
+    if (response.error) return res.status(response.statusCode).send(response);
+    return res.status(201).send(response.data);
+  }
+
+  async getCurrent(req, res) {
+    let response = await this.service.getCurrent();
     if (response.error) return res.status(response.statusCode).send(response);
     return res.status(201).send(response.data);
   }

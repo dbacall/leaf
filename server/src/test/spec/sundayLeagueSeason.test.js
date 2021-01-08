@@ -24,11 +24,11 @@ describe('Sunday league season tests:', () => {
     expect(result.number).to.equal(1);
     expect(result.yearFrom).to.equal(2020);
     expect(result.yearTo).to.equal(2021);
-    expect(result.currentSeason).to.equal(true);
+    expect(result.current).to.equal(true);
     expect(result.league.toString()).to.eq(league.body.data.id);
   });
 
-  it('should let update currentSeason of previous season if add a new season', async () => {
+  it('should let update current of previous season if add a new season', async () => {
     const user = await registerUser(
       'David',
       'Bacall',
@@ -47,10 +47,10 @@ describe('Sunday league season tests:', () => {
     });
 
     expect(result.number).to.equal(1);
-    expect(result.currentSeason).to.equal(false);
+    expect(result.current).to.equal(false);
   });
 
-  it.only('should only get the current season', async () => {
+  it('should only get the current season', async () => {
     const user = await registerUser(
       'David',
       'Bacall',
@@ -65,9 +65,8 @@ describe('Sunday league season tests:', () => {
     await addSundayLeagueSeason(2, 2021, 2022, league.body.data.id);
 
     const result = await supertest(app).get('/sunday-leagues/season');
-    console.log(result.body);
 
     expect(result.body.number).to.equal(2);
-    expect(result.body.currentSeason).to.equal(true);
+    expect(result.body.current).to.equal(true);
   });
 });

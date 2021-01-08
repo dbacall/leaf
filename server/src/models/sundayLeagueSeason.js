@@ -11,7 +11,7 @@ const sundayLeagueSeasonSchema = new Schema({
   yearTo: {
     type: Number,
   },
-  currentSeason: {
+  current: {
     type: Boolean,
     default: true,
   },
@@ -19,6 +19,14 @@ const sundayLeagueSeasonSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'SundayLeague',
   },
+});
+
+// gameweek ref
+
+sundayLeagueSeasonSchema.virtual('gameweeks', {
+  ref: 'SundayLeagueGameweek',
+  localField: '_id',
+  foreignField: 'season',
 });
 
 module.exports = mongoose.model('SundayLeagueSeason', sundayLeagueSeasonSchema);

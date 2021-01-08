@@ -22,6 +22,7 @@ const SundayLeagueTeamContainer = ({ location }) => {
   }, [team]);
 
   const isInitialMount = useRef(true);
+
   useEffect(() => {
     if (
       isInitialMount.current &&

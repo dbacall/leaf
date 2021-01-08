@@ -8,6 +8,7 @@ class Service {
     this.update = this.update.bind(this);
     this.delete = this.delete.bind(this);
     this.getAllById = this.getAllById.bind(this);
+    this.getCurrent = this.getCurrent.bind(this);
   }
 
   async getAll(query) {
@@ -45,6 +46,25 @@ class Service {
         error: false,
         statusCode: 200,
         data: items,
+      };
+    } catch (errors) {
+      return {
+        error: true,
+        statusCode: 500,
+        errors,
+      };
+    }
+  }
+
+  async getCurrent() {
+    try {
+      const item = await this.model.findOne({
+        current: true,
+      });
+      return {
+        error: false,
+        statusCode: 200,
+        data: item,
       };
     } catch (errors) {
       return {
