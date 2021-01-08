@@ -8,6 +8,7 @@ before(async () => {
   global.addSundayLeagueTeam = require('./helpers/addSundayLeagueTeam');
   global.addSundayLeaguePlayer = require('./helpers/addSundayLeaguePlayer');
   global.addSundayLeagueSeason = require('./helpers/addSundayLeagueSeason');
+  global.addSundayLeagueGameweek = require('./helpers/addSundayLeagueGameweek');
 });
 
 afterEach(async () => {
