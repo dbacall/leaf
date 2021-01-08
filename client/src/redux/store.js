@@ -6,6 +6,7 @@ import sundayLeaguesReducer from './slices/sundayLeaguesSlice';
 import sundayLeagueTeamsReducer from './slices/sundayLeagueTeamsSlice';
 import sundayLeaguePlayersReducer from './slices/sundayLeaguePlayersSlice';
 import sundayLeagueSeasonsReducer from './slices/sundayLeagueSeasonsSlice';
+import sundayLeagueGameweekReducer from './slices/sundayLeagueGameweekSlice';
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     sundayLeagueTeams: sundayLeagueTeamsReducer,
     sundayLeaguePlayers: sundayLeaguePlayersReducer,
     sundayLeagueSeasons: sundayLeagueSeasonsReducer,
+    sundayLeagueGameweek: sundayLeagueGameweekReducer,
   },
 });
 
