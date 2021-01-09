@@ -77,7 +77,7 @@ const SundayLeagueFixturesComponent = ({
       ) : fixtures ? (
         fixtures.map((fixture) => {
           return (
-            <p>
+            <p key={fixture._id}>
               {getName(fixture.homeTeam)} vs {getName(fixture.awayTeam)} -{' '}
               {format(parseISO(fixture.date), 'PPPPp')}
             </p>

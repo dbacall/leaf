@@ -3,6 +3,7 @@ import SundayLeagueFixtures from './sundayLeagueFixturesComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 // import { fetchCurrentSeason } from '../../redux/thunks/sundayLeagueSeasonsThunks';
+import { fetchCurrentGameweek } from '../../redux/thunks/sundayLeagueGameweekThunks';
 
 const SundayLeagueFixturesContainer = () => {
   const dispatch = useDispatch();
@@ -17,20 +18,19 @@ const SundayLeagueFixturesContainer = () => {
 
   // const sundayLeagueSeasons = useSelector((state) => state.sundayLeagueSeasons);
 
-  // const isInitialMount = useRef(true);
+  const isInitialMount = useRef(true);
 
-  // const season = sundayLeagueSeasons.season;
-
-  // useEffect(() => {
-  //   if (isInitialMount.current && Object.keys(season).length === 0) {
-  //     isInitialMount.current = false;
-  //     dispatch(fetchCurrentSeason());
-  //   }
-  //   if (seasonAdded) {
-  //     dispatch(fetchCurrentSeason());
-  //     setSeasonAdded(false);
-  //   }
-  // }, [seasonAdded]);
+  useEffect(() => {
+    // if (isInitialMount.current && Object.keys(gameweek).length === 0) {
+    //   isInitialMount.current = false;
+    //   dispatch(fetchCurrentGameweek());
+    // }
+    if (fixtureAdded) {
+      console.log('called');
+      dispatch(fetchCurrentGameweek());
+      setFixtureAdded(false);
+    }
+  }, [fixtureAdded]);
 
   const createNewFixture = async (homeTeam, awayTeam, date) => {
     const data = {
