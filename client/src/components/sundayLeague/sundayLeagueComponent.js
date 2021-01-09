@@ -3,8 +3,6 @@ import './sundayLeagueStyles.css';
 import ReactLoading from 'react-loading';
 import { Link } from 'react-router-dom';
 import SundayLeagueSeason from '../sundayLeagueSeason/sundayLeagueSeasonContainer';
-import SundayLeagueGameweek from '../sundayLeagueGameweek/sundayLeagueGameweekContainer';
-import SundayLeagueGameweekComponent from '../sundayLeagueGameweek/sundayLeagueGameweekComponent';
 
 const SundayLeague = ({ league, submitTeam, status, teams }) => {
   const [addTeam, setAddTeam] = useState(false);
@@ -54,7 +52,6 @@ const SundayLeague = ({ league, submitTeam, status, teams }) => {
         })
       ) : null}
       <SundayLeagueSeason league={league} />
-      <SundayLeagueGameweek />
     </div>
   );
 };

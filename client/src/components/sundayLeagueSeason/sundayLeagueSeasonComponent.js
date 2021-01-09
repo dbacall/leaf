@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactLoading from 'react-loading';
+import SundayLeagueGameweek from '../sundayLeagueGameweek/sundayLeagueGameweekContainer';
 
 const SundayLeagueSeasonComponent = ({ createNewSeason, season, status }) => {
   const date = new Date();
@@ -62,11 +63,17 @@ const SundayLeagueSeasonComponent = ({ createNewSeason, season, status }) => {
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
       ) : season ? (
         season.yearFrom === season.yearTo ? (
-          <h3>{season.yearFrom}</h3>
+          <div>
+            <h3>{season.yearFrom}</h3>
+            <SundayLeagueGameweek />
+          </div>
         ) : (
-          <h3>
-            {season.yearFrom}/{season.yearTo}
-          </h3>
+          <div>
+            <h3>
+              {season.yearFrom}/{season.yearTo}
+            </h3>
+            <SundayLeagueGameweek />
+          </div>
         )
       ) : null}
     </div>

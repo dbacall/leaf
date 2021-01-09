@@ -7,7 +7,7 @@ import { format, parseISO } from 'date-fns';
 const SundayLeagueFixturesComponent = ({
   createNewFixture,
   teams,
-  fixtures,
+  gameweek,
   status,
 }) => {
   const [newFixture, setNewFixture] = useState(false);
@@ -73,8 +73,8 @@ const SundayLeagueFixturesComponent = ({
       ) : null}
       {status === 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
-      ) : fixtures ? (
-        fixtures.map((fixture) => {
+      ) : gameweek ? (
+        gameweek.fixtures.map((fixture) => {
           return (
             <p key={fixture._id}>
               {getName(fixture.homeTeam)} vs {getName(fixture.awayTeam)} -{' '}

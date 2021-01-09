@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCurrentGameweek } from '../thunks/sundayLeagueGameweekThunks';
+import {
+  fetchCurrentGameweek,
+  fetchSpecificGameweek,
+} from '../thunks/sundayLeagueGameweekThunks';
 
 const initialState = {
   gameweek: {},
@@ -19,6 +22,13 @@ const sundayLeagueGameweekSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchCurrentGameweek.fulfilled, (state, action) => {
+        state.gameweek = action.payload.data;
+        state.status = 'idle';
+      })
+      .addCase(fetchSpecificGameweek.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchSpecificGameweek.fulfilled, (state, action) => {
         state.gameweek = action.payload.data;
         state.status = 'idle';
       });

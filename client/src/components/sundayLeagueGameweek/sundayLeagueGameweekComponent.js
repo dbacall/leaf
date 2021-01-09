@@ -7,6 +7,8 @@ const SundayLeagueGameweekComponent = ({
   createNewGameweek,
   gameweek,
   status,
+  getPrevious,
+  getNext,
 }) => {
   const handleClick = (e) => {
     e.preventDefault();
@@ -16,10 +18,12 @@ const SundayLeagueGameweekComponent = ({
 
   const handlePrevious = (e) => {
     e.preventDefault();
+    getPrevious();
   };
 
   const handleNext = (e) => {
     e.preventDefault();
+    getNext();
   };
 
   return (
@@ -29,12 +33,12 @@ const SundayLeagueGameweekComponent = ({
 
       {status === 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
-      ) : (
+      ) : gameweek ? (
         <h4>{gameweek.number}</h4>
-      )}
+      ) : null}
 
       <SundayLeagueFixtures gameweek={gameweek} />
-      {gameweek.number > 1 ? (
+      {gameweek && gameweek.number > 1 ? (
         <Link onClick={handlePrevious}>Previous</Link>
       ) : null}
       <Link onClick={handleNext}>Next</Link>

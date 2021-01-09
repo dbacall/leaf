@@ -2,9 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import SundayLeagueGameweek from './sundayLeagueGameweekComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCurrentGameweek } from '../../redux/thunks/sundayLeagueGameweekThunks';
+import {
+  fetchCurrentGameweek,
+  fetchSpecificGameweek,
+} from '../../redux/thunks/sundayLeagueGameweekThunks';
 
-const SundayLeagueGameweekContainer = ({ league }) => {
+const SundayLeagueGameweekContainer = ({}) => {
   const dispatch = useDispatch();
 
   const [GameweekAdded, setGameweekAdded] = useState(false);
@@ -13,20 +16,20 @@ const SundayLeagueGameweekContainer = ({ league }) => {
     (state) => state.sundayLeagueGameweek
   );
 
+  const { season } = useSelector((state) => state.sundayLeagueSeasons);
+
   const isInitialMount = useRef(true);
 
   useEffect(() => {
     if (isInitialMount.current && Object.keys(gameweek).length === 0) {
       isInitialMount.current = false;
-      dispatch(fetchCurrentGameweek());
+      dispatch(fetchCurrentGameweek(season._id));
     }
     if (GameweekAdded) {
-      dispatch(fetchCurrentGameweek());
+      dispatch(fetchCurrentGameweek(season._id));
       setGameweekAdded(false);
     }
   }, [GameweekAdded]);
-
-  const { season } = useSelector((state) => state.sundayLeagueSeasons);
 
   const createNewGameweek = async () => {
     const number = gameweek ? gameweek.number + 1 : 1;
@@ -41,11 +44,23 @@ const SundayLeagueGameweekContainer = ({ league }) => {
     setGameweekAdded(true);
   };
 
+  const getPrevious = () => {
+    const number = gameweek.number - 1;
+    dispatch(fetchSpecificGameweek({ season: season._id, number }));
+  };
+
+  const getNext = () => {
+    const number = gameweek.number + 1;
+    dispatch(fetchSpecificGameweek({ season: season._id, number }));
+  };
+
   return (
     <SundayLeagueGameweek
       createNewGameweek={createNewGameweek}
       gameweek={gameweek}
       status={status}
+      getPrevious={getPrevious}
+      getNext={getNext}
     />
   );
 };
