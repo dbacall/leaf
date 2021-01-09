@@ -29,4 +29,7 @@ sundayLeagueSeasonSchema.virtual('gameweeks', {
   foreignField: 'season',
 });
 
+sundayLeagueSeasonSchema.set('toObject', { virtuals: true });
+sundayLeagueSeasonSchema.set('toJSON', { virtuals: true });
+
 module.exports = mongoose.model('SundayLeagueSeason', sundayLeagueSeasonSchema);

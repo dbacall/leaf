@@ -16,6 +16,17 @@ const sundayLeagueGameweekSchema = new Schema({
   },
 });
 
+// fixture ref
+
+sundayLeagueGameweekSchema.virtual('fixtures', {
+  ref: 'SundayLeagueGameweek',
+  localField: '_id',
+  foreignField: 'gameweek',
+});
+
+sundayLeagueGameweekSchema.set('toObject', { virtuals: true });
+sundayLeagueGameweekSchema.set('toJSON', { virtuals: true });
+
 module.exports = mongoose.model(
   'SundayLeagueGameweek',
   sundayLeagueGameweekSchema

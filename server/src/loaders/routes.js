@@ -4,6 +4,7 @@ const sundayLeagueTeam = require('../api/sundayLeagueTeam');
 const sundayLeaguePlayer = require('../api/sundayLeaguePlayer');
 const sundayLeagueSeason = require('../api/sundayLeagueSeason');
 const sundayLeagueGameweek = require('../api/sundayLeagueGameweek');
+const sundayLeagueFixture = require('../api/sundayLeagueFixture');
 
 module.exports = (app) => {
   // Routes
@@ -13,4 +14,5 @@ module.exports = (app) => {
   app.use('/sunday-leagues/player', sundayLeaguePlayer);
   app.use('/sunday-leagues/season', sundayLeagueSeason);
   app.use('/sunday-leagues/gameweek', sundayLeagueGameweek);
+  app.use('/sunday-leagues/fixture', sundayLeagueFixture);
 };
