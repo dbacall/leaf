@@ -26,7 +26,6 @@ const SundayLeagueFixturesContainer = () => {
     //   dispatch(fetchCurrentGameweek());
     // }
     if (fixtureAdded) {
-      console.log('called');
       dispatch(fetchCurrentGameweek());
       setFixtureAdded(false);
     }
