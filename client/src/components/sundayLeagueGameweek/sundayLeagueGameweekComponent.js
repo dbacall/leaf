@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactLoading from 'react-loading';
 import SundayLeagueFixtures from '../sundayLeagueFixtures/sundayLeagueFixturesContainer';
+import { Link } from 'react-router-dom';
 
 const SundayLeagueGameweekComponent = ({
   createNewGameweek,
@@ -11,6 +12,14 @@ const SundayLeagueGameweekComponent = ({
     e.preventDefault();
 
     createNewGameweek();
+  };
+
+  const handlePrevious = (e) => {
+    e.preventDefault();
+  };
+
+  const handleNext = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -25,6 +34,10 @@ const SundayLeagueGameweekComponent = ({
       )}
 
       <SundayLeagueFixtures gameweek={gameweek} />
+      {gameweek.number > 1 ? (
+        <Link onClick={handlePrevious}>Previous</Link>
+      ) : null}
+      <Link onClick={handleNext}>Next</Link>
     </div>
   );
 };

@@ -23,8 +23,7 @@ const SundayLeagueFixturesComponent = ({
   };
 
   const getName = (teamId) => {
-    const name = teams.find((team) => team._id == teamId).name;
-    return name;
+    return teams.find((team) => team._id == teamId).name;
   };
 
   return (
