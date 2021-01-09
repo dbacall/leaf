@@ -3,7 +3,8 @@ const router = express.Router();
 const sundayLeagueGameweekController = require('../controllers/sundayLeagueGameweekController');
 
 router.post('/', sundayLeagueGameweekController.create);
-router.get('/', sundayLeagueGameweekController.getCurrent);
+router.get('/:id/current', sundayLeagueGameweekController.getCurrent);
+router.get('/:id/:number', sundayLeagueGameweekController.getSpecificGameweek);
 // router.get('/:id/:idType', sundayLeagueGameweekController.getAllById);
 
 module.exports = router;

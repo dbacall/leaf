@@ -20,7 +20,7 @@ class Controller {
   }
 
   async getCurrent(req, res) {
-    let response = await this.service.getCurrent();
+    let response = await this.service.getCurrent(req.params);
     if (response.error) return res.status(response.statusCode).send(response);
     return res.status(201).send(response.data);
   }

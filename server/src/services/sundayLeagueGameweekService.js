@@ -5,6 +5,7 @@ class SundayLeagueGameweekService extends Service {
     super(model);
     this.create = this.create.bind(this);
     this.getCurrent = this.getCurrent.bind(this);
+    this.getSpecificGameweek = this.getSpecificGameweek.bind(this);
   }
 
   async create(data) {
@@ -19,11 +20,34 @@ class SundayLeagueGameweekService extends Service {
     return response;
   }
 
-  async getCurrent() {
+  async getCurrent(data) {
     try {
       const item = await this.model
         .findOne({
+          season: data.id,
           current: true,
+        })
+        .populate('fixtures');
+      return {
+        error: false,
+        statusCode: 200,
+        data: item,
+      };
+    } catch (errors) {
+      return {
+        error: true,
+        statusCode: 500,
+        errors,
+      };
+    }
+  }
+
+  async getSpecificGameweek(data) {
+    try {
+      const item = await this.model
+        .findOne({
+          number: data.number,
+          season: data.id,
         })
         .populate('fixtures');
       return {
