@@ -1,10 +1,10 @@
 const supertest = require('supertest');
 const app = require('../../app');
 
-module.exports = async (team1, team2, date, gameweek) => {
+module.exports = async (homeTeam, awayTeam, date, gameweek) => {
   const data = {
-    team1,
-    team2,
+    homeTeam,
+    awayTeam,
     date,
     gameweek,
   };

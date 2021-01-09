@@ -2,17 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const sundayLeagueFixtureSchema = new Schema({
-  team1: {
+  homeTeam: {
     type: mongoose.ObjectId,
   },
-  team2: {
+  awayTeam: {
     type: mongoose.ObjectId,
   },
-  team1Goals: {
+  homeTeamGoals: {
     type: Number,
     default: 0,
   },
-  team2Goals: {
+  awayTeamGoals: {
     type: Number,
     default: 0,
   },

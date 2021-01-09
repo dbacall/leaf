@@ -30,19 +30,19 @@ describe('Sunday league fixture tests:', () => {
     const date = new Date(2021, 02, 24, 15, 00, 00, 0);
 
     const gameweekId = gameweek.body.data._id;
-    const team1Id = team1.body.data._id;
-    const team2Id = team2.body.data._id;
+    const homeTeamId = team1.body.data._id;
+    const awayTeamId = team2.body.data._id;
 
-    await addSundayLeagueFixture(team1Id, team2Id, date, gameweekId);
+    await addSundayLeagueFixture(homeTeamId, awayTeamId, date, gameweekId);
 
     const result = await SundayLeagueFixture.findOne({
       gameweek: gameweekId,
     });
 
-    expect(result.team1.toString()).to.equal(team1Id);
-    expect(result.team2.toString()).to.equal(team2Id);
-    expect(result.team1Goals).to.equal(0);
-    expect(result.team2Goals).to.equal(0);
+    expect(result.homeTeam.toString()).to.equal(homeTeamId);
+    expect(result.awayTeam.toString()).to.equal(awayTeamId);
+    expect(result.homeTeamGoals).to.equal(0);
+    expect(result.awayTeamGoals).to.equal(0);
     expect(result.draw).to.be.false;
     expect(result.finished).to.be.false;
     expect(result.date.getTime()).to.equal(date.getTime());
