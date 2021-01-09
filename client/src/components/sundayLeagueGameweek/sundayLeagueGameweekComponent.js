@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactLoading from 'react-loading';
+import SundayLeagueFixtures from '../sundayLeagueFixtures/sundayLeagueFixturesContainer';
 
 const SundayLeagueGameweekComponent = ({
   createNewGameweek,
@@ -22,6 +23,8 @@ const SundayLeagueGameweekComponent = ({
       ) : (
         <h4>{gameweek.number}</h4>
       )}
+
+      <SundayLeagueFixtures gameweek={gameweek} />
     </div>
   );
 };
