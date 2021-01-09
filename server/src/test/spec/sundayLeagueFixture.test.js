@@ -4,7 +4,7 @@ const supertest = require('supertest');
 const app = require('../../app');
 
 describe('Sunday league fixture tests:', () => {
-  it.only('should let you add a fixture for a gameweek', async () => {
+  it('should let you add a fixture for a gameweek', async () => {
     const user = await registerUser(
       'David',
       'Bacall',

@@ -113,4 +113,49 @@ describe('Sunday league gameweek tests:', () => {
     expect(result.body.number).to.equal(2);
     expect(result.body.current).to.equal(true);
   });
+
+  it('should get the current gameweek with a list of fixtures', async () => {
+    const user = await registerUser(
+      'David',
+      'Bacall',
+      'dbacall@hotmail.co.uk',
+      'password',
+      'password'
+    );
+
+    const league = await addSundayLeague('league1', user._id);
+
+    const season = await addSundayLeagueSeason(
+      1,
+      2020,
+      2021,
+      league.body.data.id
+    );
+
+    const gameweek = await addSundayLeagueGameweek(1, season.body.data._id);
+
+    const team1 = await addSundayLeagueTeam('team1', league.body.data.id);
+    const team2 = await addSundayLeagueTeam('team2', league.body.data.id);
+    const team3 = await addSundayLeagueTeam('team3', league.body.data.id);
+    const team4 = await addSundayLeagueTeam('team4', league.body.data.id);
+
+    const date = new Date(2021, 02, 24, 15, 00, 00, 0);
+
+    const gameweekId = gameweek.body.data._id;
+    const homeTeam1Id = team1.body.data._id;
+    const awayTeam1Id = team2.body.data._id;
+    const homeTeam2Id = team3.body.data._id;
+    const awayTeam2Id = team4.body.data._id;
+
+    await addSundayLeagueFixture(homeTeam1Id, awayTeam1Id, date, gameweekId);
+    await addSundayLeagueFixture(homeTeam2Id, awayTeam2Id, date, gameweekId);
+
+    const result = await supertest(app).get('/sunday-leagues/gameweek');
+
+    expect(result.body.number).to.equal(1);
+    expect(result.body.current).to.equal(true);
+    expect(result.body.fixtures).to.have.length(2);
+    expect(result.body.fixtures[0].homeTeam).to.eq(homeTeam1Id);
+    expect(result.body.fixtures[1].homeTeam).to.eq(homeTeam2Id);
+  });
 });

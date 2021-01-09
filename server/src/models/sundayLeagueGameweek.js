@@ -19,7 +19,7 @@ const sundayLeagueGameweekSchema = new Schema({
 // fixture ref
 
 sundayLeagueGameweekSchema.virtual('fixtures', {
-  ref: 'SundayLeagueGameweek',
+  ref: 'SundayLeagueFixture',
   localField: '_id',
   foreignField: 'gameweek',
 });
