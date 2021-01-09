@@ -2,18 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import SundayLeagueSeason from './sundayLeagueSeasonComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCurrentSeason } from '../../redux/thunks/sundayLeagueSeasonsThunks';
+import { fetchCurrentSeason } from '../../redux/thunks/sundayLeagueSeasonThunks';
 
 const SundayLeagueSeasonContainer = ({ league }) => {
   const dispatch = useDispatch();
 
   const [seasonAdded, setSeasonAdded] = useState(false);
 
-  const sundayLeagueSeasons = useSelector((state) => state.sundayLeagueSeasons);
+  const { season, status } = useSelector((state) => state.sundayLeagueSeason);
 
   const isInitialMount = useRef(true);
-
-  const season = sundayLeagueSeasons.season;
 
   useEffect(() => {
     if (isInitialMount.current && Object.keys(season).length === 0) {
@@ -45,7 +43,7 @@ const SundayLeagueSeasonContainer = ({ league }) => {
     <SundayLeagueSeason
       createNewSeason={createNewSeason}
       season={season}
-      status={sundayLeagueSeasons.status}
+      status={status}
     />
   );
 };

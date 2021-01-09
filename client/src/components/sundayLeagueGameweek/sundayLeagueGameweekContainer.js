@@ -16,7 +16,7 @@ const SundayLeagueGameweekContainer = ({}) => {
     (state) => state.sundayLeagueGameweek
   );
 
-  const { season } = useSelector((state) => state.sundayLeagueSeasons);
+  const { season } = useSelector((state) => state.sundayLeagueSeason);
 
   const isInitialMount = useRef(true);
 

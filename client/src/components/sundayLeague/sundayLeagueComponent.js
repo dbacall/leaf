@@ -35,23 +35,25 @@ const SundayLeague = ({ league, submitTeam, status, teams }) => {
       <h2>Teams</h2>
       {status === 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
-      ) : teams ? (
-        teams.map((team, index) => {
-          return (
-            <div key={index}>
-              <Link
-                to={{
-                  pathname: `/sunday-league/team/${team._id}`,
-                  state: { team },
-                }}
-              >
-                {team.name}
-              </Link>
-            </div>
-          );
-        })
+      ) : teams.length > 0 ? (
+        <div>
+          {teams.map((team, index) => {
+            return (
+              <div key={index}>
+                <Link
+                  to={{
+                    pathname: `/sunday-league/team/${team._id}`,
+                    state: { team },
+                  }}
+                >
+                  {team.name}
+                </Link>
+              </div>
+            );
+          })}
+          <SundayLeagueSeason league={league} />
+        </div>
       ) : null}
-      <SundayLeagueSeason league={league} />
     </div>
   );
 };

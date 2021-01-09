@@ -9,13 +9,13 @@ const SundayLeagueFixturesContainer = () => {
 
   const [fixtureAdded, setFixtureAdded] = useState(false);
 
-  const { teams } = useSelector((state) => state.sundayLeagueTeams);
+  const { teams } = useSelector((state) => state.sundayLeagueTeam);
 
   const { gameweek, status } = useSelector(
     (state) => state.sundayLeagueGameweek
   );
 
-  const { season } = useSelector((state) => state.sundayLeagueSeasons);
+  const { season } = useSelector((state) => state.sundayLeagueSeason);
 
   // const isInitialMount = useRef(true);
 

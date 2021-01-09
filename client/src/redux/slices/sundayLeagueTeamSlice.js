@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSundayLeagueTeams } from '../thunks/sundayLeagueTeamsThunks';
+import { fetchSundayLeagueTeams } from '../thunks/sundayLeagueTeamThunks';
 
 const initialState = {
   currentTeam: {},
@@ -7,8 +7,8 @@ const initialState = {
   status: 'loading',
 };
 
-const sundayLeagueTeamsSlice = createSlice({
-  name: 'sundayLeagueTeams',
+const sundayLeagueTeamSlice = createSlice({
+  name: 'sundayLeagueTeam',
   initialState,
   reducers: {
     updateCurrentTeam(state, action) {
@@ -27,6 +27,6 @@ const sundayLeagueTeamsSlice = createSlice({
   },
 });
 
-export const { updateCurrentTeam } = sundayLeagueTeamsSlice.actions;
+export const { updateCurrentTeam } = sundayLeagueTeamSlice.actions;
 
-export default sundayLeagueTeamsSlice.reducer;
+export default sundayLeagueTeamSlice.reducer;

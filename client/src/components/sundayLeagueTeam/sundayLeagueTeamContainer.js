@@ -2,16 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import SundayLeagueTeam from './sundayLeagueTeamComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSundayLeaguePlayers } from '../../redux/thunks/sundayLeaguePlayersThunks';
-import { updateCurrentTeam } from '../../redux/slices/sundayLeagueTeamsSlice';
+import { fetchSundayLeaguePlayers } from '../../redux/thunks/sundayLeaguePlayerThunks';
+import { updateCurrentTeam } from '../../redux/slices/sundayLeagueTeamSlice';
 
 const SundayLeagueTeamContainer = ({ location }) => {
   const dispatch = useDispatch();
 
   const [playerAdded, setPlayerAdded] = useState(false);
 
-  const sundayLeaguePlayers = useSelector((state) => state.sundayLeaguePlayers);
-  const { currentTeam } = useSelector((state) => state.sundayLeagueTeams);
+  const { players, status } = useSelector((state) => state.sundayLeaguePlayer);
+  const { currentTeam } = useSelector((state) => state.sundayLeagueTeam);
   const { team } = location.state;
 
   const [currentTeamUpdated, setCurrentTeamUpdated] = useState(false);
@@ -26,7 +26,7 @@ const SundayLeagueTeamContainer = ({ location }) => {
   useEffect(() => {
     if (
       isInitialMount.current &&
-      (sundayLeaguePlayers.players.length === 0 || currentTeamUpdated)
+      (players.length === 0 || currentTeamUpdated)
     ) {
       isInitialMount.current = false;
       dispatch(fetchSundayLeaguePlayers(team.id));
@@ -56,8 +56,8 @@ const SundayLeagueTeamContainer = ({ location }) => {
     <SundayLeagueTeam
       team={team}
       submitPlayer={submitPlayer}
-      players={sundayLeaguePlayers.players}
-      status={sundayLeaguePlayers.status}
+      players={players}
+      status={status}
     />
   );
 };

@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSundayLeaguePlayers } from '../thunks/sundayLeaguePlayersThunks';
+import { fetchSundayLeaguePlayers } from '../thunks/sundayLeaguePlayerThunks';
 
 const initialState = {
   players: [],
   status: 'loading',
 };
 
-const sundayLeaguePlayersSlice = createSlice({
-  name: 'sundayLeaguePlayers',
+const sundayLeaguePlayerSlice = createSlice({
+  name: 'sundayLeaguePlayer',
   initialState,
   reducers: {
     // updateSundayLeagues(state, action) {
@@ -25,6 +25,6 @@ const sundayLeaguePlayersSlice = createSlice({
   },
 });
 
-export const {} = sundayLeaguePlayersSlice.actions;
+export const {} = sundayLeaguePlayerSlice.actions;
 
-export default sundayLeaguePlayersSlice.reducer;
+export default sundayLeaguePlayerSlice.reducer;

@@ -15,8 +15,8 @@ export const fetchSundayLeagues = createAsyncThunk(
   }
 );
 
-const sundayLeaguesSlice = createSlice({
-  name: 'sundayLeagues',
+const sundayLeagueSlice = createSlice({
+  name: 'sundayLeague',
   initialState,
   reducers: {
     updateCurrentLeague(state, action) {
@@ -35,6 +35,6 @@ const sundayLeaguesSlice = createSlice({
   },
 });
 
-export const { updateCurrentLeague } = sundayLeaguesSlice.actions;
+export const { updateCurrentLeague } = sundayLeagueSlice.actions;
 
-export default sundayLeaguesSlice.reducer;
+export default sundayLeagueSlice.reducer;

@@ -2,16 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import SundayLeague from './sundayLeagueComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSundayLeagueTeams } from '../../redux/thunks/sundayLeagueTeamsThunks';
-import { updateCurrentLeague } from '../../redux/slices/sundayLeaguesSlice';
+import { fetchSundayLeagueTeams } from '../../redux/thunks/sundayLeagueTeamThunks';
+import { updateCurrentLeague } from '../../redux/slices/sundayLeagueSlice';
 
 const SundayLeagueContainer = ({ location }) => {
   const dispatch = useDispatch();
 
   const [teamAdded, setTeamAdded] = useState(false);
 
-  const sundayLeagueTeams = useSelector((state) => state.sundayLeagueTeams);
-  const { currentLeague } = useSelector((state) => state.sundayLeagues);
+  const sundayLeagueTeams = useSelector((state) => state.sundayLeagueTeam);
+  const { currentLeague } = useSelector((state) => state.sundayLeague);
   const { league } = location.state;
 
   const [currentLeagueUpdated, setCurrentLeagueUpdated] = useState(false);
