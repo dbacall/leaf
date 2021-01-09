@@ -4,12 +4,16 @@ import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 // import { fetchCurrentSeason } from '../../redux/thunks/sundayLeagueSeasonsThunks';
 
-const SundayLeagueFixturesContainer = ({ gameweek }) => {
+const SundayLeagueFixturesContainer = () => {
   const dispatch = useDispatch();
 
   const [fixtureAdded, setFixtureAdded] = useState(false);
 
   const { teams } = useSelector((state) => state.sundayLeagueTeams);
+
+  const { gameweek, status } = useSelector(
+    (state) => state.sundayLeagueGameweek
+  );
 
   // const sundayLeagueSeasons = useSelector((state) => state.sundayLeagueSeasons);
 
@@ -46,8 +50,8 @@ const SundayLeagueFixturesContainer = ({ gameweek }) => {
     <SundayLeagueFixtures
       createNewFixture={createNewFixture}
       teams={teams}
-      // season={season}
-      // status={sundayLeagueSeasons.status}
+      fixtures={gameweek.fixtures}
+      status={status}
     />
   );
 };

@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import ReactLoading from 'react-loading';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { format, parseISO } from 'date-fns';
 
-const SundayLeagueFixturesComponent = ({ createNewFixture, teams }) => {
+const SundayLeagueFixturesComponent = ({
+  createNewFixture,
+  teams,
+  fixtures,
+  status,
+}) => {
   const [newFixture, setNewFixture] = useState(false);
   const [homeTeam, setHomeTeam] = useState('');
   const [awayTeam, setAwayTeam] = useState('');
@@ -14,6 +20,11 @@ const SundayLeagueFixturesComponent = ({ createNewFixture, teams }) => {
 
     createNewFixture(homeTeam, awayTeam, date);
     setNewFixture(false);
+  };
+
+  const getName = (teamId) => {
+    const name = teams.find((team) => team._id == teamId).name;
+    return name;
   };
 
   return (
@@ -61,17 +72,18 @@ const SundayLeagueFixturesComponent = ({ createNewFixture, teams }) => {
           </form>
         </div>
       ) : null}
-      {/* {status === 'loading' ? (
+      {status === 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
-      ) : Fixture ? (
-        Fixture.yearFrom === Fixture.yearTo ? (
-          <h3>{Fixture.yearFrom}</h3>
-        ) : (
-          <h3>
-            {Fixture.yearFrom}/{Fixture.yearTo}
-          </h3>
-        )
-      ) : null} */}
+      ) : fixtures ? (
+        fixtures.map((fixture) => {
+          return (
+            <p>
+              {getName(fixture.homeTeam)} vs {getName(fixture.awayTeam)} -{' '}
+              {format(parseISO(fixture.date), 'PPPPp')}
+            </p>
+          );
+        })
+      ) : null}
     </div>
   );
 };
