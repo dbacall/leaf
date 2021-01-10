@@ -5,32 +5,32 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 
-const SundayLeagueFixturesComponent = ({
-  createNewFixture,
-  teams,
-  gameweek,
+const SundayLeagueFixtureComponent = ({
+  // createNewFixture,
+  fixture,
   status,
+  teams,
 }) => {
-  const [newFixture, setNewFixture] = useState(false);
-  const [homeTeam, setHomeTeam] = useState('');
-  const [awayTeam, setAwayTeam] = useState('');
-  const [date, setDate] = useState('');
+  const [newGoal, setNewGoal] = useState(false);
+  // const [homeTeam, setHomeTeam] = useState('');
+  // const [awayTeam, setAwayTeam] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    createNewFixture(homeTeam, awayTeam, date);
-    setNewFixture(false);
-  };
+  //   createNewFixture(homeTeam, awayTeam, date);
+  //   setNewFixture(false);
+  // };
 
   const getName = (teamId) => {
+    console.log('teams', teams);
     return teams.find((team) => team._id == teamId).name;
   };
 
   return (
     <div>
-      <button onClick={() => setNewFixture(!newFixture)}>Add Fixture</button>
-      {newFixture ? (
+      <button onClick={() => setNewGoal(!newGoal)}>Add Goal</button>
+      {/* {newFixture ? (
         <div>
           <form onSubmit={handleSubmit}>
             <select
@@ -71,28 +71,19 @@ const SundayLeagueFixturesComponent = ({
             <button className="team-submit-btn">Create Fixture</button>
           </form>
         </div>
-      ) : null}
+      ) : null} */}
       {status === 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
-      ) : gameweek ? (
-        gameweek.fixtures.map((fixture) => {
-          return (
-            <p key={fixture._id}>
-              <Link
-                to={{
-                  pathname: `/sunday-league/fixture/${fixture._id}`,
-                  state: { fixtureId: fixture._id },
-                }}
-              >
-                {getName(fixture.homeTeam)} vs {getName(fixture.awayTeam)} -{' '}
-                {format(parseISO(fixture.date), 'PPPPp')}
-              </Link>
-            </p>
-          );
-        })
+      ) : fixture && teams ? (
+        <div>
+          <h3>{format(parseISO(fixture.date), 'PPPPp')}</h3>
+          <h2 key={fixture._id}>
+            {getName(fixture.homeTeam)} vs {getName(fixture.awayTeam)}
+          </h2>
+        </div>
       ) : null}
     </div>
   );
 };
 
-export default SundayLeagueFixturesComponent;
+export default SundayLeagueFixtureComponent;

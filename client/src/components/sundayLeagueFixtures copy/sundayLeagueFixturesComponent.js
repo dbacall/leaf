@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactLoading from 'react-loading';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import './node_modules/react-datepicker/dist/react-datepicker.css';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 
@@ -81,7 +81,6 @@ const SundayLeagueFixturesComponent = ({
               <Link
                 to={{
                   pathname: `/sunday-league/fixture/${fixture._id}`,
-                  state: { fixtureId: fixture._id },
                 }}
               >
                 {getName(fixture.homeTeam)} vs {getName(fixture.awayTeam)} -{' '}
