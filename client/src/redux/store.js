@@ -1,23 +1,35 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import authReducer from './reducers/authReducers';
-import errorReducer from './reducers/errorReducers';
-import sundayLeagueReducer from './slices/sundayLeagueSlice';
-import sundayLeagueTeamReducer from './slices/sundayLeagueTeamSlice';
-import sundayLeaguePlayerReducer from './slices/sundayLeaguePlayerSlice';
-import sundayLeagueSeasonReducer from './slices/sundayLeagueSeasonSlice';
-import sundayLeagueGameweekReducer from './slices/sundayLeagueGameweekSlice';
+import rootReducer from './reducers';
+
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    errors: errorReducer,
-    sundayLeague: sundayLeagueReducer,
-    sundayLeagueTeam: sundayLeagueTeamReducer,
-    sundayLeaguePlayer: sundayLeaguePlayerReducer,
-    sundayLeagueSeason: sundayLeagueSeasonReducer,
-    sundayLeagueGameweek: sundayLeagueGameweekReducer,
-  },
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
 });
+
+export const persistor = persistStore(store);
 
 export default store;
