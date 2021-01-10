@@ -4,8 +4,19 @@ const supertest = require('supertest');
 const app = require('../../app');
 
 describe('Sunday league fixture tests:', () => {
-  it('should let you add a fixture for a gameweek', async () => {
-    const user = await registerUser(
+  var user;
+  var league;
+  var season;
+  var seasonId;
+  var gameweek;
+  var team1;
+  var team2;
+  var date;
+  var gameweekId;
+  var homeTeamId;
+  var awayTeamId;
+  beforeEach(async () => {
+    user = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
@@ -13,28 +24,25 @@ describe('Sunday league fixture tests:', () => {
       'password'
     );
 
-    const league = await addSundayLeague('league1', user._id);
+    league = await addSundayLeague('league1', user._id);
 
-    const season = await addSundayLeagueSeason(
-      1,
-      2020,
-      2021,
-      league.body.data.id
-    );
+    season = await addSundayLeagueSeason(1, 2020, 2021, league.body.data.id);
 
-    const seasonId = season.body.data._id;
+    seasonId = season.body.data._id;
 
-    const gameweek = await addSundayLeagueGameweek(1, seasonId);
+    gameweek = await addSundayLeagueGameweek(1, seasonId);
 
-    const team1 = await addSundayLeagueTeam('team1', league.body.data.id);
-    const team2 = await addSundayLeagueTeam('team2', league.body.data.id);
+    team1 = await addSundayLeagueTeam('team1', league.body.data.id);
+    team2 = await addSundayLeagueTeam('team2', league.body.data.id);
 
-    const date = new Date(2021, 02, 24, 15, 00, 00, 0);
+    date = new Date(2021, 02, 24, 15, 00, 00, 0);
 
-    const gameweekId = gameweek.body.data._id;
-    const homeTeamId = team1.body.data._id;
-    const awayTeamId = team2.body.data._id;
+    gameweekId = gameweek.body.data._id;
+    homeTeamId = team1.body.data._id;
+    awayTeamId = team2.body.data._id;
+  });
 
+  it('should let you add a fixture for a gameweek', async () => {
     await addSundayLeagueFixture(
       homeTeamId,
       awayTeamId,
@@ -56,5 +64,46 @@ describe('Sunday league fixture tests:', () => {
     expect(result.date.getTime()).to.equal(date.getTime());
     expect(result.gameweek.toString()).to.eq(gameweekId);
     expect(result.season.toString()).to.eq(seasonId);
+  });
+
+  it('should get a fixture with goals', async () => {
+    const fixture = await addSundayLeagueFixture(
+      homeTeamId,
+      awayTeamId,
+      date,
+      gameweekId,
+      seasonId
+    );
+
+    const player = await addSundayLeaguePlayer(
+      'Bob',
+      'Smith',
+      'Defender',
+      homeTeamId
+    );
+
+    const fixtureId = fixture.body.data.id;
+
+    await addSundayLeagueGoal(
+      player.body.data._id,
+      20,
+      fixtureId,
+      homeTeamId,
+      seasonId
+    );
+
+    const result = await supertest(app).get(
+      `/sunday-leagues/fixture/${fixtureId}/current`
+    );
+
+    expect(result.body.homeTeam.toString()).to.equal(homeTeamId);
+    expect(result.body.awayTeam.toString()).to.equal(awayTeamId);
+    expect(result.body.homeTeamGoals).to.equal(1);
+    expect(result.body.awayTeamGoals).to.equal(0);
+    expect(result.body.draw).to.be.false;
+    expect(result.body.completed).to.be.false;
+    expect(result.body.gameweek.toString()).to.eq(gameweekId);
+    expect(result.body.season.toString()).to.eq(seasonId);
+    expect(result.body.goals).to.have.length(1);
   });
 });

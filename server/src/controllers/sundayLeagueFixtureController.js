@@ -9,6 +9,13 @@ const sundayLeagueFixtureService = new SundayLeagueFixtureService(
 class SundayLeagueFixtureController extends Controller {
   constructor(service) {
     super(service);
+    this.getFixture = this.getFixture.bind(this);
+  }
+
+  async getFixture(req, res) {
+    let response = await this.service.getFixture(req.params);
+    if (response.error) return res.status(response.statusCode).send(response);
+    return res.status(201).send(response.data);
   }
 }
 

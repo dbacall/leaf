@@ -40,6 +40,17 @@ const sundayLeagueFixtureSchema = new Schema({
   },
 });
 
+// goal ref
+
+sundayLeagueFixtureSchema.virtual('goals', {
+  ref: 'SundayLeagueGoal',
+  localField: '_id',
+  foreignField: 'fixture',
+});
+
+sundayLeagueFixtureSchema.set('toObject', { virtuals: true });
+sundayLeagueFixtureSchema.set('toJSON', { virtuals: true });
+
 module.exports = mongoose.model(
   'SundayLeagueFixture',
   sundayLeagueFixtureSchema

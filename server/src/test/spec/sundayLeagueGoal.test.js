@@ -4,7 +4,7 @@ const supertest = require('supertest');
 const app = require('../../app');
 
 describe('Sunday league goal tests:', () => {
-  it.only('should let you add a goal', async () => {
+  it('should let you add a goal', async () => {
     const user = await registerUser(
       'David',
       'Bacall',
