@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactLoading from 'react-loading';
 import { Link } from 'react-router-dom';
 

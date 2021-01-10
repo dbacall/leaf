@@ -7,7 +7,7 @@ import {
   fetchSpecificGameweek,
 } from '../../redux/thunks/sundayLeagueGameweekThunks';
 
-const SundayLeagueGameweekContainer = ({}) => {
+const SundayLeagueGameweekContainer = () => {
   const dispatch = useDispatch();
 
   const [GameweekAdded, setGameweekAdded] = useState(false);

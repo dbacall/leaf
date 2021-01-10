@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import SundayLeagueFixtures from './sundayLeagueFixturesComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';

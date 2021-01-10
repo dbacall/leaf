@@ -8,7 +8,6 @@ const MySundayLeaguesContainer = () => {
   const sundayLeagues = useSelector((state) => state.sundayLeague);
 
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (sundayLeagues.leagues.length === 0) {
       dispatch(fetchSundayLeagues(user.id));
