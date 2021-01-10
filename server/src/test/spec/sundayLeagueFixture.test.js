@@ -22,7 +22,9 @@ describe('Sunday league fixture tests:', () => {
       league.body.data.id
     );
 
-    const gameweek = await addSundayLeagueGameweek(1, season.body.data._id);
+    const seasonId = season.body.data._id;
+
+    const gameweek = await addSundayLeagueGameweek(1, seasonId);
 
     const team1 = await addSundayLeagueTeam('team1', league.body.data.id);
     const team2 = await addSundayLeagueTeam('team2', league.body.data.id);
@@ -33,7 +35,13 @@ describe('Sunday league fixture tests:', () => {
     const homeTeamId = team1.body.data._id;
     const awayTeamId = team2.body.data._id;
 
-    await addSundayLeagueFixture(homeTeamId, awayTeamId, date, gameweekId);
+    await addSundayLeagueFixture(
+      homeTeamId,
+      awayTeamId,
+      date,
+      gameweekId,
+      seasonId
+    );
 
     const result = await SundayLeagueFixture.findOne({
       gameweek: gameweekId,
@@ -47,5 +55,6 @@ describe('Sunday league fixture tests:', () => {
     expect(result.completed).to.be.false;
     expect(result.date.getTime()).to.equal(date.getTime());
     expect(result.gameweek.toString()).to.eq(gameweekId);
+    expect(result.season.toString()).to.eq(seasonId);
   });
 });

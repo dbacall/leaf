@@ -34,6 +34,10 @@ const sundayLeagueFixtureSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'SundayLeagueGameweek',
   },
+  season: {
+    type: Schema.Types.ObjectId,
+    ref: 'SundayLeagueSeason',
+  },
 });
 
 module.exports = mongoose.model(
