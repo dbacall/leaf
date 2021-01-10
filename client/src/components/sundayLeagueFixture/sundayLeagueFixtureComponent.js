@@ -4,7 +4,7 @@ import { format, parseISO } from 'date-fns';
 // import { Link } from 'react-router-dom';
 
 const SundayLeagueFixtureComponent = ({
-  // createNewFixture,
+  createNewGoal,
   fixture,
   status,
   teams,
@@ -16,10 +16,15 @@ const SundayLeagueFixtureComponent = ({
   const [homeTeamGoalMinute, setHomeTeamGoalMinute] = useState('');
   const [awayTeamGoalMinute, setAwayTeamGoalMinute] = useState('');
 
-  const handleSubmit = (e, team) => {
+  const submitHomeGoal = (e) => {
     e.preventDefault();
-    // createNewGoal(homeTeam, awayTeam, date);
+    createNewGoal(homeTeamGoalMinute, homeTeamPlayer, fixture.homeTeam);
     setHomeTeamGoal(false);
+  };
+
+  const submitAwayGoal = (e) => {
+    e.preventDefault();
+    createNewGoal(awayTeamGoalMinute, awayTeamPlayer, fixture.awayTeam);
     setAwayTeamGoal(false);
   };
 
@@ -48,7 +53,7 @@ const SundayLeagueFixtureComponent = ({
           </button>
           {homeTeamGoal ? (
             <div>
-              <form>
+              <form onSubmit={submitHomeGoal}>
                 <input
                   type="text"
                   placeholder="Minute scored..."
@@ -81,7 +86,7 @@ const SundayLeagueFixtureComponent = ({
           </button>
           {awayTeamGoal ? (
             <div>
-              <form>
+              <form onSubmit={submitAwayGoal}>
                 <input
                   type="text"
                   placeholder="Minute scored..."
@@ -111,7 +116,8 @@ const SundayLeagueFixtureComponent = ({
           ) : null}
           <h3>{format(parseISO(fixture.date), 'PPPPp')}</h3>
           <h2 key={fixture._id}>
-            {getName(fixture.homeTeam)} vs {getName(fixture.awayTeam)}
+            {getName(fixture.homeTeam)} {fixture.homeTeamGoals} -{' '}
+            {fixture.awayTeamGoals} {getName(fixture.awayTeam)}
           </h2>
         </div>
       ) : null}

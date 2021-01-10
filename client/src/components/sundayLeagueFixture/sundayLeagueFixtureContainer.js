@@ -14,7 +14,7 @@ const SundayLeagueFixtureContainer = ({ location }) => {
 
   const { teams } = useSelector((state) => state.sundayLeagueTeam);
 
-  // const { season } = useSelector((state) => state.sundayLeagueSeason);
+  const { season } = useSelector((state) => state.sundayLeagueSeason);
 
   const isInitialMount = useRef(true);
 
@@ -32,23 +32,24 @@ const SundayLeagueFixtureContainer = ({ location }) => {
     }
   }, [goalAdded]);
 
-  // const createNewFixture = async (homeTeam, awayTeam, date) => {
-  //   const data = {
-  //     homeTeam,
-  //     awayTeam,
-  //     date,
-  //     gameweek: gameweek.id,
-  //   };
+  const createNewGoal = async (minute, player, team) => {
+    const data = {
+      fixture: fixtureId,
+      minute,
+      player,
+      season: season._id,
+      team,
+    };
 
-  //   const path = '/sunday-leagues/fixture';
+    const path = '/sunday-leagues/goal';
 
-  //   await api.request('post', data, path);
-  //   setFixtureAdded(true);
-  // };
+    await api.request('post', data, path);
+    setGoalAdded(true);
+  };
 
   return (
     <SundayLeagueFixture
-      // createNewFixture={createNewFixture}
+      createNewGoal={createNewGoal}
       fixture={fixture}
       status={status}
       teams={teams}
