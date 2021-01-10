@@ -2,13 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../services/api';
 
 export const fetchFixture = createAsyncThunk(
-  'sundayLeaguePlayers/fetchSundayLeaguePlayers',
+  'sundayLeagueFixture/fetchFixture',
   async (id) => {
     const response = await api.request(
       'get',
       null,
       `/sunday-leagues/fixture/${id}/current`
     );
+    console.log('response', response);
     return response;
   }
 );

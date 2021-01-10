@@ -80,7 +80,7 @@ const SundayLeagueTeam = ({ team, submitPlayer, players, status }) => {
       <h2>Players</h2>
       {status === 'loading' ? (
         <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
-      ) : players ? (
+      ) : players.length > 0 ? (
         players.map((player, index) => {
           return (
             <div key={index}>
