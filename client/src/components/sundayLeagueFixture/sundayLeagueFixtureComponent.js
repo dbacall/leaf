@@ -11,20 +11,30 @@ const SundayLeagueFixtureComponent = ({
 }) => {
   const [homeTeamGoal, setHomeTeamGoal] = useState(false);
   const [awayTeamGoal, setAwayTeamGoal] = useState(false);
-  // const [homeTeam, setHomeTeam] = useState('');
-  // const [awayTeam, setAwayTeam] = useState('');
+  const [homeTeamPlayer, setHomeTeamPlayer] = useState('');
+  const [awayTeamPlayer, setAwayTeamPlayer] = useState('');
+  const [homeTeamGoalMinute, setHomeTeamGoalMinute] = useState('');
+  const [awayTeamGoalMinute, setAwayTeamGoalMinute] = useState('');
 
   const handleSubmit = (e, team) => {
     e.preventDefault();
-
     // createNewGoal(homeTeam, awayTeam, date);
     setHomeTeamGoal(false);
     setAwayTeamGoal(false);
   };
 
   const getName = (teamId) => {
-    console.log('teams', teams);
     return teams.find((team) => team._id == teamId).name;
+  };
+
+  const getHomeTeamPlayers = () => {
+    const { players } = teams.find((team) => team._id == fixture.homeTeam);
+    return players;
+  };
+
+  const getAwayTeamPlayers = () => {
+    const { players } = teams.find((team) => team._id == fixture.awayTeam);
+    return players;
   };
 
   return (
@@ -34,50 +44,71 @@ const SundayLeagueFixtureComponent = ({
       ) : fixture && typeof fixture === 'object' && teams ? (
         <div>
           <button onClick={() => setHomeTeamGoal(!homeTeamGoal)}>
-            Add Goal
+            Add Goal for {getName(fixture.homeTeam)}
           </button>
-          {/* {homeTeamGoal ? (
+          {homeTeamGoal ? (
             <div>
               <form>
+                <input
+                  type="text"
+                  placeholder="Minute scored..."
+                  value={homeTeamGoalMinute}
+                  onChange={(e) => setHomeTeamGoalMinute(e.target.value)}
+                />
                 <select
-                  value={homeTeam}
+                  value={homeTeamPlayer}
                   onChange={(e) => {
-                    setHomeTeam(e.target.value);
+                    setHomeTeamPlayer(e.target.value);
                   }}
                 >
                   <option value="" disabled>
                     Select Player:
                   </option>
-                  {players.map((team) => {
-                    return <option value={team.id}>{team.name}</option>;
+                  {getHomeTeamPlayers().map((player) => {
+                    return (
+                      <option value={player._id}>
+                        {player.firstName} {player.surname}
+                      </option>
+                    );
                   })}
                 </select>
-
+                <button className="team-submit-btn">Add Goal</button>
+              </form>
+            </div>
+          ) : null}
+          <button onClick={() => setAwayTeamGoal(!awayTeamGoal)}>
+            Add Goal for {getName(fixture.awayTeam)}
+          </button>
+          {awayTeamGoal ? (
+            <div>
+              <form>
+                <input
+                  type="text"
+                  placeholder="Minute scored..."
+                  value={awayTeamGoalMinute}
+                  onChange={(e) => setAwayTeamGoalMinute(e.target.value)}
+                />
                 <select
-                  value={awayTeam}
+                  value={awayTeamPlayer}
                   onChange={(e) => {
-                    setAwayTeam(e.target.value);
+                    setAwayTeamPlayer(e.target.value);
                   }}
                 >
                   <option value="" disabled>
-                    Select Away Team:
+                    Select Player:
                   </option>
-                  {teams.map((team) => {
-                    return <option value={team.id}>{team.name}</option>;
+                  {getAwayTeamPlayers().map((player) => {
+                    return (
+                      <option value={player._id}>
+                        {player.firstName} {player.surname}
+                      </option>
+                    );
                   })}
                 </select>
-
-                <DatePicker
-                  selected={date}
-                  onChange={(date) => setDate(date)}
-                  showTimeSelect
-                  dateFormat="Pp"
-                />
-
-                <button className="team-submit-btn">Create Fixture</button>
+                <button className="team-submit-btn">Add Goal</button>
               </form>
             </div>
-          ) : null} */}
+          ) : null}
           <h3>{format(parseISO(fixture.date), 'PPPPp')}</h3>
           <h2 key={fixture._id}>
             {getName(fixture.homeTeam)} vs {getName(fixture.awayTeam)}
