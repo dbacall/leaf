@@ -44,7 +44,7 @@ describe('Sunday league fixture tests:', () => {
     expect(result.homeTeamGoals).to.equal(0);
     expect(result.awayTeamGoals).to.equal(0);
     expect(result.draw).to.be.false;
-    expect(result.finished).to.be.false;
+    expect(result.completed).to.be.false;
     expect(result.date.getTime()).to.equal(date.getTime());
     expect(result.gameweek.toString()).to.eq(gameweekId);
   });

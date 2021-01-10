@@ -23,7 +23,7 @@ const sundayLeagueFixtureSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  finished: {
+  completed: {
     type: Boolean,
     default: false,
   },
