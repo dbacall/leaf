@@ -4,17 +4,17 @@ const supertest = require('supertest');
 const app = require('../../app');
 
 describe('Sunday league fixture tests:', () => {
-  var user;
-  var league;
-  var season;
-  var seasonId;
-  var gameweek;
-  var team1;
-  var team2;
-  var date;
-  var gameweekId;
-  var homeTeamId;
-  var awayTeamId;
+  let user;
+  let league;
+  let season;
+  let seasonId;
+  let gameweek;
+  let team1;
+  let team2;
+  let date;
+  let gameweekId;
+  let homeTeamId;
+  let awayTeamId;
   beforeEach(async () => {
     user = await registerUser(
       'David',

@@ -24,9 +24,10 @@ describe('Team', () => {
       team.body.data._id
     );
 
+
     const result = await SundayLeagueTeam.findOne({
       name: 'team1',
-    });
+    }).populate('players');
 
     expect(result.name).to.equal('team1');
     expect(result.league.toString()).to.eq(leagueAdded.body.data.id);

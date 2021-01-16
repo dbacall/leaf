@@ -151,7 +151,7 @@ describe('Sunday league gameweek tests:', () => {
     expect(result.body.fixtures[1].homeTeam).to.eq(homeTeam2Id);
   });
 
-  it.only('should update and complete all fixtures in a gameweek', async () => {
+  it('should update and complete all fixtures in a gameweek', async () => {
     const seasonId = season.body.data._id;
 
     await addSundayLeagueGameweek(1, seasonId);

@@ -4,6 +4,7 @@ const sundayLeagueSeasonController = require('../controllers/sundayLeagueSeasonC
 
 router.post('/', sundayLeagueSeasonController.create);
 router.get('/', sundayLeagueSeasonController.getCurrent);
+router.get('/results/:teams', sundayLeagueSeasonController.getResults);
 // router.get('/:id/:idType', sundayLeagueSeasonController.getAllById);
 
 module.exports = router;
