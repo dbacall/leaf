@@ -110,10 +110,14 @@ describe('Sunday league season tests:', () => {
     expect(results.body[0].lost).to.equal(0)
     expect(results.body[0].drawn).to.equal(1)
     expect(results.body[0].points).to.equal(4)
+    expect(results.body[0].goalsFor).to.equal(1)
+    expect(results.body[0].goalsAgainst).to.equal(0)
     expect(results.body[1].id).to.equal(awayTeam1Id)
     expect(results.body[1].won).to.equal(0)
     expect(results.body[1].lost).to.equal(1)
     expect(results.body[1].drawn).to.equal(1)
+    expect(results.body[1].goalsFor).to.equal(0)
+    expect(results.body[1].goalsAgainst).to.equal(1)
     expect(results.body[1].points).to.equal(1)
 
   });

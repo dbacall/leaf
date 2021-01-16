@@ -31,6 +31,8 @@ class SundayLeagueSeasonService extends Service {
           won: 0,
           lost: 0,
           drawn: 0,
+          goalsFor: 0,
+          goalsAgainst: 0,
           points: 0,
         }
         teamResults.name = team.name
@@ -43,6 +45,15 @@ class SundayLeagueSeasonService extends Service {
             teamResults.drawn += 1
             teamResults.points += 1
           } else teamResults.lost += 1
+
+          if (fixture.homeTeam == team.id) {
+            teamResults.goalsFor += fixture.homeTeamGoals
+            teamResults.goalsAgainst += fixture.awayTeamGoals
+          }
+          if (fixture.awayTeam == team.id) {
+            teamResults.goalsFor += fixture.awayTeamGoals
+            teamResults.goalsAgainst += fixture.homeTeamGoals
+          }
         }
         seasonResults.push(teamResults)
       }
