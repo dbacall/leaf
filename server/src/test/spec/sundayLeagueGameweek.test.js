@@ -4,8 +4,12 @@ const supertest = require('supertest');
 const app = require('../../app');
 
 describe('Sunday league gameweek tests:', () => {
-  it('should let you add a gameweek for a season', async () => {
-    const user = await registerUser(
+  let user
+  let league
+  let season
+
+  beforeEach(async () => {
+    user = await registerUser(
       'David',
       'Bacall',
       'dbacall@hotmail.co.uk',
@@ -13,15 +17,17 @@ describe('Sunday league gameweek tests:', () => {
       'password'
     );
 
-    const league = await addSundayLeague('league1', user._id);
+    league = await addSundayLeague('league1', user._id);
 
-    const season = await addSundayLeagueSeason(
+    season = await addSundayLeagueSeason(
       1,
       2020,
       2021,
       league.body.data.id
     );
+  })
 
+  it('should let you add a gameweek for a season', async () => {
     await addSundayLeagueGameweek(1, season.body.data._id);
 
     const result = await SundayLeagueGameweek.findOne({
@@ -34,23 +40,6 @@ describe('Sunday league gameweek tests:', () => {
   });
 
   it('should throw an error if number is less than 1', async () => {
-    const user = await registerUser(
-      'David',
-      'Bacall',
-      'dbacall@hotmail.co.uk',
-      'password',
-      'password'
-    );
-
-    const league = await addSundayLeague('league1', user._id);
-
-    const season = await addSundayLeagueSeason(
-      1,
-      2020,
-      2021,
-      league.body.data.id
-    );
-
     const result = await addSundayLeagueGameweek(0, season.body.data._id);
 
     expect(result.body.errors.number.message).to.equal(
@@ -59,23 +48,6 @@ describe('Sunday league gameweek tests:', () => {
   });
 
   it('should let update current of previous gameweek if add a new season', async () => {
-    const user = await registerUser(
-      'David',
-      'Bacall',
-      'dbacall@hotmail.co.uk',
-      'password',
-      'password'
-    );
-
-    const league = await addSundayLeague('league1', user._id);
-
-    const season = await addSundayLeagueSeason(
-      1,
-      2020,
-      2021,
-      league.body.data.id
-    );
-
     await addSundayLeagueGameweek(1, season.body.data._id);
     await addSundayLeagueGameweek(2, season.body.data._id);
 
@@ -88,23 +60,6 @@ describe('Sunday league gameweek tests:', () => {
   });
 
   it('should only get the current gameweek', async () => {
-    const user = await registerUser(
-      'David',
-      'Bacall',
-      'dbacall@hotmail.co.uk',
-      'password',
-      'password'
-    );
-
-    const league = await addSundayLeague('league1', user._id);
-
-    const season = await addSundayLeagueSeason(
-      1,
-      2020,
-      2021,
-      league.body.data.id
-    );
-
     const seasonId = season.body.data._id;
 
     await addSundayLeagueGameweek(1, seasonId);
@@ -119,23 +74,6 @@ describe('Sunday league gameweek tests:', () => {
   });
 
   it('should get the current gameweek with a list of fixtures', async () => {
-    const user = await registerUser(
-      'David',
-      'Bacall',
-      'dbacall@hotmail.co.uk',
-      'password',
-      'password'
-    );
-
-    const league = await addSundayLeague('league1', user._id);
-
-    const season = await addSundayLeagueSeason(
-      1,
-      2020,
-      2021,
-      league.body.data.id
-    );
-
     const seasonId = season.body.data._id;
 
     const gameweek = await addSundayLeagueGameweek(1, seasonId);
@@ -180,23 +118,6 @@ describe('Sunday league gameweek tests:', () => {
   });
 
   it('should get a specific gameweek with a list of fixtures', async () => {
-    const user = await registerUser(
-      'David',
-      'Bacall',
-      'dbacall@hotmail.co.uk',
-      'password',
-      'password'
-    );
-
-    const league = await addSundayLeague('league1', user._id);
-
-    const season = await addSundayLeagueSeason(
-      1,
-      2020,
-      2021,
-      league.body.data.id
-    );
-
     const seasonId = season.body.data._id;
 
     await addSundayLeagueGameweek(1, seasonId);
@@ -229,4 +150,52 @@ describe('Sunday league gameweek tests:', () => {
     expect(result.body.fixtures[0].homeTeam).to.eq(homeTeam1Id);
     expect(result.body.fixtures[1].homeTeam).to.eq(homeTeam2Id);
   });
+
+  it.only('should update and complete all fixtures in a gameweek', async () => {
+    const seasonId = season.body.data._id;
+
+    await addSundayLeagueGameweek(1, seasonId);
+    const gameweek = await addSundayLeagueGameweek(2, seasonId);
+    await addSundayLeagueGameweek(3, seasonId);
+
+    const team1 = await addSundayLeagueTeam('team1', league.body.data.id);
+    const team2 = await addSundayLeagueTeam('team2', league.body.data.id);
+    const team3 = await addSundayLeagueTeam('team3', league.body.data.id);
+    const team4 = await addSundayLeagueTeam('team4', league.body.data.id);
+
+    const date = new Date(2021, 02, 24, 15, 00, 00, 0);
+
+    const gameweekId = gameweek.body.data._id;
+    const homeTeam1Id = team1.body.data._id;
+    const awayTeam1Id = team2.body.data._id;
+    const homeTeam2Id = team3.body.data._id;
+    const awayTeam2Id = team4.body.data._id;
+
+    const fixture1 = await addSundayLeagueFixture(homeTeam1Id, awayTeam1Id, date, gameweekId);
+    await addSundayLeagueFixture(homeTeam2Id, awayTeam2Id, date, gameweekId);
+
+    const player = await addSundayLeaguePlayer(
+      'Bob',
+      'Smith',
+      'Defender',
+      homeTeam1Id
+    );
+
+    await addSundayLeagueGoal(
+      player.body.data.id,
+      20,
+      fixture1.body.data.id,
+      homeTeam1Id,
+      seasonId
+    );
+
+    const result = await supertest(app).put(
+      `/sunday-leagues/gameweek/${gameweekId}/complete`
+    );
+
+    const completedFixtures = result.body.fixtures
+
+    expect(completedFixtures[0].winner).to.equal(homeTeam1Id)
+
+  })
 });

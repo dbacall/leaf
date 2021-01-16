@@ -14,6 +14,10 @@ const sundayLeagueGameweekSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'SundayLeagueSeason',
   },
+  completed: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 // fixture ref
