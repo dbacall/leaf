@@ -33,7 +33,7 @@ const SundayLeagueSeasonContainer = ({ league }) => {
       league: league.id,
     };
 
-    const path = '/sunday-leagues/season';
+    const path = '/sunday-league/season';
 
     await api.request('post', data, path);
     setSeasonAdded(true);

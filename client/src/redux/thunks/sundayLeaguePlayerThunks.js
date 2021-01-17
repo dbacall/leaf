@@ -7,7 +7,7 @@ export const fetchSundayLeaguePlayers = createAsyncThunk(
     const response = await api.request(
       'get',
       null,
-      `/sunday-leagues/player/${id}/team`
+      `/sunday-league/player/${id}/team`
     );
     return response;
   }

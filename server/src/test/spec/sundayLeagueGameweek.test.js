@@ -66,7 +66,7 @@ describe('Sunday league gameweek tests:', () => {
     await addSundayLeagueGameweek(2, seasonId);
 
     const result = await supertest(app).get(
-      `/sunday-leagues/gameweek/${seasonId}/current`
+      `/sunday-league/gameweek/${seasonId}/current`
     );
 
     expect(result.body.number).to.equal(2);
@@ -107,7 +107,7 @@ describe('Sunday league gameweek tests:', () => {
     );
 
     const result = await supertest(app).get(
-      `/sunday-leagues/gameweek/${seasonId}/current`
+      `/sunday-league/gameweek/${seasonId}/current`
     );
 
     expect(result.body.number).to.equal(1);
@@ -141,7 +141,7 @@ describe('Sunday league gameweek tests:', () => {
     await addSundayLeagueFixture(homeTeam2Id, awayTeam2Id, date, gameweekId);
 
     const result = await supertest(app).get(
-      `/sunday-leagues/gameweek/${seasonId}/2`
+      `/sunday-league/gameweek/${seasonId}/2`
     );
 
     expect(result.body.number).to.equal(2);
@@ -190,7 +190,7 @@ describe('Sunday league gameweek tests:', () => {
     );
 
     const result = await supertest(app).put(
-      `/sunday-leagues/gameweek/${gameweekId}/complete`
+      `/sunday-league/gameweek/${gameweekId}/complete`
     );
 
     const completedFixtures = result.body.fixtures

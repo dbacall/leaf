@@ -53,7 +53,7 @@ describe('Team', () => {
     await addSundayLeaguePlayer('Bob', 'Smith', 'Midfielder', teamId);
 
     const result = await supertest(app).get(
-      `/sunday-leagues/team/${leagueId}/league`
+      `/sunday-league/team/${leagueId}/league`
     );
 
     expect(result.body[0].name).to.equal('team1');

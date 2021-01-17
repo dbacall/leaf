@@ -7,7 +7,7 @@ module.exports = async (number, season) => {
     season,
   };
   const response = await supertest(app)
-    .post('/sunday-leagues/gameweek')
+    .post('/sunday-league/gameweek')
     .send(data);
 
   return response;

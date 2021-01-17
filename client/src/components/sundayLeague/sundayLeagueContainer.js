@@ -43,7 +43,7 @@ const SundayLeagueContainer = ({ location }) => {
       league: league.id,
     };
 
-    const path = '/sunday-leagues/team';
+    const path = '/sunday-league/team';
 
     api.request('post', data, path);
 

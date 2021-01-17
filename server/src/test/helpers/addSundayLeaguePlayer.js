@@ -9,7 +9,7 @@ module.exports = async (firstName, surname, position, team) => {
     team,
   };
   const response = await supertest(app)
-    .post('/sunday-leagues/player')
+    .post('/sunday-league/player')
     .send(data);
 
   return response;

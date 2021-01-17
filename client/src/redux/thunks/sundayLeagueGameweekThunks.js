@@ -7,7 +7,7 @@ export const fetchCurrentGameweek = createAsyncThunk(
     const response = await api.request(
       'get',
       null,
-      `/sunday-leagues/gameweek/${seasonId}/current`
+      `/sunday-league/gameweek/${seasonId}/current`
     );
 
     return response;
@@ -20,7 +20,7 @@ export const fetchSpecificGameweek = createAsyncThunk(
     const response = await api.request(
       'get',
       null,
-      `/sunday-leagues/gameweek/${season}/${number}`
+      `/sunday-league/gameweek/${season}/${number}`
     );
 
     return response;

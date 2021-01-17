@@ -93,7 +93,7 @@ describe('Sunday league fixture tests:', () => {
     );
 
     const result = await supertest(app).get(
-      `/sunday-leagues/fixture/${fixtureId}/current`
+      `/sunday-league/fixture/${fixtureId}/current`
     );
 
     expect(result.body.homeTeam.toString()).to.equal(homeTeamId);

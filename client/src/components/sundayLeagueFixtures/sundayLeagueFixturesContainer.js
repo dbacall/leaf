@@ -40,7 +40,7 @@ const SundayLeagueFixturesContainer = () => {
       gameweek: gameweek.id,
     };
 
-    const path = '/sunday-leagues/fixture';
+    const path = '/sunday-league/fixture';
 
     await api.request('post', data, path);
     setFixtureAdded(true);

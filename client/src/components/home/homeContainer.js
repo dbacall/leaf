@@ -12,7 +12,7 @@ const HomeContainer = () => {
       owner,
     };
 
-    const path = '/sunday-leagues/new';
+    const path = '/sunday-league/new';
 
     api.request('post', data, path);
   };

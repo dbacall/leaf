@@ -10,11 +10,11 @@ const sundayLeagueGoal = require('../api/sundayLeagueGoal');
 module.exports = (app) => {
   // Routes
   app.use('/users', users);
-  app.use('/sunday-leagues', sundayLeagues);
-  app.use('/sunday-leagues/team', sundayLeagueTeam);
-  app.use('/sunday-leagues/player', sundayLeaguePlayer);
-  app.use('/sunday-leagues/season', sundayLeagueSeason);
-  app.use('/sunday-leagues/gameweek', sundayLeagueGameweek);
-  app.use('/sunday-leagues/fixture', sundayLeagueFixture);
-  app.use('/sunday-leagues/goal', sundayLeagueGoal);
+  app.use('/sunday-league', sundayLeagues);
+  app.use('/sunday-league/team', sundayLeagueTeam);
+  app.use('/sunday-league/player', sundayLeaguePlayer);
+  app.use('/sunday-league/season', sundayLeagueSeason);
+  app.use('/sunday-league/gameweek', sundayLeagueGameweek);
+  app.use('/sunday-league/fixture', sundayLeagueFixture);
+  app.use('/sunday-league/goal', sundayLeagueGoal);
 };

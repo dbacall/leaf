@@ -41,7 +41,7 @@ const SundayLeagueFixtureContainer = ({ location }) => {
       team,
     };
 
-    const path = '/sunday-leagues/goal';
+    const path = '/sunday-league/goal';
 
     await api.request('post', data, path);
     setGoalAdded(true);

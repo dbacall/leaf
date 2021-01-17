@@ -8,7 +8,7 @@ module.exports = async (name, id) => {
     owner: id,
   };
   await supertest(app)
-    .post('/sunday-leagues/new')
+    .post('/sunday-league/new')
     .send(data)
     .then((res) => {
       result = res;

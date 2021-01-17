@@ -38,7 +38,7 @@ const SundayLeagueGameweekContainer = () => {
       season: season._id,
     };
 
-    const path = '/sunday-leagues/gameweek';
+    const path = '/sunday-league/gameweek';
 
     await api.request('post', data, path);
     setGameweekAdded(true);

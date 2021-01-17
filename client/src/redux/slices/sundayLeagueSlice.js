@@ -10,7 +10,7 @@ const initialState = {
 export const fetchSundayLeagues = createAsyncThunk(
   'sundayLeagues/fetchSundayLeagues',
   (id) => {
-    const response = api.request('get', null, `/sunday-leagues/${id}/owner`);
+    const response = api.request('get', null, `/sunday-league/${id}/owner`);
     return response;
   }
 );

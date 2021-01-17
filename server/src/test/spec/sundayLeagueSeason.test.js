@@ -50,7 +50,7 @@ describe('Sunday league season tests:', () => {
     await addSundayLeagueSeason(1, 2020, 2021, league.body.data.id);
     await addSundayLeagueSeason(2, 2021, 2022, league.body.data.id);
 
-    const result = await supertest(app).get('/sunday-leagues/season');
+    const result = await supertest(app).get('/sunday-league/season');
 
     expect(result.body.number).to.equal(2);
     expect(result.body.current).to.equal(true);
@@ -97,13 +97,13 @@ describe('Sunday league season tests:', () => {
     );
 
     await supertest(app).put(
-      `/sunday-leagues/gameweek/${gameweekId}/complete`
+      `/sunday-league/gameweek/${gameweekId}/complete`
     );
 
     const { teams } = await SundayLeague.findById(league.body.data.id).populate('teams')
     const teamsString = JSON.stringify(teams);
 
-    const results = await supertest(app).get(`/sunday-leagues/season/results/${teamsString}`);
+    const results = await supertest(app).get(`/sunday-league/season/results/${teamsString}`);
 
     expect(results.body[0].id).to.equal(homeTeam1Id)
     expect(results.body[0].won).to.equal(1)

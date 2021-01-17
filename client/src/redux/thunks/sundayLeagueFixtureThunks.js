@@ -7,7 +7,7 @@ export const fetchFixture = createAsyncThunk(
     const response = await api.request(
       'get',
       null,
-      `/sunday-leagues/fixture/${id}/current`
+      `/sunday-league/fixture/${id}/current`
     );
     console.log('response', response);
     return response;
