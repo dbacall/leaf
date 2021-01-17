@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactLoading from 'react-loading';
+import Loader from '../Loader'
 import { Link } from 'react-router-dom';
 
 const SundayLeagueTeam = ({ team, submitPlayer, players, status }) => {
@@ -79,7 +79,7 @@ const SundayLeagueTeam = ({ team, submitPlayer, players, status }) => {
       ) : null}
       <h2>Players</h2>
       {status === 'loading' ? (
-        <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
+        <Loader />
       ) : players.length > 0 ? (
         players.map((player, index) => {
           return (

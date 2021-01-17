@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactLoading from 'react-loading';
+import Loader from '../Loader'
 import SundayLeagueFixtures from '../sundayLeagueFixtures/sundayLeagueFixturesContainer';
 
 const SundayLeagueGameweekComponent = ({
@@ -32,7 +32,7 @@ const SundayLeagueGameweekComponent = ({
       <button onClick={handleClick}>Start Next Gameweek</button>
 
       {status === 'loading' ? (
-        <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
+        <Loader />
       ) : gameweek ? (
         <h4>{gameweek.number}</h4>
       ) : null}

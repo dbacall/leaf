@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactLoading from 'react-loading';
+import Loader from '../Loader'
 
 const SundayLeagueTableComponent = ({
   results,
@@ -9,7 +9,7 @@ const SundayLeagueTableComponent = ({
   return (
     <div>
       {status === 'loading' ? (
-        <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
+        <Loader />
       ) : (
           < div >
             <h2>Table</h2>

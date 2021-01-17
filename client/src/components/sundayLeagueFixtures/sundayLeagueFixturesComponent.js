@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactLoading from 'react-loading';
+import Loader from '../Loader'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format, parseISO } from 'date-fns';
@@ -73,7 +73,7 @@ const SundayLeagueFixturesComponent = ({
         </div>
       ) : null}
       {status === 'loading' ? (
-        <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
+        <Loader />
       ) : gameweek ? (
         gameweek.fixtures.map((fixture) => {
           return (

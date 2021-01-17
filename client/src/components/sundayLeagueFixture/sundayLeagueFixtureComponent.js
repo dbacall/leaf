@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactLoading from 'react-loading';
+import Loader from '../Loader'
 import { format, parseISO } from 'date-fns';
 // import { Link } from 'react-router-dom';
 
@@ -45,7 +45,7 @@ const SundayLeagueFixtureComponent = ({
   return (
     <div>
       {status === 'loading' ? (
-        <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
+        <Loader />
       ) : fixture && typeof fixture === 'object' && teams ? (
         <div>
           <button onClick={() => setHomeTeamGoal(!homeTeamGoal)}>

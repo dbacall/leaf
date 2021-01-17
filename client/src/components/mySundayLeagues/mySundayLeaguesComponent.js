@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactLoading from 'react-loading';
+import Loader from '../Loader'
 import { Link } from 'react-router-dom';
 
 const MySundayLeagues = ({ status, leagues }) => {
@@ -8,23 +8,23 @@ const MySundayLeagues = ({ status, leagues }) => {
       <h1>My Sunday Leagues</h1>
 
       {status === 'loading' ? (
-        <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
+        <Loader />
       ) : (
-        leagues.map((league) => {
-          return (
-            <div key={league.id}>
-              <Link
-                to={{
-                  pathname: `/sunday-league/${league.id}`,
-                  state: { league },
-                }}
-              >
-                {league.name}
-              </Link>
-            </div>
-          );
-        })
-      )}
+          leagues.map((league) => {
+            return (
+              <div key={league.id}>
+                <Link
+                  to={{
+                    pathname: `/sunday-league/${league.id}`,
+                    state: { league },
+                  }}
+                >
+                  {league.name}
+                </Link>
+              </div>
+            );
+          })
+        )}
     </div>
   );
 };

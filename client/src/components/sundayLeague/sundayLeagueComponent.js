@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './sundayLeagueStyles.css';
-import ReactLoading from 'react-loading';
+import Loader from '../Loader'
 import { Link } from 'react-router-dom';
 import SundayLeagueSeason from '../sundayLeagueSeason/sundayLeagueSeasonContainer';
 import SundayLeagueTable from '../sundayLeagueTable/sundayLeagueTableContainer';
@@ -36,7 +36,7 @@ const SundayLeague = ({ league, submitTeam, status, teams }) => {
       ) : null}
       <h2>Teams</h2>
       {status === 'loading' ? (
-        <ReactLoading type={'spin'} color={'black'} height={40} width={40} />
+        <Loader />
       ) : teams.length > 0 ? (
         <div>
           {teams.map((team, index) => {
