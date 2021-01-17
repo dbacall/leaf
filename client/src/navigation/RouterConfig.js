@@ -20,7 +20,7 @@ const RouterConfig = () => {
         <Route path="/login" component={Login} />
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
-          <PrivateRoute path="/my-sunday-leagues" component={MySundayLeagues} />
+          <PrivateRoute exact path="/my-sunday-leagues" component={MySundayLeagues} />
           <PrivateRoute
             exact
             path="/sunday-league/:id"

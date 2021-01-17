@@ -3,6 +3,7 @@ import './sundayLeagueStyles.css';
 import ReactLoading from 'react-loading';
 import { Link } from 'react-router-dom';
 import SundayLeagueSeason from '../sundayLeagueSeason/sundayLeagueSeasonContainer';
+import SundayLeagueTable from '../sundayLeagueTable/sundayLeagueTableContainer';
 
 const SundayLeague = ({ league, submitTeam, status, teams }) => {
   const [addTeam, setAddTeam] = useState(false);
@@ -17,6 +18,7 @@ const SundayLeague = ({ league, submitTeam, status, teams }) => {
   return (
     <div>
       <h1>{league.name}</h1>
+      <SundayLeagueTable />
       <button onClick={() => setAddTeam(!addTeam)}>Add Team</button>
       {addTeam ? (
         <div>

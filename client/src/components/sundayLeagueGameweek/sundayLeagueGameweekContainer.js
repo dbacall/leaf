@@ -57,9 +57,7 @@ const SundayLeagueGameweekContainer = () => {
   const completeGameweek = async () => {
     const path = `/sunday-league/gameweek/${gameweek.id}/complete`;
 
-    const result = await api.request('put', null, path);
-
-    console.log('result', result);
+    await api.request('put', null, path);
   }
 
   return (
