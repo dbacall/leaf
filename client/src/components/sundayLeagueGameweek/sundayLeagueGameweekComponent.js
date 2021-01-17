@@ -8,6 +8,7 @@ const SundayLeagueGameweekComponent = ({
   status,
   getPrevious,
   getNext,
+  completeGameweek
 }) => {
   const handleClick = (e) => {
     e.preventDefault();
@@ -42,6 +43,7 @@ const SundayLeagueGameweekComponent = ({
           Previous
         </a>
       ) : null}
+      <button onClick={() => completeGameweek()}>Complete Gameweek & Update Table</button>
       <a href="" onClick={handleNext}>
         Next
       </a>

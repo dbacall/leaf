@@ -21,7 +21,7 @@ const SundayLeagueGameweekContainer = () => {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
-    if (isInitialMount.current && Object.keys(gameweek).length === 0) {
+    if (isInitialMount.current && (!gameweek || Object.keys(gameweek).length === 0)) {
       isInitialMount.current = false;
       dispatch(fetchCurrentGameweek(season._id));
     }
@@ -54,6 +54,14 @@ const SundayLeagueGameweekContainer = () => {
     dispatch(fetchSpecificGameweek({ season: season._id, number }));
   };
 
+  const completeGameweek = async () => {
+    const path = `/sunday-league/gameweek/${gameweek.id}/complete`;
+
+    const result = await api.request('put', null, path);
+
+    console.log('result', result);
+  }
+
   return (
     <SundayLeagueGameweek
       createNewGameweek={createNewGameweek}
@@ -61,6 +69,7 @@ const SundayLeagueGameweekContainer = () => {
       status={status}
       getPrevious={getPrevious}
       getNext={getNext}
+      completeGameweek={completeGameweek}
     />
   );
 };
