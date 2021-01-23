@@ -6,10 +6,8 @@ import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 import styles from './sundayFixtures.module.scss'
 import { enGB } from 'date-fns/locale'
-import Modal from '@material-ui/core/Modal';
+import Modal from '../commons/Modal/modal'
 import SundayFixture from '../sundayFixture/sundayFixtureContainer'
-import { makeStyles } from '@material-ui/core/styles';
-import { ReactComponent as CloseModal } from '../../assets/icons/x-mark.svg';
 
 const SundayFixturesComponent = ({
   createNewFixture,
@@ -17,7 +15,6 @@ const SundayFixturesComponent = ({
   gameweek,
   status,
 }) => {
-  const classes = useStyles();
   const [newFixture, setNewFixture] = useState(false);
   const [homeTeam, setHomeTeam] = useState('');
   const [awayTeam, setAwayTeam] = useState('');
@@ -115,64 +112,16 @@ const SundayFixturesComponent = ({
               ))}
             </tbody>
           </table>
-          <Modal
-            open={modalOpen}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-          >
-            <div className={classes.paper}>
+          <Modal open={modalOpen} onClose={handleClose}>
+            {modalOpen ? (
               <SundayFixture fixtureId={modalFixtureId} />
-              <div
-                className={classes.iconContainer}
-                onClick={() => { setModalOpen(false) }}
-              >
-                <CloseModal className={classes.icon} />
-              </div>
-            </div>
+
+            ) : null}
           </Modal>
         </div>
       ) : null}
     </section>
   );
 };
-
-const useStyles = makeStyles(() => ({
-  paper: {
-    position: 'absolute',
-    top: '50%',
-    right: '50%',
-    transform: "translate(50%, -50%)",
-    width: '90%',
-    height: '95%',
-    outline: '0',
-    backgroundColor: 'white',
-    borderRadius: '10px',
-    padding: '20px',
-    boxShadow: '0 0 20px -2px gray',
-  },
-  icon: {
-    width: '15px',
-    height: '15px',
-  },
-
-  iconContainer: {
-    display: 'flex',
-    zIndex: '9999',
-    position: 'absolute',
-    top: '30px',
-    right: '0',
-    transform: 'translate(0%, -50%)',
-    padding: '20px',
-
-    '&:hover': {
-      cursor: 'pointer',
-      color: 'green',
-    }
-  },
-
-}))
-
-
 
 export default SundayFixturesComponent;

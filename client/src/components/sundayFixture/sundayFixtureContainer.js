@@ -20,6 +20,7 @@ const SundayFixtureContainer = ({ fixtureId }) => {
 
 
   useEffect(() => {
+    console.log(fixtureId);
     if (isInitialMount.current) {
       isInitialMount.current = false;
       dispatch(fetchFixture(fixtureId));

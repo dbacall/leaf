@@ -57,8 +57,8 @@ const Navbar = ({ auth, logout }) => {
             {mobileMenu ? (
               <CloseMenu className={styles.menuIcon} />
             ) : (
-              <MenuIcon className={styles.menuIcon} />
-            )}
+                <MenuIcon className={styles.menuIcon} />
+              )}
           </div>
         ) : null}
       </nav>

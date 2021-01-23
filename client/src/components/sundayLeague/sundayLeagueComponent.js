@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Loader from '../Loader'
 import { Link } from 'react-router-dom';
 import SundaySeason from '../sundaySeason/sundaySeasonContainer';
-import SundayLeagueTable from '../sundayLeagueTable/sundayLeagueTableContainer';
+import SundayTable from '../sundayTable/sundayTableContainer';
 import styles from './sundayLeague.module.scss'
 
 const SundayLeague = ({ league, submitTeam, status, teams }) => {
