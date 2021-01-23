@@ -6,7 +6,7 @@ import SundayFixture from '../../sundayFixture/sundayFixtureContainer'
 const Modal = ({ children, open, onClose }) => {
   return (
     <div className={open ? styles.modalOpen : styles.modalClosed}>
-      {children}
+      {open ? children : null}
       < div
         className={styles.iconContainer}
         onClick={onClose}

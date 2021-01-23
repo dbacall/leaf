@@ -113,10 +113,7 @@ const SundayFixturesComponent = ({
             </tbody>
           </table>
           <Modal open={modalOpen} onClose={handleClose}>
-            {modalOpen ? (
-              <SundayFixture fixtureId={modalFixtureId} />
-
-            ) : null}
+            <SundayFixture fixtureId={modalFixtureId} />
           </Modal>
         </div>
       ) : null}
