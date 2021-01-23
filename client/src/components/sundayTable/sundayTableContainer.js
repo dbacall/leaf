@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SundayLeagueTable from './sundayLeagueTableComponent';
+import SundayTable from './sundayTableComponent';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchResults,
 } from '../../redux/thunks/sundayLeagueResultsThunks';
 
-const SundayLeagueTableContainer = () => {
+const SundayTableContainer = () => {
   const [sortedResults, setSortedResults] = useState([])
 
   const dispatch = useDispatch();
@@ -43,11 +43,11 @@ const SundayLeagueTableContainer = () => {
   }
 
   return (
-    <SundayLeagueTable
+    <SundayTable
       results={sortedResults}
       status={status}
     />
   );
 };
 
-export default SundayLeagueTableContainer;
+export default SundayTableContainer;

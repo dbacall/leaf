@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Loader from '../Loader'
 import SundayGameweek from '../sundayGameweek/sundayGameweekContainer';
-import SundayLeagueTable from '../sundayLeagueTable/sundayLeagueTableContainer';
+import SundayTable from '../sundayTable/sundayTableContainer';
 import styles from './sundaySeason.module.scss'
 
 const SundaySeasonComponent = ({ createNewSeason, season, status }) => {
@@ -44,7 +44,7 @@ const SundaySeasonComponent = ({ createNewSeason, season, status }) => {
 
           < div className={styles.mainContainer}>
             <div className={styles.table}>
-              <SundayLeagueTable />
+              <SundayTable />
             </div>
             <div className={styles.gameweek}>
               <SundayGameweek />

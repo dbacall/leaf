@@ -1,8 +1,8 @@
 import React from 'react';
 import Loader from '../Loader'
-import styles from './sundayLeagueTable.module.scss'
+import styles from './sundayTable.module.scss'
 
-const SundayLeagueTableComponent = ({
+const SundayTableComponent = ({
   results,
   status,
 }) => {
@@ -51,4 +51,4 @@ const SundayLeagueTableComponent = ({
   );
 };
 
-export default SundayLeagueTableComponent;
+export default SundayTableComponent;
