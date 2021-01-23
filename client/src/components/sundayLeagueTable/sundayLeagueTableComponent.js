@@ -18,6 +18,7 @@ const SundayLeagueTableComponent = ({
             <table>
               <thead>
                 <tr>
+                  <th>Position</th>
                   <th>Team</th>
                   <th>Played</th>
                   <th>Won</th>
@@ -29,8 +30,9 @@ const SundayLeagueTableComponent = ({
                 </tr>
               </thead>
               <tbody>
-                {results.map(result => (
+                {results.map((result, index) => (
                   <tr key={result.id}>
+                    <td>{index + 1}</td>
                     <td>{result.name}</td>
                     <td>{result.won + result.lost + result.drawn}</td>
                     <td>{result.won}</td>
