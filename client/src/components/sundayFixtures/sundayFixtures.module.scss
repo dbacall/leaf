@@ -1,29 +1,35 @@
 section.fixtures {
-  table {
-    border: 1px solid lightgray;
-    border-collapse: collapse;
-    width: 90%;
-    margin: auto;
+  .tableContainer {
+  overflow-x: auto;
 
-    th, td {
-      text-align: center;
-      padding: $padding / 4;
-    }
+    table {
+      border: 1px solid lightgray;
+      border-collapse: collapse;
+      width: 90%;
+      margin: auto;
 
-    tbody {
-      tr:nth-child(odd) {background-color: #f2f2f2;}
-    }
+      th, td {
+        text-align: center;
+        padding: $padding / 4;
+      }
 
-    .modalButton {
-      color: $acid-yellow;
+      tbody {
+        tr:nth-child(odd) {background-color: #f2f2f2;}
+      }
 
-      &:hover {
+      .modalButton {
         color: $acid-yellow;
-        text-decoration: underline;
-        cursor: pointer;
+
+        &:hover {
+          color: $acid-yellow;
+          text-decoration: underline;
+          cursor: pointer;
+        }
       }
     }
   }
+
+  
 
   
 }

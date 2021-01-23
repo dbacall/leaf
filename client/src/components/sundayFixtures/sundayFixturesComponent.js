@@ -90,7 +90,7 @@ const SundayFixturesComponent = ({
       {status === 'loading' ? (
         <Loader />
       ) : gameweek && teams.length > 0 ? (
-        <div>
+        <div className={styles.tableContainer}>
           <table>
             <thead>
               <tr>

@@ -34,17 +34,20 @@ const SundayGameweekComponent = ({
       <section className={styles.gameweek}>
         <h3 className={styles.title}>Gameweek {gameweek.number}</h3>
         {/* <button onClick={handleClick}>Start Next Gameweek</button> */}
-
-        <SundayFixtures gameweek={gameweek} />
-        {gameweek && gameweek.number > 1 ? (
-          <a href="" onClick={handlePrevious} className={styles.previous}>
-            Previous
+        <div className={styles.fixturesContainer}>
+          <SundayFixtures gameweek={gameweek} />
+          <div className={styles.buttonContainer}>
+            {gameweek && gameweek.number > 1 ? (
+              <a href="" onClick={handlePrevious} className={styles.previous}>
+                Previous
+              </a>
+            ) : null}
+            {/* <button onClick={() => completeGameweek()}>Complete Gameweek & Update Table</button> */}
+            <a href="" onClick={handleNext} className={styles.next}>
+              Next
         </a>
-        ) : null}
-        {/* <button onClick={() => completeGameweek()}>Complete Gameweek & Update Table</button> */}
-        <a href="" onClick={handleNext} className={styles.next}>
-          Next
-        </a>
+          </div>
+        </div>
       </section>
     ) : null
   );
