@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 import styles from './sundayFixtures.module.scss'
+import { enGB } from 'date-fns/locale'
 
 const SundayFixturesComponent = ({
   createNewFixture,
@@ -75,7 +76,7 @@ const SundayFixturesComponent = ({
       ) : null} */}
       {status === 'loading' ? (
         <Loader />
-      ) : gameweek ? (
+      ) : gameweek && teams.length > 0 ? (
         <table>
           <thead>
             <tr>
@@ -92,7 +93,7 @@ const SundayFixturesComponent = ({
                 <td>{getName(fixture.homeTeam)}</td>
                 <td><a href=''>vs</a></td>
                 <td>{getName(fixture.awayTeam)}</td>
-                <td>{format(parseISO(fixture.date), 'Pp')}</td>
+                <td>{format(parseISO(fixture.date), 'Pp', { locale: enGB })}</td>
               </tr>
             ))}
           </tbody>
