@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchFixture } from '../../redux/thunks/sundayLeagueFixtureThunks';
 import { fetchSundayLeagueTeams } from '../../redux/thunks/sundayLeagueTeamThunks';
 
-const SundayFixtureContainer = ({ location }) => {
+const SundayFixtureContainer = ({ fixtureId }) => {
   const dispatch = useDispatch();
 
   const [goalAdded, setGoalAdded] = useState(false);
@@ -18,11 +18,9 @@ const SundayFixtureContainer = ({ location }) => {
 
   const isInitialMount = useRef(true);
 
-  const { fixtureId } = location.state;
 
   useEffect(() => {
     if (isInitialMount.current) {
-      console.log('here', location);
       isInitialMount.current = false;
       dispatch(fetchFixture(fixtureId));
     }
