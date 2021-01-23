@@ -9,6 +9,7 @@ import { enGB } from 'date-fns/locale'
 import Modal from '@material-ui/core/Modal';
 import SundayFixture from '../sundayFixture/sundayFixtureContainer'
 import { makeStyles } from '@material-ui/core/styles';
+import { ReactComponent as CloseModal } from '../../assets/icons/x-mark.svg';
 
 const SundayFixturesComponent = ({
   createNewFixture,
@@ -122,6 +123,12 @@ const SundayFixturesComponent = ({
           >
             <div className={classes.paper}>
               <SundayFixture fixtureId={modalFixtureId} />
+              <div
+                className={classes.iconContainer}
+                onClick={() => { setModalOpen(false) }}
+              >
+                <CloseModal className={classes.icon} />
+              </div>
             </div>
           </Modal>
         </div>
@@ -139,11 +146,33 @@ const useStyles = makeStyles(() => ({
     width: '90%',
     height: '95%',
     outline: '0',
-    backgroundColor: '#f5e9e2',
+    backgroundColor: 'white',
     borderRadius: '10px',
     padding: '20px',
     boxShadow: '0 0 20px -2px gray',
   },
-}));
+  icon: {
+    width: '15px',
+    height: '15px',
+  },
+
+  iconContainer: {
+    display: 'flex',
+    zIndex: '9999',
+    position: 'absolute',
+    top: '30px',
+    right: '0',
+    transform: 'translate(0%, -50%)',
+    padding: '20px',
+
+    '&:hover': {
+      cursor: 'pointer',
+      color: 'green',
+    }
+  },
+
+}))
+
+
 
 export default SundayFixturesComponent;

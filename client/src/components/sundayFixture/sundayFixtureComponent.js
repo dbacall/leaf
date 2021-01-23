@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Loader from '../Loader'
 import { format, parseISO } from 'date-fns';
 // import { Link } from 'react-router-dom';
+import styles from './sundayFixture.module.scss'
 
 const SundayFixtureComponent = ({
   createNewGoal,
@@ -43,85 +44,90 @@ const SundayFixtureComponent = ({
   };
 
   return (
-    <div>
-      {status === 'loading' ? (
-        <Loader />
-      ) : fixture && typeof fixture === 'object' && teams ? (
-        <div>
-          <button onClick={() => setHomeTeamGoal(!homeTeamGoal)}>
-            Add Goal for {getName(fixture.homeTeam)}
-          </button>
-          {homeTeamGoal ? (
-            <div>
-              <form onSubmit={submitHomeGoal}>
-                <input
-                  type="text"
-                  placeholder="Minute scored..."
-                  value={homeTeamGoalMinute}
-                  onChange={(e) => setHomeTeamGoalMinute(e.target.value)}
-                />
-                <select
-                  value={homeTeamPlayer}
-                  onChange={(e) => {
-                    setHomeTeamPlayer(e.target.value);
-                  }}
-                >
-                  <option value="" disabled>
-                    Select Player:
-                  </option>
-                  {getHomeTeamPlayers().map((player) => {
-                    return (
-                      <option value={player._id}>
-                        {player.firstName} {player.surname}
-                      </option>
-                    );
-                  })}
-                </select>
-                <button className="team-submit-btn">Add Goal</button>
-              </form>
-            </div>
-          ) : null}
-          <button onClick={() => setAwayTeamGoal(!awayTeamGoal)}>
-            Add Goal for {getName(fixture.awayTeam)}
-          </button>
-          {awayTeamGoal ? (
-            <div>
-              <form onSubmit={submitAwayGoal}>
-                <input
-                  type="text"
-                  placeholder="Minute scored..."
-                  value={awayTeamGoalMinute}
-                  onChange={(e) => setAwayTeamGoalMinute(e.target.value)}
-                />
-                <select
-                  value={awayTeamPlayer}
-                  onChange={(e) => {
-                    setAwayTeamPlayer(e.target.value);
-                  }}
-                >
-                  <option value="" disabled>
-                    Select Player:
-                  </option>
-                  {getAwayTeamPlayers().map((player) => {
-                    return (
-                      <option value={player._id}>
-                        {player.firstName} {player.surname}
-                      </option>
-                    );
-                  })}
-                </select>
-                <button className="team-submit-btn">Add Goal</button>
-              </form>
-            </div>
-          ) : null}
-          <h3>{format(parseISO(fixture.date), 'PPPPp')}</h3>
-          <h2 key={fixture._id}>
-            {getName(fixture.homeTeam)} {fixture.homeTeamGoals} -{' '}
-            {fixture.awayTeamGoals} {getName(fixture.awayTeam)}
+    status === 'loading' ? (
+      <Loader />
+    ) : fixture && typeof fixture === 'object' && teams ? (
+      <section className={styles.fixture}>
+        <h3 className={styles.title}>{format(parseISO(fixture.date), 'PPPPp')}</h3>
+        <div className={styles.scoreContainer}>
+          <h2 key={fixture._id} className={styles.homeTeam}>
+            {getName(fixture.homeTeam)}
+          </h2>
+          <h2 className={styles.score}>
+            {fixture.homeTeamGoals} - {fixture.awayTeamGoals}
+          </h2>
+          <h2 className={styles.awayTeam}>
+            {getName(fixture.awayTeam)}
           </h2>
         </div>
-      ) : null}
-    </div>
+        {/* <button onClick={() => setHomeTeamGoal(!homeTeamGoal)}>
+          Add Goal for {getName(fixture.homeTeam)}
+        </button> */}
+        {/* {homeTeamGoal ? (
+          <div>
+            <form onSubmit={submitHomeGoal}>
+              <input
+                type="text"
+                placeholder="Minute scored..."
+                value={homeTeamGoalMinute}
+                onChange={(e) => setHomeTeamGoalMinute(e.target.value)}
+              />
+              <select
+                value={homeTeamPlayer}
+                onChange={(e) => {
+                  setHomeTeamPlayer(e.target.value);
+                }}
+              >
+                <option value="" disabled>
+                  Select Player:
+                  </option>
+                {getHomeTeamPlayers().map((player) => {
+                  return (
+                    <option value={player._id}>
+                      {player.firstName} {player.surname}
+                    </option>
+                  );
+                })}
+              </select>
+              <button className="team-submit-btn">Add Goal</button>
+            </form>
+          </div>
+        ) : null}
+        <button onClick={() => setAwayTeamGoal(!awayTeamGoal)}>
+          Add Goal for {getName(fixture.awayTeam)}
+        </button>
+        {awayTeamGoal ? (
+          <div>
+            <form onSubmit={submitAwayGoal}>
+              <input
+                type="text"
+                placeholder="Minute scored..."
+                value={awayTeamGoalMinute}
+                onChange={(e) => setAwayTeamGoalMinute(e.target.value)}
+              />
+              <select
+                value={awayTeamPlayer}
+                onChange={(e) => {
+                  setAwayTeamPlayer(e.target.value);
+                }}
+              >
+                <option value="" disabled>
+                  Select Player:
+                  </option>
+                {getAwayTeamPlayers().map((player) => {
+                  return (
+                    <option value={player._id}>
+                      {player.firstName} {player.surname}
+                    </option>
+                  );
+                })}
+              </select>
+              <button className="team-submit-btn">Add Goal</button>
+            </form>
+          </div>
+        ) : null} */}
+      </section>
+    ) : null
   );
 };
 

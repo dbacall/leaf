@@ -16,8 +16,6 @@ const SundayLeagueTableContainer = () => {
 
   const { teams } = useSelector((state) => state.sundayLeagueTeam);
 
-  const { currentLeague } = useSelector((state) => state.sundayLeague)
-
   const isInitialMount = useRef(true);
 
   useEffect(() => {
@@ -48,7 +46,6 @@ const SundayLeagueTableContainer = () => {
     <SundayLeagueTable
       results={sortedResults}
       status={status}
-      league={currentLeague}
     />
   );
 };

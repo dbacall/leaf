@@ -5,7 +5,6 @@ import styles from './sundayLeagueTable.module.scss'
 const SundayLeagueTableComponent = ({
   results,
   status,
-  league,
 }) => {
 
   return (
@@ -14,7 +13,7 @@ const SundayLeagueTableComponent = ({
         <Loader />
       ) : (
           < div >
-            <h3 className={styles.title}>{league.name} Table</h3>
+            <h3 className={styles.title}>Table</h3>
             <table>
               <thead>
                 <tr>
