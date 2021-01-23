@@ -1,0 +1,23 @@
+section.gameweek {
+  margin: $margin * 2;
+  margin-top: $margin;
+  position: relative;
+  height: 90%;
+
+  .title {
+    text-align: center;
+    margin-bottom: $margin;
+  }
+
+  .next {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+  }
+
+  .previous {
+    position: absolute;
+    left: 5px;
+    bottom: 0;
+  }
+}

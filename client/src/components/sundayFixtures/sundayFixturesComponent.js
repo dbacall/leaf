@@ -4,8 +4,9 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
+import styles from './sundayFixtures.module.scss'
 
-const SundayLeagueFixturesComponent = ({
+const SundayFixturesComponent = ({
   createNewFixture,
   teams,
   gameweek,
@@ -28,8 +29,8 @@ const SundayLeagueFixturesComponent = ({
   };
 
   return (
-    <div>
-      <button onClick={() => setNewFixture(!newFixture)}>Add Fixture</button>
+    <section className={styles.fixtures}>
+      {/* <button onClick={() => setNewFixture(!newFixture)}>Add Fixture</button>
       {newFixture ? (
         <div>
           <form onSubmit={handleSubmit}>
@@ -71,28 +72,34 @@ const SundayLeagueFixturesComponent = ({
             <button className="team-submit-btn">Create Fixture</button>
           </form>
         </div>
-      ) : null}
+      ) : null} */}
       {status === 'loading' ? (
         <Loader />
       ) : gameweek ? (
-        gameweek.fixtures.map((fixture) => {
-          return (
-            <p key={fixture._id}>
-              <Link
-                to={{
-                  pathname: `/sunday-league/fixture/${fixture._id}`,
-                  state: { fixtureId: fixture._id },
-                }}
-              >
-                {getName(fixture.homeTeam)} vs {getName(fixture.awayTeam)} -{' '}
-                {format(parseISO(fixture.date), 'PPPPp')}
-              </Link>
-            </p>
-          );
-        })
+        <table>
+          <thead>
+            <tr>
+              <th>Home</th>
+              <th></th>
+              <th>Away</th>
+              <th>Date</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {gameweek.fixtures.map(fixture => (
+              <tr key={fixture.id}>
+                <td>{getName(fixture.homeTeam)}</td>
+                <td><a href=''>vs</a></td>
+                <td>{getName(fixture.awayTeam)}</td>
+                <td>{format(parseISO(fixture.date), 'Pp')}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : null}
-    </div>
+    </section>
   );
 };
 
-export default SundayLeagueFixturesComponent;
+export default SundayFixturesComponent;

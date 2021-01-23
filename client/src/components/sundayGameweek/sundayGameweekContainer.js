@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useRef } from 'react';
-import SundayLeagueGameweek from './sundayLeagueGameweekComponent';
+import SundayGameweek from './sundayGameweekComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -7,7 +8,7 @@ import {
   fetchSpecificGameweek,
 } from '../../redux/thunks/sundayLeagueGameweekThunks';
 
-const SundayLeagueGameweekContainer = () => {
+const SundayGameweekContainer = () => {
   const dispatch = useDispatch();
 
   const [GameweekAdded, setGameweekAdded] = useState(false);
@@ -61,7 +62,7 @@ const SundayLeagueGameweekContainer = () => {
   }
 
   return (
-    <SundayLeagueGameweek
+    <SundayGameweek
       createNewGameweek={createNewGameweek}
       gameweek={gameweek}
       status={status}
@@ -72,4 +73,4 @@ const SundayLeagueGameweekContainer = () => {
   );
 };
 
-export default SundayLeagueGameweekContainer;
+export default SundayGameweekContainer;

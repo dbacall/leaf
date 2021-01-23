@@ -3,7 +3,7 @@ import Loader from '../Loader'
 import { format, parseISO } from 'date-fns';
 // import { Link } from 'react-router-dom';
 
-const SundayLeagueFixtureComponent = ({
+const SundayFixtureComponent = ({
   createNewGoal,
   fixture,
   status,
@@ -125,4 +125,4 @@ const SundayLeagueFixtureComponent = ({
   );
 };
 
-export default SundayLeagueFixtureComponent;
+export default SundayFixtureComponent;

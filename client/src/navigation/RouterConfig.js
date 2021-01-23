@@ -8,7 +8,7 @@ import Home from '../components/home/homeContainer';
 import MySundayLeagues from '../components/mySundayLeagues/mySundayLeaguesContainer';
 import SundayLeague from '../components/sundayLeague/sundayLeagueContainer';
 import SundayLeagueTeam from '../components/sundayLeagueTeam/sundayLeagueTeamContainer';
-import SundayLeagueFixture from '../components/sundayLeagueFixture/sundayLeagueFixtureContainer';
+import SundayFixture from '../components/sundayFixture/sundayFixtureContainer';
 
 const RouterConfig = () => {
   return (
@@ -34,7 +34,7 @@ const RouterConfig = () => {
           <PrivateRoute
             exact
             path="/sunday-league/fixture/:id"
-            component={SundayLeagueFixture}
+            component={SundayFixture}
           />
         </Switch>
       </div>

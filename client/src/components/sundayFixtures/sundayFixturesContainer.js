@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import SundayLeagueFixtures from './sundayLeagueFixturesComponent';
+import SundayFixtures from './sundayFixturesComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSpecificGameweek } from '../../redux/thunks/sundayLeagueGameweekThunks';
 
-const SundayLeagueFixturesContainer = () => {
+const SundayFixturesContainer = () => {
   const dispatch = useDispatch();
 
   const [fixtureAdded, setFixtureAdded] = useState(false);
@@ -47,7 +47,7 @@ const SundayLeagueFixturesContainer = () => {
   };
 
   return (
-    <SundayLeagueFixtures
+    <SundayFixtures
       createNewFixture={createNewFixture}
       teams={teams}
       gameweek={gameweek}
@@ -56,4 +56,4 @@ const SundayLeagueFixturesContainer = () => {
   );
 };
 
-export default SundayLeagueFixturesContainer;
+export default SundayFixturesContainer;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SundayLeagueFixture from './sundayLeagueFixtureComponent';
+import SundayFixture from './sundayFixtureComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFixture } from '../../redux/thunks/sundayLeagueFixtureThunks';
 import { fetchSundayLeagueTeams } from '../../redux/thunks/sundayLeagueTeamThunks';
 
-const SundayLeagueFixtureContainer = ({ location }) => {
+const SundayFixtureContainer = ({ location }) => {
   const dispatch = useDispatch();
 
   const [goalAdded, setGoalAdded] = useState(false);
@@ -48,7 +48,7 @@ const SundayLeagueFixtureContainer = ({ location }) => {
   };
 
   return (
-    <SundayLeagueFixture
+    <SundayFixture
       createNewGoal={createNewGoal}
       fixture={fixture}
       status={status}
@@ -57,4 +57,4 @@ const SundayLeagueFixtureContainer = ({ location }) => {
   );
 };
 
-export default SundayLeagueFixtureContainer;
+export default SundayFixtureContainer;

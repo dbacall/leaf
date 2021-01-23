@@ -1,18 +1,20 @@
 import React from 'react';
 import Loader from '../Loader'
+import styles from './sundayLeagueTable.module.scss'
 
 const SundayLeagueTableComponent = ({
   results,
   status,
+  league,
 }) => {
 
   return (
-    <div>
+    <section className={styles.table}>
       {status === 'loading' ? (
         <Loader />
       ) : (
           < div >
-            <h2>Table</h2>
+            <h3 className={styles.title}>{league.name} Table</h3>
             <table>
               <thead>
                 <tr>
@@ -44,7 +46,7 @@ const SundayLeagueTableComponent = ({
           </div>
         )
       }
-    </div >
+    </section >
   );
 };
 

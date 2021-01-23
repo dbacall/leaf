@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SundayLeagueSeason from './sundayLeagueSeasonComponent';
+import SundaySeason from './sundaySeasonComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCurrentSeason } from '../../redux/thunks/sundayLeagueSeasonThunks';
 
-const SundayLeagueSeasonContainer = ({ league }) => {
+const SundaySeasonContainer = ({ league }) => {
   const dispatch = useDispatch();
 
   const [seasonAdded, setSeasonAdded] = useState(false);
@@ -40,7 +40,7 @@ const SundayLeagueSeasonContainer = ({ league }) => {
   };
 
   return (
-    <SundayLeagueSeason
+    <SundaySeason
       createNewSeason={createNewSeason}
       season={season}
       status={status}
@@ -48,4 +48,4 @@ const SundayLeagueSeasonContainer = ({ league }) => {
   );
 };
 
-export default SundayLeagueSeasonContainer;
+export default SundaySeasonContainer;
