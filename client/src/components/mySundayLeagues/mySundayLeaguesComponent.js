@@ -35,7 +35,7 @@ const MySundayLeagues = ({ status, leagues }) => {
               </p>
               <div className={styles.link}>
                 <Link
-                  to='/sunday-league/create'
+                  to='/sunday-league/new/create'
                   className={styles.link}
                 >
                   Create League
