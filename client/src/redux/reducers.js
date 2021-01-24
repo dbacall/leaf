@@ -8,6 +8,7 @@ import sundayLeagueSeasonReducer from './slices/sundayLeagueSeasonSlice';
 import sundayLeagueGameweekReducer from './slices/sundayLeagueGameweekSlice';
 import sundayLeagueFixtureReducer from './slices/sundayLeagueFixtureSlice';
 import sundayLeagueResultsReducer from './slices/sundayLeagueResultsSlice';
+import sundayCreatorReducer from './slices/sundayCreatorSlice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   sundayLeagueGameweek: sundayLeagueGameweekReducer,
   sundayLeagueFixture: sundayLeagueFixtureReducer,
   sundayLeagueResults: sundayLeagueResultsReducer,
+  sundayCreator: sundayCreatorReducer,
 });
 
 export default rootReducer;
