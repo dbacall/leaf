@@ -39,10 +39,10 @@ const Navbar = ({ auth, logout }) => {
               className={styles.navButton}
               onClick={closeMenu}
             >
-              My Sunday Leagues
+              Sunday Leagues
             </Link>
             <Link to="/" className={styles.navButton} onClick={closeMenu}>
-              My Fantasy Leagues
+              Fantasy Leagues
             </Link>
             <a className={styles.navButton} onClick={onLogoutClick}>
               Logout
