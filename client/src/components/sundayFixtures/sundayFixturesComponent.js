@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 import styles from './sundayFixtures.module.scss'
 import { enGB } from 'date-fns/locale'
-import Modal from '../commons/Modal/modal'
+import Modal from '../commons/modal/modal'
 import SundayFixture from '../sundayFixture/sundayFixtureContainer'
 
 const SundayFixturesComponent = ({
