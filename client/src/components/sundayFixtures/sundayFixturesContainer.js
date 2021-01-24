@@ -1,28 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SundayFixtures from './sundayFixturesComponent';
 import api from '../../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSpecificGameweek } from '../../redux/thunks/sundayLeagueGameweekThunks';
+import { fetchSundayLeagueTeams } from '../../redux/thunks/sundayLeagueTeamThunks'
 
 const SundayFixturesContainer = () => {
   const dispatch = useDispatch();
 
   const [fixtureAdded, setFixtureAdded] = useState(false);
 
-  const { teams } = useSelector((state) => state.sundayLeagueTeam);
-
+  const sundayLeagueTeam = useSelector((state) => state.sundayLeagueTeam);
+  const { teams } = sundayLeagueTeam
+  const teamsStatus = sundayLeagueTeam.status
   const { gameweek, status } = useSelector(
     (state) => state.sundayLeagueGameweek
   );
 
   const { season } = useSelector((state) => state.sundayLeagueSeason);
 
+  // const { currentLeague } = useSelector((state) => state.sundayLeague)
+
   // const isInitialMount = useRef(true);
 
   useEffect(() => {
-    // if (isInitialMount.current && Object.keys(gameweek).length === 0) {
+    // if (isInitialMount.current) {
+    //   console.log('here');
     //   isInitialMount.current = false;
-    //   dispatch(fetchCurrentGameweek());
     // }
     if (fixtureAdded) {
       dispatch(
@@ -52,6 +56,7 @@ const SundayFixturesContainer = () => {
       teams={teams}
       gameweek={gameweek}
       status={status}
+      teamsStatus={teamsStatus}
     />
   );
 };

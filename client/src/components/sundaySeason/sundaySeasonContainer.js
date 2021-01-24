@@ -13,6 +13,8 @@ const SundaySeasonContainer = ({ league }) => {
 
   const isInitialMount = useRef(true);
 
+
+
   useEffect(() => {
     if (isInitialMount.current && Object.keys(season).length === 0) {
       isInitialMount.current = false;

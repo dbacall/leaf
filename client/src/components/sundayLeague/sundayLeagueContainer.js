@@ -10,8 +10,7 @@ const SundayLeagueContainer = ({ location }) => {
 
   const [teamAdded, setTeamAdded] = useState(false);
 
-  const sundayLeagueTeams = useSelector((state) => state.sundayLeagueTeam);
-  const { currentLeague } = useSelector((state) => state.sundayLeague);
+  const { status, teams } = useSelector((state) => state.sundayLeagueTeam);
   const { league } = location.state;
 
   const [currentLeagueUpdated, setCurrentLeagueUpdated] = useState(false);
@@ -25,17 +24,12 @@ const SundayLeagueContainer = ({ location }) => {
 
   useEffect(() => {
     if (
-      isInitialMount.current &&
-      (sundayLeagueTeams.teams.length === 0 || currentLeagueUpdated)
+      isInitialMount.current
     ) {
       isInitialMount.current = false;
       dispatch(fetchSundayLeagueTeams(league.id));
     }
-    if (teamAdded) {
-      dispatch(fetchSundayLeagueTeams(league.id));
-      setTeamAdded(false);
-    }
-  }, [teamAdded, currentLeague]);
+  }, [currentLeagueUpdated]);
 
   const submitTeam = async (name) => {
     const data = {
@@ -54,8 +48,8 @@ const SundayLeagueContainer = ({ location }) => {
     <SundayLeague
       league={league}
       submitTeam={submitTeam}
-      teams={sundayLeagueTeams.teams}
-      status={sundayLeagueTeams.status}
+      status={status}
+      currentLeagueUpdated={currentLeagueUpdated}
     />
   );
 };

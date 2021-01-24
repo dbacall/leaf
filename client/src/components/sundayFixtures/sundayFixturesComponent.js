@@ -14,6 +14,7 @@ const SundayFixturesComponent = ({
   teams,
   gameweek,
   status,
+  teamsStatus
 }) => {
   const [newFixture, setNewFixture] = useState(false);
   const [homeTeam, setHomeTeam] = useState('');
@@ -87,7 +88,7 @@ const SundayFixturesComponent = ({
           </form>
         </div>
       ) : null} */}
-      {status === 'loading' ? (
+      {status === 'loading' && teamsStatus === 'loading' ? (
         <Loader />
       ) : gameweek && teams.length > 0 ? (
         <div className={styles.tableContainer}>

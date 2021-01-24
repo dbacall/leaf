@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import CreateSundayLeague from '../commons/createSundayLeague/createSundayLeagueContainer'
+import CreateSundayTeams from '../commons/createSundayTeams/createSundayTeamsContainer'
 
-const SundayCreator = ({ leagueCreated, teamsAdded }) => {
+const SundayCreator = ({ leagueCreated, teamsAdded, seasonAdded }) => {
   const renderSteps = () => {
-    console.log('here');
     if (!leagueCreated) {
       return (
         <div>
@@ -13,9 +13,23 @@ const SundayCreator = ({ leagueCreated, teamsAdded }) => {
       )
     }
     if (!teamsAdded && leagueCreated) {
-      return <h2>Step 2: Add Teams</h2>
+      return (
+        <div>
+          <h2>Step 2: Add Teams</h2>
+          <p>Note: Players need to be added later from the admin dashboard</p>
+          <p>Note: Teams can be added to, edited and deleted from the admin dashboard</p>
+          <CreateSundayTeams />
+        </div>
+      )
     }
+    if (!seasonAdded && teamsAdded && leagueCreated) {
+      return (
+        <div>
+          <h2>Step 3: Create First Season</h2>
+        </div>
+      )
 
+    }
   }
 
   return (
