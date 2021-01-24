@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './modal.module.scss'
 import { ReactComponent as CloseModal } from '../../../assets/icons/x-mark.svg';
-import SundayFixture from '../../sundayFixture/sundayFixtureContainer'
 
 const Modal = ({ children, open, onClose }) => {
   return (
