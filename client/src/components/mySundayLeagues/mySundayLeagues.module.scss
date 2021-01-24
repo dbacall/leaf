@@ -1,0 +1,35 @@
+section.mySundayLeagues {
+  div.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: minmax(400px, 1fr);
+    gap: $margin $margin;
+    margin: $margin;
+
+    > div {
+      box-shadow: 0 0 20px -2px gray;
+      border-radius: $border-radius;
+      background: white;
+      padding: $padding;
+
+      .title {
+        text-align: center;
+      }
+
+      .link {
+        text-align: center;
+        margin-top: $margin;
+
+      }
+
+      .createLeagueDescription {
+        text-align: center;
+        margin: $margin;
+      }
+
+    }
+
+
+      
+  }
+}
