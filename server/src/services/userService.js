@@ -59,7 +59,7 @@ class UserService extends Service {
     const email = data.email;
     const password = data.password;
 
-    const user = await User.findOne({ email }).populate('leagues');
+    const user = await User.findOne({ email });
 
     if (!user) {
       return {
