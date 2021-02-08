@@ -11,7 +11,6 @@ class TherapistController extends Controller {
   }
 
   async getByCategory(req, res) {
-    console.log(req);
     let response = await this.service.getByCategory(req);
     if (response.error) return res.status(response.statusCode).send(response);
     return res.status(201).send(response.data);
