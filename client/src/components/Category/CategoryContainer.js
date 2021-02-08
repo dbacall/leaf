@@ -5,7 +5,7 @@ import { fetchTherapistsForCategory } from '../../redux/thunks/TherapistsThunks'
 import { useParams } from 'react-router-dom'
 
 
-const CategoryContainer = ({ location }) => {
+const CategoryContainer = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user);
@@ -22,7 +22,7 @@ const CategoryContainer = ({ location }) => {
       isInitialMount.current = false;
       dispatch(fetchTherapistsForCategory(category));
     }
-  }, []);
+  }, [therapists]);
 
   return <Category user={user} therapists={therapists} status={status} />;
 };
