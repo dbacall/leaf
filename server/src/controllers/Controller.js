@@ -5,12 +5,19 @@ class Controller {
     this.create = this.create.bind(this);
     this.update = this.update.bind(this);
     this.delete = this.delete.bind(this);
+    this.getById = this.getById.bind(this);
     this.getAllById = this.getAllById.bind(this);
     this.getCurrent = this.getCurrent.bind(this);
   }
 
   async getAll(req, res) {
     return res.status(200).send(await this.service.getAll(req.query));
+  }
+
+  async getById(req, res) {
+    let response = await this.service.getById(req);
+    if (response.error) return res.status(response.statusCode).send(response);
+    return res.status(201).send(response.data);
   }
 
   async getAllById(req, res) {

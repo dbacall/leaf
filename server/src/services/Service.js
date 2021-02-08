@@ -7,6 +7,7 @@ class Service {
     this.create = this.create.bind(this);
     this.update = this.update.bind(this);
     this.delete = this.delete.bind(this);
+    this.getById = this.getById.bind(this);
     this.getAllById = this.getAllById.bind(this);
     this.getCurrent = this.getCurrent.bind(this);
   }
@@ -23,6 +24,25 @@ class Service {
     try {
       let items = await this.model.find(query);
 
+      return {
+        error: false,
+        statusCode: 200,
+        data: items,
+      };
+    } catch (errors) {
+      return {
+        error: true,
+        statusCode: 500,
+        errors,
+      };
+    }
+  }
+
+  async getById(query) {
+    try {
+      const items = await this.model.findById(
+        query.params.id,
+      );
       return {
         error: false,
         statusCode: 200,
