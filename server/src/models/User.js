@@ -22,6 +22,10 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  therapistId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Therapist',
+  },
 });
 
 userSchema.virtual('leagues', {
