@@ -4,6 +4,7 @@ mongoose.Promise = global.Promise;
 before(async () => {
   global.registerUser = require('./helpers/registerUser');
   global.loginUser = require('./helpers/loginUser');
+  global.addTherapist = require('./helpers/addTherapist');
 });
 
 afterEach(async () => {
