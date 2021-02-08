@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './home.module.scss';
 
-const url = process.env.REACT_APP_API_URL;
+const url = process.env.REACT_APP_IMAGE_URL;
 
 const categories = [
   {

@@ -4,7 +4,7 @@ import { config } from '../config/config';
 const url = process.env.REACT_APP_API_URL;
 
 const api = {
-  request: async (method, data = null, path) => {
+  request: async ({ method, data = null, path, config }) => {
     if (path[0] !== '/') {
       throw new Error(
         'Please start the path with a `/` character. You supplied: ',
@@ -19,11 +19,15 @@ const api = {
 
     // //optional params
     // if (params.auth) {
-    // 	payload.headers['Authorization'] = params.auth;
+    // 	payload.config['Authorization'] = params.auth;
     // }
 
     if (data) {
       payload.data = data;
+    }
+
+    if (config) {
+      payload.config = config;
     }
 
     try {
