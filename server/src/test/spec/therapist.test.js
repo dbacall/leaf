@@ -28,7 +28,7 @@ describe('Login', () => {
     expect(data.phone).to.equal(7816449949);
   });
 
-  it.only('should get therapists from a specific category with user populated', async () => {
+  it('should get therapists from a specific category with user populated', async () => {
     const user = await registerUser(
       'David',
       'Bacall',

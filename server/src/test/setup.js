@@ -5,6 +5,7 @@ before(async () => {
   global.registerUser = require('./helpers/registerUser');
   global.loginUser = require('./helpers/loginUser');
   global.addTherapist = require('./helpers/addTherapist');
+  global.addMeeting = require('./helpers/addMeeting');
 });
 
 afterEach(async () => {
