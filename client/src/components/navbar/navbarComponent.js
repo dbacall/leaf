@@ -34,15 +34,8 @@ const Navbar = ({ auth, logout }) => {
               [styles.active]: mobileMenu,
             })}
           >
-            <Link
-              to="/my-sunday-leagues"
-              className={styles.navButton}
-              onClick={closeMenu}
-            >
-              Sunday Leagues
-            </Link>
-            <Link to="/" className={styles.navButton} onClick={closeMenu}>
-              Fantasy Leagues
+            <Link to="/therapist-form" className={styles.navButton} onClick={closeMenu}>
+              Become A Therapist
             </Link>
             <a className={styles.navButton} onClick={onLogoutClick}>
               Logout
