@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './NewTherapistForm.module.scss';
 import { KeyboardDatePicker } from "@material-ui/pickers";
+import { Redirect } from 'react-router-dom'
 
 const categories = [
   {
@@ -13,7 +14,7 @@ const categories = [
   },
 ]
 
-const NewTherapistForm = ({ createTherapist }) => {
+const NewTherapistForm = ({ createTherapist, redirect }) => {
 
   const [dateOfBirth, setDateOfBirth] = useState('')
   const [yearsExperience, setYearsExperience] = useState('')
@@ -48,6 +49,12 @@ const NewTherapistForm = ({ createTherapist }) => {
       categories: selectedCategories,
       phone,
     }, photo)
+  }
+
+  const renderRedirect = () => {
+    if (redirect) {
+      return <Redirect to='/' />
+    }
   }
 
   return (
@@ -98,6 +105,7 @@ const NewTherapistForm = ({ createTherapist }) => {
           <button className={styles.submitBtn}>Submit</button>
         </form>
       </div>
+      {renderRedirect()}
     </div>
   );
 };
