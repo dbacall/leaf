@@ -14,7 +14,20 @@ class TherapistService extends Service {
     try {
       const items = await Therapist.find({
         categories: query.params.category,
-      }).populate('user');
+      }).populate(
+        [
+          {
+            path: "user",
+            model: "users",
+            // select: "street zipCode",
+          },
+          {
+            path: "photo",
+            model: "Photo",
+            // select: "age",
+          },
+        ]
+      );
 
       return {
         error: false,

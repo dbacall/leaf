@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const PhotoSchema = new mongoose.Schema({
+const PhotoSchema = new Schema({
   photo: {
     type: String,
   },
   therapistId: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Therapist',
   },
 });
 

@@ -23,8 +23,6 @@ const NewTherapistFormContainer = () => {
     photoData.append('therapist', therapistId);
     photoData.append('photo', photo);
 
-    const photoPath = '/photo'
-
     const config = {
       headers: {
         'Content-type': 'multipart/form-data',
@@ -35,7 +33,7 @@ const NewTherapistFormContainer = () => {
 
     await api.request({ method: 'put', data: { therapistId }, path: `/users/${user.id}` })
 
-    setRedirect(true)
+    // setRedirect(true)
   }
 
   return <NewTherapistForm user={user} createTherapist={createTherapist} redirect={redirect} />;

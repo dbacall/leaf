@@ -1,11 +1,11 @@
-div.home {
+div.category {
   padding: $padding * 2;
   .title {
     text-align: center;
     margin-bottom: $margin;
   }
 
-  .categories {
+  .therapists {
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -13,7 +13,7 @@ div.home {
     grid-auto-rows: 350px;
     row-gap: $margin;
 
-    .category {
+    .therapist {
       border: 1px solid lightgray;
       border-radius: $border-radius;
        
@@ -36,7 +36,7 @@ div.home {
         }
       }
 
-      .categoryName {
+      .therapistName {
         // flex: 1;
         text-align: center;
       }
@@ -44,13 +44,13 @@ div.home {
   }
 
   @include media-tablet() {
-    .categories {
+    .therapists{
       grid-template-columns: 1fr 1fr;
     }
   }
 
   @include media-mobile() {
-    .categories {
+    .therapists {
       grid-template-columns: 1fr;
     }
   }

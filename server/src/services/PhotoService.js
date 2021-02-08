@@ -4,7 +4,7 @@ const fs = require('fs')
 const sharp = require('sharp');
 
 
-class TherapistService extends Service {
+class PhotoService extends Service {
   constructor(model) {
     super(model);
     this.create = this.create.bind(this);
@@ -23,9 +23,11 @@ class TherapistService extends Service {
       .toFile('../uploads/' + fileName)
 
     updatedData = {
-      ...data,
+      therapistId: data.body.therapist,
       photo: fileName
     }
+
+    console.log(updatedData);
     const newItem = new Photo(updatedData);
 
     try {
@@ -49,4 +51,4 @@ class TherapistService extends Service {
 
 }
 
-module.exports = TherapistService;
+module.exports = PhotoService;

@@ -19,13 +19,16 @@ const TherapistSchema = new Schema({
     type: Number,
     required: true,
   },
-  photo: {
-    type: String,
-  },
 });
 
 TherapistSchema.virtual('user', {
   ref: 'users',
+  localField: '_id',
+  foreignField: 'therapistId',
+});
+
+TherapistSchema.virtual('photo', {
+  ref: 'Photo',
   localField: '_id',
   foreignField: 'therapistId',
 });

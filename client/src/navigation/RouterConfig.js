@@ -6,6 +6,7 @@ import Register from '../components/register/registerContainer';
 import Login from '../components/login/loginContainer';
 import Home from '../components/home/homeContainer';
 import NewTherapistForm from '../components/NewTherapistForm/NewTherapistFormContainer'
+import Category from '../components/Category/CategoryContainer'
 
 const RouterConfig = () => {
   return (
@@ -18,6 +19,7 @@ const RouterConfig = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <PrivateRoute exact path='/therapist-form' component={NewTherapistForm} />
+          <Route exact path="/category/:category" component={Category} />
         </Switch>
       </div>
     </Router>
