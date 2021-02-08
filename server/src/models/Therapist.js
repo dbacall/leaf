@@ -13,7 +13,7 @@ const TherapistSchema = new Schema({
   categories: [{
     type: String,
     required: true,
-    enum: ['mums', 'cheese addiction']
+    enum: ['Mums', 'Cheese Addiction']
   }],
   phone: {
     type: Number,

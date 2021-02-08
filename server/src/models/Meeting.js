@@ -9,7 +9,7 @@ const MeetingSchema = new Schema({
   category: {
     type: String,
     required: true,
-    enum: ['mums', 'cheese addiction']
+    enum: ['Mums', 'Cheese Addiction']
   },
   therapistId: {
     type: String,

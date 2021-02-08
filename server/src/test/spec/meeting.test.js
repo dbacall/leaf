@@ -18,7 +18,7 @@ describe('Login', () => {
     const therapist = await addTherapist(
       dateOfBirth,
       5,
-      ['mums', 'cheese addiction'],
+      ['Mums', 'Cheese Addiction'],
       07816449949,
     );
 
@@ -26,7 +26,7 @@ describe('Login', () => {
 
     await addMeeting(
       meetingDate,
-      'mums',
+      'Mums',
       therapist.data.id,
       1,
       30,
@@ -53,7 +53,7 @@ describe('Login', () => {
     const therapist = await addTherapist(
       dateOfBirth,
       5,
-      ['mums', 'cheese addiction'],
+      ['Mums', 'Cheese Addiction'],
       07816449949,
     );
 
@@ -61,7 +61,7 @@ describe('Login', () => {
 
     await addMeeting(
       meetingDate,
-      'mums',
+      'Mums',
       therapist.data.id,
       1,
       30,
@@ -70,16 +70,17 @@ describe('Login', () => {
 
     await addMeeting(
       meetingDate,
-      'cheese addiction',
+      'Cheese addiction',
       therapist.data.id,
       1,
       30,
       'linkylink',
     )
 
-    const data = await supertest(app).get(`/meeting/${therapist.data.id}/mums`)
+    const data = await supertest(app).get(`/meeting/${therapist.data.id}/Mums`)
 
     expect(data.body).to.be.length(1)
     expect(data.body[0].therapistId).to.equal(therapist.data.id);
+    expect(data.body[0].category).to.equal('Mums');
   });
 })
