@@ -34,6 +34,11 @@ div.therapist {
       .detailsList {
         margin-top: $margin;
         text-align: center;
+
+        > p {
+          display: flex;
+          justify-content: space-between;
+        }
       }
     }
   }

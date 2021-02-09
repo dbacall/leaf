@@ -27,10 +27,10 @@ const Therapist = ({ therapist, status }) => {
               <div className={styles.therapistDetails}>
                 <h2 className={styles.title}>{therapist.user[0].firstName} {therapist.user[0].surname}</h2>
                 <div className={styles.detailsList}>
-                  <p>Years Experience: {therapist.yearsExperience}</p>
-                  <p>Age: {findAge()}</p>
-                  <p>Phone: 0{therapist.phone}</p>
-                  <p>Email: {therapist.user[0].email}</p>
+                  <p><span>Years Experience:</span><span>{therapist.yearsExperience}</span></p>
+                  <p><span>Age:</span><span>{findAge()}</span></p>
+                  <p><span>Phone:</span><span>0{therapist.phone}</span></p>
+                  <p><span>Email:</span><span>{therapist.user[0].email}</span></p>
                 </div>
               </div>
             </div>
