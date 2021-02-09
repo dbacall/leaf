@@ -17,20 +17,22 @@ const Therapist = ({ therapist, status }) => {
         <div>
           <div className={styles.therapistProfile}>
             {therapist.photo.length > 0 ? (
-              <div className={styles.imageContainer}>
-                <img className={styles.therapistImage} src={require(`../../../../uploads/${therapist.photo[0].photo}`)}></img>
+              <div>
+                <div className={styles.imageContainer}>
+                  <img className={styles.therapistImage} src={require(`../../../../uploads/${therapist.photo[0].photo}`)}></img>
+                </div>
               </div>
             ) : null}
-
-            <div className={styles.therapistDetails}>
-              <h2 className={styles.title}>{therapist.user[0].firstName} {therapist.user[0].surname}</h2>
-              <ul>
-                <li>Years Experience: {therapist.yearsExperience}</li>
-                <li>Age: {findAge()}</li>
-                <li>Phone: 0{therapist.phone}</li>
-                <li>Email: {therapist.user[0].email}</li>
-              </ul>
-
+            <div>
+              <div className={styles.therapistDetails}>
+                <h2 className={styles.title}>{therapist.user[0].firstName} {therapist.user[0].surname}</h2>
+                <div className={styles.detailsList}>
+                  <p>Years Experience: {therapist.yearsExperience}</p>
+                  <p>Age: {findAge()}</p>
+                  <p>Phone: 0{therapist.phone}</p>
+                  <p>Email: {therapist.user[0].email}</p>
+                </div>
+              </div>
             </div>
 
           </div>

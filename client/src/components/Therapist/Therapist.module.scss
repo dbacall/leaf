@@ -1,8 +1,49 @@
 div.therapist {
   padding: $padding * 2;
+
+  .therapistProfile {
+    display: flex;
+    flex-direction: row;
+
+    > div {
+      flex: 1;
+      padding: $padding;
+    }
+
+    .imageContainer {
+      width: 350px;
+      height: 400px;
+      margin: $margin auto;
+
+      .therapistImage {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .therapistDetails {
+      // border: 2px solid red;
+      width: 60%;
+      margin: $margin auto;
+
+      .title {
+        text-align: center;
+      }
+
+      .detailsList {
+        margin-top: $margin;
+        text-align: center;
+      }
+    }
+  }
   
 
   @include media-tablet() {
+    .therapistProfile {
+      flex-direction: column;
+  
+    }
   
   }
 
