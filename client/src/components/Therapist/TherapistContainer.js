@@ -16,6 +16,7 @@ const TherapistContainer = () => {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
+    console.log('here');
     if (
       isInitialMount.current
     ) {
