@@ -15,7 +15,7 @@ const Meetings = ({ meetings, status }) => {
             <td>{format(parseISO(meeting.time), 'Pp')}</td>
             <td>{meeting.category}</td>
             <td>{meeting.hours}:{meeting.minutes}</td>
-            <td><a href={meeting.videoLink} target="_blank">Link</a></td>
+            <td><a href={`https://${meeting.videoLink}`} target="_blank">Link</a></td>
           </tr>
         ))
       )
