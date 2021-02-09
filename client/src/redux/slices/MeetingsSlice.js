@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchMeetingsByCategory } from '../thunks/MeetingsThunks'
+import { fetchMeetingsByCategory, fetchMeetingsByTherapist } from '../thunks/MeetingsThunks'
 
 const initialState = {
   meetings: [],
@@ -21,6 +21,15 @@ const MeetingsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchMeetingsByCategory.fulfilled, (state, action) => {
+        state.meetings = action.payload.data;
+        state.status = 'idle';
+      });
+
+    builder
+      .addCase(fetchMeetingsByTherapist.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchMeetingsByTherapist.fulfilled, (state, action) => {
         state.meetings = action.payload.data;
         state.status = 'idle';
       });

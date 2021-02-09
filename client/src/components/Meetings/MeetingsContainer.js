@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Meetings from './MeetingsComponent';
-import { fetchMeetingsByCategory } from '../../redux/thunks/MeetingsThunks';
-import { useParams } from 'react-router-dom'
+import { fetchMeetingsByCategory, fetchMeetingsByTherapist } from '../../redux/thunks/MeetingsThunks';
 
 const MeetingsContainer = ({ category }) => {
   const dispatch = useDispatch();
@@ -13,17 +12,13 @@ const MeetingsContainer = ({ category }) => {
 
   const { selectedTherapist } = useSelector((state) => state.therapists);
 
-  const isInitialMount = useRef(true);
-
   useEffect(() => {
-    console.log('category', category);
-    if (
-      isInitialMount.current
-    ) {
-      isInitialMount.current = false;
+    if (category) {
       dispatch(fetchMeetingsByCategory({ category, therapistId: selectedTherapist.id }));
+    } else {
+      dispatch(fetchMeetingsByTherapist(selectedTherapist.id));
     }
-  }, []);
+  }, [category]);
 
   return <Meetings user={user} meetings={meetings} status={status} />;
 };

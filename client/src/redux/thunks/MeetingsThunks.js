@@ -9,7 +9,17 @@ export const fetchMeetingsByCategory = createAsyncThunk(
       path: `/meeting/${therapistId}/${category}`
     });
 
-    console.log('here', response);
+    return response;
+  }
+);
+
+export const fetchMeetingsByTherapist = createAsyncThunk(
+  'meetings/fetchMeetingsByTherapist',
+  async (therapistId) => {
+    const response = await api.request({
+      method: 'get',
+      path: `/meeting/${therapistId}`
+    });
 
     return response;
   }
