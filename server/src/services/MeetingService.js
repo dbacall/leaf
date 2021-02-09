@@ -5,6 +5,7 @@ class MeetingService extends Service {
   constructor(model) {
     super(model);
     this.getByCategory = this.getByCategory.bind(this)
+    this.getByTherapist = this.getByTherapist.bind(this)
   }
 
   async getByCategory(query) {
@@ -13,6 +14,27 @@ class MeetingService extends Service {
       const items = await Meeting.find({
         therapistId,
         category,
+      })
+
+      return {
+        error: false,
+        statusCode: 200,
+        data: items,
+      };
+    } catch (errors) {
+      return {
+        error: true,
+        statusCode: 500,
+        errors,
+      };
+    }
+  }
+
+  async getByTherapist(query) {
+    const { therapistId } = query.params
+    try {
+      const items = await Meeting.find({
+        therapistId,
       })
 
       return {
