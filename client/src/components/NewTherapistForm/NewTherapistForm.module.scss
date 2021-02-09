@@ -16,15 +16,14 @@ div.newTherapistForm {
       > div {
         margin-top: $margin;
       }
-      // button {
-        .categoryBtn {
-          border-radius: 0;
-        }
-        .selectedCategory {
-          background-color: green;
-          // font-size: 200px;
-        }
-      // }
+
+      .categoryBtn {
+        border-radius: 0;
+      }
+      
+      .selectedCategory {
+        background-color: green;
+      }
 
       .photoUploadContainer {
         text-align: center;
