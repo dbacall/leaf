@@ -34,8 +34,8 @@ const Therapist = ({ therapist, status }) => {
                 </div>
               </div>
             </div>
-
           </div>
+          <Link to="/meeting-form">Add a Meeting</Link>
         </div>
       )
     }
