@@ -6,18 +6,12 @@ section.login {
     text-align: center;
 
     input {
-      display: block;
-      margin: auto;
-      color: $olive;
-      border-radius: $border-radius;
-      padding: $padding / 3;
-      width: 60%;
-
+  
       &:last-of-type {
         margin-top: $margin;
       }
     }
-
+    
     .submitBtn {
       margin-top: $margin / 3;
       width: 60%;

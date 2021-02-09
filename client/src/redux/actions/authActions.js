@@ -6,7 +6,7 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types';
 export const registerUser = (userData, history) => async (dispatch) => {
   const path = '/users/register';
 
-  const response = await api.request('post', userData, path);
+  const response = await api.request({ method: 'post', data: userData, path });
 
   if (response.error) {
     dispatch({
@@ -25,7 +25,7 @@ export const registerUser = (userData, history) => async (dispatch) => {
 export const loginUser = (userData) => async (dispatch) => {
   const path = '/users/login';
 
-  const response = await api.request('post', userData, path);
+  const response = await api.request({ method: 'post', data: userData, path });
 
   if (response.error) {
     dispatch({

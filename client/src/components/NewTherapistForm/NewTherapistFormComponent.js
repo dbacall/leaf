@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styles from './NewTherapistForm.module.scss';
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import { Redirect } from 'react-router-dom'
+import { RadioButton, RadioGroup } from '@trendmicro/react-radio';
+import '@trendmicro/react-radio/dist/react-radio.css';
+import classnames from 'classnames';
 
 const categories = [
   {
@@ -24,16 +27,28 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
 
   const selectCategory = (e, category) => {
     e.preventDefault();
-    setSelectedCategories([...selectedCategories, category])
+    if (isCategorySelected(category)) {
+      const filteredCategories = selectedCategories.filter(item => item !== category);
+      setSelectedCategories(filteredCategories)
+    } else {
+      setSelectedCategories([...selectedCategories, category])
+    }
+  }
+
+  const isCategorySelected = (category) => {
+    console.log('here', selectedCategories.includes(category));
+    return selectedCategories.includes(category)
   }
 
   const renderCategoriesButtons = () => {
-    return categories.map((category) => {
+    return categories.map((category, index) => {
       return (
         <button
-          value={category.name}
+          checked={category.name === 'Mums'}
           onClick={(e) => selectCategory(e, category.name)}
-          className={styles.categoryBtn}
+          className={classnames(styles.categoryBtn, {
+            [styles.selectedCategory]: isCategorySelected(category.name),
+          })}
         >
           {category.name}
         </button>

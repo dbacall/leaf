@@ -36,6 +36,17 @@ body {
   }
 
   input {
+    display: block;
+    margin: auto;
+    color: $olive;
+    border-radius: $border-radius;
+    padding: $padding / 3;
+    width: 60%;
+
+    &:last-of-type {
+      margin-top: $margin;
+    }
+    
     &:focus {
       outline: none;
       box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);

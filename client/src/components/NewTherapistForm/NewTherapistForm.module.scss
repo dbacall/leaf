@@ -16,6 +16,15 @@ div.newTherapistForm {
       > div {
         margin-top: $margin;
       }
+      // button {
+        .categoryBtn {
+          border-radius: 0;
+        }
+        .selectedCategory {
+          background-color: green;
+          // font-size: 200px;
+        }
+      // }
 
       .photoUploadContainer {
         text-align: center;
