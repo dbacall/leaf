@@ -3,8 +3,9 @@ import styles from './Therapist.module.scss';
 import { Link } from 'react-router-dom'
 import Loader from '../commons/Loader'
 import { differenceInYears } from 'date-fns'
+import Meetings from '../Meetings/MeetingsContainer'
 
-const Therapist = ({ therapist, status }) => {
+const Therapist = ({ therapist, status, category }) => {
 
   const findAge = () => {
     const dateToday = Date.now()
@@ -36,6 +37,8 @@ const Therapist = ({ therapist, status }) => {
             </div>
           </div>
           <Link to="/meeting-form">Add a Meeting</Link>
+          <Meetings category={category} />
+
         </div>
       )
     }

@@ -4,16 +4,7 @@ import { DateTimePicker } from "@material-ui/pickers";
 import { Redirect } from 'react-router-dom'
 import classnames from 'classnames';
 
-const categories = [
-  {
-    name: 'Mums',
-  },
-  {
-    name: 'Cheese Addiction',
-  },
-]
-
-const NewMeetingForm = ({ createMeeting, redirect }) => {
+const NewMeetingForm = ({ createMeeting, redirect, therapist }) => {
 
   const [time, setTime] = useState('')
   const [category, setCategory] = useState('')
@@ -22,10 +13,10 @@ const NewMeetingForm = ({ createMeeting, redirect }) => {
   const [videoLink, setVideoLink] = useState('')
 
   const renderCategoryOptions = () => {
-    return categories.map((category, index) => {
+    return therapist.categories.map((category, index) => {
       return (
-        <option value={category.name} key={index}>
-          {category.name}
+        <option value={category} key={index}>
+          {category}
         </option>
       )
     })
@@ -34,13 +25,18 @@ const NewMeetingForm = ({ createMeeting, redirect }) => {
   const submitMeeting = (e) => {
     e.preventDefault();
     createMeeting({
-
+      time,
+      category,
+      hours,
+      minutes,
+      videoLink,
+      therapistId: therapist.id,
     })
   }
 
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect to='/' />
+      return <Redirect to={`/therapist/${therapist.id}`} />
     }
   }
 
@@ -70,6 +66,9 @@ const NewMeetingForm = ({ createMeeting, redirect }) => {
                 setCategory(e.target.value);
               }}
             >
+              <option value="" disabled>
+                Select Category:
+              </option>
               {renderCategoryOptions()}
             </select>
           </div>

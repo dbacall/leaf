@@ -8,16 +8,17 @@ const NewMeetingFormContainer = () => {
 
   const user = useSelector((state) => state.auth.user);
 
-  const createMeeting = async (data, photo) => {
+  const { selectedTherapist } = useSelector((state) => state.therapists);
 
-    const MeetingPath = '/Meeting';
+  const createMeeting = async (data) => {
+    const path = '/meeting';
 
-    const Meeting = await api.request({ method: 'post', data, path: MeetingPath });
+    await api.request({ method: 'post', data, path });
 
     setRedirect(true)
   }
 
-  return <NewMeetingForm user={user} createMeeting={createMeeting} redirect={redirect} />;
+  return <NewMeetingForm createMeeting={createMeeting} redirect={redirect} therapist={selectedTherapist} />;
 };
 
 export default NewMeetingFormContainer;

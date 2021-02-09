@@ -12,9 +12,9 @@ const TherapistsSlice = createSlice({
   name: 'Therapists',
   initialState,
   reducers: {
-    // updateCurrentLeague(state, action) {
-    //   state.currentLeague = action.payload;
-    // },
+    resetStatus(state, action) {
+      state.status = 'loading'
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -37,6 +37,6 @@ const TherapistsSlice = createSlice({
   },
 });
 
-export const { } = TherapistsSlice.actions;
+export const { resetStatus } = TherapistsSlice.actions;
 
 export default TherapistsSlice.reducer;

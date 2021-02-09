@@ -11,7 +11,7 @@ const TherapistContainer = () => {
   const user = useSelector((state) => state.auth.user);
 
   const { status, selectedTherapist } = useSelector((state) => state.therapists)
-  const { id } = useParams()
+  const { id, category } = useParams()
 
   const isInitialMount = useRef(true);
 
@@ -24,7 +24,7 @@ const TherapistContainer = () => {
     }
   }, []);
 
-  return <Therapist user={user} therapist={selectedTherapist} status={status} />;
+  return <Therapist user={user} therapist={selectedTherapist} status={status} category={category} />;
 };
 
 export default TherapistContainer;

@@ -3,7 +3,7 @@ import styles from './Category.module.scss';
 import { Link } from 'react-router-dom'
 import Loader from '../commons/Loader'
 
-const Category = ({ therapists, status }) => {
+const Category = ({ therapists, status, category }) => {
 
   const renderTherapists = () => {
     if (status === 'loading') {
@@ -12,7 +12,7 @@ const Category = ({ therapists, status }) => {
       return therapists.map((therapist, index) => {
         return (
           <Link
-            to={`/therapist/${therapist.id}`}
+            to={`/therapist/${therapist.id}/${category}`}
             className={styles.therapist}
             key={index}
           >
@@ -24,7 +24,6 @@ const Category = ({ therapists, status }) => {
         )
       })
     }
-
   }
 
   return (

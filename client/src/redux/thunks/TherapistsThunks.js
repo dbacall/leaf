@@ -4,7 +4,7 @@ import api from '../../services/api';
 export const fetchTherapistsForCategory = createAsyncThunk(
   'therapists/fetchTherapistsForCategory',
   async (category) => {
-
+    console.log('here');
     const response = await api.request({
       method: 'get',
       path: `/therapist/category/${category}`

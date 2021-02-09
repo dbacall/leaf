@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Category from './CategoryComponent';
 import { fetchTherapistsForCategory } from '../../redux/thunks/TherapistsThunks';
 import { useParams } from 'react-router-dom'
-
+import { resetStatus } from '../../redux/slices/TherapistsSlice'
 
 const CategoryContainer = () => {
   const dispatch = useDispatch();
@@ -22,9 +22,14 @@ const CategoryContainer = () => {
       isInitialMount.current = false;
       dispatch(fetchTherapistsForCategory(category));
     }
-  }, [therapists]);
+    return function cleanup() {
+      dispatch(resetStatus());
+    };
+  }, []);
 
-  return <Category user={user} therapists={therapists} status={status} />;
+
+  return <Category user={user} therapists={therapists} status={status} category={category} />;
+
 };
 
 export default CategoryContainer;

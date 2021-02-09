@@ -22,6 +22,7 @@ const RouterConfig = () => {
           <PrivateRoute exact path='/therapist-form' component={NewTherapistForm} />
           <Route exact path="/category/:category" component={Category} />
           <Route exact path="/therapist/:id" component={Therapist} />
+          <Route exact path="/therapist/:id/:category" component={Therapist} />
           <PrivateRoute exact path='/meeting-form' component={NewMeetingForm} />
         </Switch>
       </div>
