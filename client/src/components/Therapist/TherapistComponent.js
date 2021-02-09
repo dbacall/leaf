@@ -5,7 +5,7 @@ import Loader from '../commons/Loader'
 import { differenceInYears } from 'date-fns'
 import Meetings from '../Meetings/MeetingsContainer'
 
-const Therapist = ({ therapist, status, category }) => {
+const Therapist = ({ user, therapist, status, category }) => {
 
   const findAge = () => {
     const dateToday = Date.now()
@@ -36,11 +36,20 @@ const Therapist = ({ therapist, status, category }) => {
               </div>
             </div>
           </div>
-          <Link to="/meeting-form">Add a Meeting</Link>
+          {renderAddMeetingButton()}
           <Meetings category={category} />
 
         </div>
       )
+    }
+  }
+
+  const renderAddMeetingButton = () => {
+    if (user) {
+      if (user.id === therapist.user[0].id) {
+        return <Link to="/meeting-form">Add a Meeting</Link>
+
+      }
     }
   }
 
