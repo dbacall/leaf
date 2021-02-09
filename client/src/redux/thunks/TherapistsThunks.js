@@ -14,3 +14,16 @@ export const fetchTherapistsForCategory = createAsyncThunk(
     return response;
   }
 );
+
+export const fetchTherapist = createAsyncThunk(
+  'therapists/fetchTherapist',
+  async (id) => {
+
+    const response = await api.request({
+      method: 'get',
+      path: `/therapist/${id}`
+    });
+
+    return response;
+  }
+);

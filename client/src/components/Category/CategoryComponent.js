@@ -11,12 +11,16 @@ const Category = ({ therapists, status }) => {
     } else {
       return therapists.map((therapist, index) => {
         return (
-          <div className={styles.therapist} key={index}>
+          <Link
+            to={`/therapist/${therapist.id}`}
+            className={styles.therapist}
+            key={index}
+          >
             <div className={styles.imageContainer}>
               <img className={styles.therapistImage} src={require(`../../../../uploads/${therapist.photo[0].photo}`)}></img>
             </div>
             <h4 className={styles.therapistName}>{therapist.user[0].firstName} {therapist.user[0].surname}</h4>
-          </div>
+          </Link>
         )
       })
     }

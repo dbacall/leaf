@@ -1,0 +1,12 @@
+div.therapist {
+  padding: $padding * 2;
+  
+
+  @include media-tablet() {
+  
+  }
+
+  @include media-mobile() {
+    
+  }
+}
