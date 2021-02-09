@@ -10,7 +10,6 @@ export const fetchTherapistsForCategory = createAsyncThunk(
       path: `/therapist/category/${category}`
     });
 
-    console.log('here', response);
     return response;
   }
 );

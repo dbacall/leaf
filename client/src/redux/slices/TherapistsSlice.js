@@ -25,8 +25,7 @@ const TherapistsSlice = createSlice({
         state.therapists = action.payload.data;
         state.status = 'idle';
       });
-  },
-  extraReducers: (builder) => {
+
     builder
       .addCase(fetchTherapist, (state, action) => {
         state.status = 'loading';
