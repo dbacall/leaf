@@ -14,7 +14,7 @@ class MeetingService extends Service {
       const items = await Meeting.find({
         therapistId,
         category,
-      })
+      }).sort({ time: 'asc' })
 
       return {
         error: false,
@@ -35,7 +35,7 @@ class MeetingService extends Service {
     try {
       const items = await Meeting.find({
         therapistId,
-      })
+      }).sort({ time: 'asc' })
 
       return {
         error: false,
