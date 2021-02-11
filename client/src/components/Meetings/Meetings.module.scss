@@ -1,11 +1,16 @@
 div.meetings {
-  padding: $padding * 2;
+  padding-top: $padding;
+
+  .title {
+    text-align: center;
+  }
 
   table {
     border: 1px solid lightgray;
     border-collapse: collapse;
     width: 90%;
     margin: auto;
+    margin-top: $padding;
 
     th,
     td {
@@ -16,6 +21,10 @@ div.meetings {
       tr:nth-child(odd) {
         background-color: #f2f2f2;
       }
+    }
+
+    @include media-tablet() {
+      width: 100%;
     }
   }
 

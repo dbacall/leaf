@@ -27,6 +27,8 @@ const Meetings = ({ meetings, status }) => {
 
   return (
     <div className={styles.meetings}>
+      <h2 className={styles.title}>Meetings</h2>
+
       {status === 'loading' ? (
         <Loader />
       ) : (

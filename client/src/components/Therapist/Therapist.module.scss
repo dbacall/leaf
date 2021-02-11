@@ -23,7 +23,6 @@ div.therapist {
     }
 
     .therapistDetails {
-      // border: 2px solid red;
       width: 60%;
       margin: $margin auto;
 
@@ -42,17 +41,21 @@ div.therapist {
       }
     }
   }
-  
+
+  .meetingBtnContainer {
+    text-align: center;
+  }
 
   @include media-tablet() {
     .therapistProfile {
       flex-direction: column;
-  
+
+      .therapistDetails {
+        width: 100%;
+      }
     }
-  
   }
 
   @include media-mobile() {
-    
   }
 }
