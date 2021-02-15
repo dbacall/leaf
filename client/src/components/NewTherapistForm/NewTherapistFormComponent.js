@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './NewTherapistForm.module.scss';
-import { KeyboardDatePicker } from "@material-ui/pickers";
-import { Redirect } from 'react-router-dom'
-import { RadioButton, RadioGroup } from '@trendmicro/react-radio';
-import '@trendmicro/react-radio/dist/react-radio.css';
+import { KeyboardDatePicker } from '@material-ui/pickers';
+import { Redirect } from 'react-router-dom';
 import classnames from 'classnames';
+import UploadIcon from '../../assets/icons/UploadIcon.js';
 
 const categories = [
   {
@@ -15,30 +14,31 @@ const categories = [
     name: 'Cheese Addiction',
     image: 'cheese-selection-p313-443_medium.jpg',
   },
-]
+];
 
 const NewTherapistForm = ({ createTherapist, redirect }) => {
-
-  const [dateOfBirth, setDateOfBirth] = useState('')
-  const [yearsExperience, setYearsExperience] = useState('')
-  const [selectedCategories, setSelectedCategories] = useState([])
-  const [phone, setPhone] = useState('')
-  const [photo, setPhoto] = useState('')
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [yearsExperience, setYearsExperience] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [phone, setPhone] = useState('');
+  const [photo, setPhoto] = useState('');
 
   const selectCategory = (e, category) => {
     e.preventDefault();
     if (isCategorySelected(category)) {
-      const filteredCategories = selectedCategories.filter(item => item !== category);
-      setSelectedCategories(filteredCategories)
+      const filteredCategories = selectedCategories.filter(
+        (item) => item !== category
+      );
+      setSelectedCategories(filteredCategories);
     } else {
-      setSelectedCategories([...selectedCategories, category])
+      setSelectedCategories([...selectedCategories, category]);
     }
-  }
+  };
 
   const isCategorySelected = (category) => {
     console.log('here', selectedCategories.includes(category));
-    return selectedCategories.includes(category)
-  }
+    return selectedCategories.includes(category);
+  };
 
   const renderCategoriesButtons = () => {
     return categories.map((category, index) => {
@@ -52,25 +52,35 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
         >
           {category.name}
         </button>
-      )
-    })
-  }
+      );
+    });
+  };
 
   const submitTherapist = (e) => {
     e.preventDefault();
-    createTherapist({
-      dateOfBirth,
-      yearsExperience,
-      categories: selectedCategories,
-      phone,
-    }, photo)
-  }
+    createTherapist(
+      {
+        dateOfBirth,
+        yearsExperience,
+        categories: selectedCategories,
+        phone,
+      },
+      photo
+    );
+  };
 
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect to='/' />
+      return <Redirect to="/" />;
     }
-  }
+  };
+
+  const hiddenFileInput = useRef(null);
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    hiddenFileInput.current.click();
+  };
 
   return (
     <div className={styles.newTherapistForm}>
@@ -79,14 +89,15 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
         <form onSubmit={submitTherapist}>
           <div>
             <KeyboardDatePicker
+              className={styles.datePicker}
               autoOk
-              // variant="inline"
-              inputVariant="outlined"
+              variant="inline"
+              // inputVariant="outlined"
               label="Date Of Birth"
               format="MM/dd/yyyy"
               value={dateOfBirth}
-              InputAdornmentProps={{ position: "start" }}
-              onChange={date => setDateOfBirth(date)}
+              // InputAdornmentProps={{ position: 'start' }}
+              onChange={(date) => setDateOfBirth(date)}
             />
           </div>
           <div>
@@ -96,9 +107,9 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
               placeholder="Years of experience"
             />
           </div>
-          <div>
-            {renderCategoriesButtons()}
-          </div>
+          <label>Select categories:</label>
+
+          <div className={styles.categoryBtns}>{renderCategoriesButtons()}</div>
           <div>
             <input
               onChange={(e) => setPhone(e.target.value)}
@@ -108,14 +119,17 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
           </div>
 
           <div className={styles.photoUploadContainer}>
-            <label for="photo">
-              Choose a photo:
-            </label>
+            <button onClick={handleUpload}>
+              <UploadIcon fill="#37371f" className={styles.uploadIcon} />
+              Upload Photo
+            </button>
             <input
               onChange={(e) => setPhoto(e.target.files[0])}
               type="file"
               className={styles.photoUpload}
+              ref={hiddenFileInput}
             />
+            {photo && <p>Photo uploaded!</p>}
           </div>
           <button className={styles.submitBtn}>Submit</button>
         </form>
