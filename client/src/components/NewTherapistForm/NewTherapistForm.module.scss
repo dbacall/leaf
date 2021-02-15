@@ -22,20 +22,6 @@ div.newTherapistForm {
         margin-top: $margin;
       }
 
-      .datePicker {
-        -webkit-appearance: none;
-        width: 100%;
-
-        > div {
-          margin-top: 0;
-        }
-
-        input {
-          border-radius: 0;
-          margin-top: $margin * 2;
-        }
-      }
-
       .categoryBtns {
         display: flex;
         flex-wrap: wrap;

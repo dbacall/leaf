@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styles from './NewTherapistForm.module.scss';
 import { KeyboardDatePicker } from '@material-ui/pickers';
+import DatePicker from '../commons/DatePicker/DatePickerContainer';
 import { Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 import UploadIcon from '../../assets/icons/UploadIcon.js';
@@ -88,17 +89,7 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
       <div className={styles.formContainer}>
         <form onSubmit={submitTherapist}>
           <div>
-            <KeyboardDatePicker
-              className={styles.datePicker}
-              autoOk
-              variant="inline"
-              // inputVariant="outlined"
-              label="Date Of Birth"
-              format="MM/dd/yyyy"
-              value={dateOfBirth}
-              // InputAdornmentProps={{ position: 'start' }}
-              onChange={(date) => setDateOfBirth(date)}
-            />
+            <DatePicker setDate={setDateOfBirth} value={dateOfBirth} />
           </div>
           <div>
             <input
