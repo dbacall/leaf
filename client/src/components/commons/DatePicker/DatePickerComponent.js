@@ -13,7 +13,6 @@ const DatePicker = ({ setDate, dateAndTime, value }) => {
           className={styles.datePicker}
           autoOk
           variant="inline"
-          // inputVariant="outlined"
           label="Date and Time of Meeting"
           format="MM/dd/yyyy HH:mm"
           value={value}
@@ -30,7 +29,7 @@ const DatePicker = ({ setDate, dateAndTime, value }) => {
           label="Date Of Birth"
           format="MM/dd/yyyy"
           value={value}
-          InputAdornmentProps={{ position: 'start' }}
+          // InputAdornmentProps={{ position: 'start' }}
           onChange={(date) => setDate(date)}
         />
       )}

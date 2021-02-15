@@ -4,6 +4,8 @@ import styles from './navbar-styles.module.scss';
 import { ReactComponent as CloseMenu } from '../../assets/icons/x-mark.svg';
 import { ReactComponent as MenuIcon } from '../../assets/icons/menu.svg';
 import classNames from 'classnames';
+import AuthIcon from '../../assets/icons/AuthIcon';
+import UserIcon from '../../assets/icons/UserIcon';
 
 const Navbar = ({ auth, logout }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -22,8 +24,10 @@ const Navbar = ({ auth, logout }) => {
     closeMenu();
   };
 
+  const iconColor = '#44a1a0';
+
   const renderRight = () => {
-    const { user, isAuthenticated } = auth
+    const { user, isAuthenticated } = auth;
 
     if (isAuthenticated) {
       return (
@@ -33,20 +37,31 @@ const Navbar = ({ auth, logout }) => {
           })}
         >
           {user.therapistId ? (
-            <Link to={`/therapist/${user.therapistId}`} className={styles.navButton} onClick={closeMenu}>
+            <Link
+              to={`/therapist/${user.therapistId}`}
+              className={styles.navButton}
+              onClick={closeMenu}
+            >
+              <UserIcon className={styles.navIcon} fill={iconColor} />
               Therapist Page
             </Link>
           ) : (
-              <Link to="/therapist-form" className={styles.navButton} onClick={closeMenu}>
-                Become A Therapist
-              </Link>
-            )}
+            <Link
+              to="/therapist-form"
+              className={styles.navButton}
+              onClick={closeMenu}
+            >
+              <UserIcon className={styles.navIcon} fill={iconColor} />
+              Become A Therapist
+            </Link>
+          )}
 
           <a className={styles.navButton} onClick={onLogoutClick}>
+            <AuthIcon className={styles.navIcon} fill={iconColor} />
             Logout
-            </a>
+          </a>
         </div>
-      )
+      );
     } else {
       return (
         <div
@@ -55,12 +70,13 @@ const Navbar = ({ auth, logout }) => {
           })}
         >
           <Link to="/login" className={styles.navButton} onClick={closeMenu}>
+            <AuthIcon className={styles.navIcon} fill={iconColor} />
             Login
-            </Link>
+          </Link>
         </div>
-      )
+      );
     }
-  }
+  };
 
   return (
     <section className={styles.navbar}>
@@ -79,8 +95,8 @@ const Navbar = ({ auth, logout }) => {
             {mobileMenu ? (
               <CloseMenu className={styles.menuIcon} />
             ) : (
-                <MenuIcon className={styles.menuIcon} />
-              )}
+              <MenuIcon className={styles.menuIcon} />
+            )}
           </div>
         ) : null}
       </nav>

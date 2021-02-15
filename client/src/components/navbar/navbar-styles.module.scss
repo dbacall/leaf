@@ -45,6 +45,10 @@ section.navbar {
           text-decoration: none;
           cursor: pointer;
         }
+
+        .navIcon {
+          margin-right: $margin / 2;
+        }
       }
     }
 
