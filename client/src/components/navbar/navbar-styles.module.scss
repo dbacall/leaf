@@ -108,20 +108,20 @@ section.navbar {
     }
 
     @include media-mobile() {
-      .title {
-        visibility: hidden;
-        position: relative;
-      }
+      // .title {
+      //   visibility: hidden;
+      //   position: relative;
+      // }
 
-      .title:after {
-        font-size: $bigger-font-size;
-        visibility: visible;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        content: 'FSL';
-      }
+      // .title:after {
+      //   font-size: $bigger-font-size;
+      //   visibility: visible;
+      //   position: absolute;
+      //   top: 50%;
+      //   left: 50%;
+      //   transform: translate(-50%, -50%);
+      //   content: 'FSL';
+      // }
 
       .mobileMenuIcon {
         transform: translate(-20%, -50%);
