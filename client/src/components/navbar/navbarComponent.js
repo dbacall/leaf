@@ -82,7 +82,7 @@ const Navbar = ({ auth, logout }) => {
     <section className={styles.navbar}>
       <nav>
         <Link to="/" className={styles.title} onClick={closeMenu}>
-          <span>Leaf</span>
+          Leaf
         </Link>
 
         {renderRight()}

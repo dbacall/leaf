@@ -110,7 +110,7 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
           </div>
 
           <div className={styles.photoUploadContainer}>
-            <button onClick={handleUpload}>
+            <button onClick={handleUpload} className={styles.uploadBtn}>
               <UploadIcon fill="#37371f" className={styles.uploadIcon} />
               Upload Photo
             </button>

@@ -6,15 +6,14 @@ section.login {
     text-align: center;
 
     input {
-  
       &:last-of-type {
         margin-top: $margin;
       }
     }
-    
+
     .submitBtn {
       margin-top: $margin / 3;
-      width: 60%;
+      width: 100%;
 
       &:active {
         border: none;

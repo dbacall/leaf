@@ -51,6 +51,10 @@ div.newTherapistForm {
           // margin: 0 auto
         }
 
+        .uploadBtn {
+          width: 100%;
+        }
+
         .uploadIcon {
           margin-right: $margin / 2;
         }
@@ -62,6 +66,7 @@ div.newTherapistForm {
 
       .submitBtn {
         margin-top: $margin;
+        width: 100%;
       }
     }
   }
