@@ -6,6 +6,13 @@ import { format, parseISO } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 
 const Meetings = ({ meetings, status }) => {
+  const formatMinutes = (minutes) => {
+    if (minutes < 10) {
+      return '0' + minutes;
+    }
+    return minutes;
+  };
+
   const renderMeetingRows = () => {
     if (meetings) {
       return meetings.map((meeting, index) => (
@@ -13,7 +20,7 @@ const Meetings = ({ meetings, status }) => {
           <td>{format(parseISO(meeting.time), 'Pp', { locale: enGB })}</td>
           <td>{meeting.category}</td>
           <td>
-            {meeting.hours}:{meeting.minutes}
+            {meeting.hours} hr {formatMinutes(meeting.minutes)} mins
           </td>
           <td>
             <a href={`https://${meeting.videoLink}`} target="_blank">
