@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import styles from './NewMeetingForm.module.scss';
-import { DateTimePicker } from "@material-ui/pickers";
-import { Redirect } from 'react-router-dom'
+import DatePicker from '../commons/DatePicker/DatePickerContainer';
+import { Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 
 const NewMeetingForm = ({ createMeeting, redirect, therapist }) => {
-
-  const [time, setTime] = useState('')
-  const [category, setCategory] = useState('')
-  const [hours, setHours] = useState('')
-  const [minutes, setMinutes] = useState('')
-  const [videoLink, setVideoLink] = useState('')
+  const [time, setTime] = useState('');
+  const [category, setCategory] = useState('');
+  const [hours, setHours] = useState('');
+  const [minutes, setMinutes] = useState('');
+  const [videoLink, setVideoLink] = useState('');
 
   const renderCategoryOptions = () => {
     return therapist.categories.map((category, index) => {
@@ -18,9 +17,9 @@ const NewMeetingForm = ({ createMeeting, redirect, therapist }) => {
         <option value={category} key={index}>
           {category}
         </option>
-      )
-    })
-  }
+      );
+    });
+  };
 
   const submitMeeting = (e) => {
     e.preventDefault();
@@ -31,14 +30,14 @@ const NewMeetingForm = ({ createMeeting, redirect, therapist }) => {
       minutes,
       videoLink,
       therapistId: therapist.id,
-    })
-  }
+    });
+  };
 
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect to={`/therapist/${therapist.id}`} />
+      return <Redirect to={`/therapist/${therapist.id}`} />;
     }
-  }
+  };
 
   return (
     <div className={styles.newMeetingForm}>
@@ -46,17 +45,7 @@ const NewMeetingForm = ({ createMeeting, redirect, therapist }) => {
       <div className={styles.formContainer}>
         <form onSubmit={submitMeeting}>
           <div>
-            <DateTimePicker
-              autoOk
-              // variant="inline"
-              inputVariant="outlined"
-              label="Date and Time of Meeting"
-              // format="MM/dd/yyyy"
-              value={time}
-              InputAdornmentProps={{ position: "start" }}
-              onChange={dateAndTime => setTime(dateAndTime)}
-              ampm={false}
-            />
+            <DatePicker setDate={setTime} value={time} dateAndTime />
           </div>
 
           <div>
@@ -65,6 +54,7 @@ const NewMeetingForm = ({ createMeeting, redirect, therapist }) => {
               onChange={(e) => {
                 setCategory(e.target.value);
               }}
+              className={styles.selectCategory}
             >
               <option value="" disabled>
                 Select Category:
