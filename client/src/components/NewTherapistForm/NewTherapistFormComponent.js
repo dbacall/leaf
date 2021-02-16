@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import styles from './NewTherapistForm.module.scss';
-import { KeyboardDatePicker } from '@material-ui/pickers';
 import DatePicker from '../commons/DatePicker/DatePickerContainer';
 import { Redirect } from 'react-router-dom';
 import classnames from 'classnames';
@@ -17,12 +16,12 @@ const categories = [
   },
 ];
 
-const NewTherapistForm = ({ createTherapist, redirect }) => {
+const NewTherapistForm = ({ createTherapist, redirect, errors }) => {
   const [dateOfBirth, setDateOfBirth] = useState('');
-  const [yearsExperience, setYearsExperience] = useState('');
+  const [yearsExperience, setYearsExperience] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [pricePerHour, setPricePerHour] = useState('');
-  const [photo, setPhoto] = useState('');
+  const [pricePerHour, setPricePerHour] = useState(null);
+  const [photo, setPhoto] = useState(null);
 
   const selectCategory = (e, category) => {
     e.preventDefault();
@@ -37,7 +36,6 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
   };
 
   const isCategorySelected = (category) => {
-    console.log('here', selectedCategories.includes(category));
     return selectedCategories.includes(category);
   };
 
@@ -90,17 +88,34 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
         <form onSubmit={submitTherapist}>
           <div>
             <DatePicker setDate={setDateOfBirth} value={dateOfBirth} />
+            <p className={styles.warning}>
+              {errors.dateOfBirth && errors.dateOfBirth.message}
+            </p>
           </div>
           <div>
             <input
               onChange={(e) => setYearsExperience(e.target.value)}
               value={yearsExperience}
               placeholder="Years of experience"
+              className={classnames('', {
+                [styles.inputWarning]: errors.yearsExperience,
+              })}
             />
+            <p className={styles.warning}>
+              {errors.yearsExperience && errors.yearsExperience.message}
+              {errors.yearsExperience &&
+                errors.yearsExperience.reason &&
+                `Years of experience must be a number`}
+            </p>
           </div>
           <label>Select categories:</label>
 
-          <div className={styles.categoryBtns}>{renderCategoriesButtons()}</div>
+          <div className={styles.categoryBtns}>
+            {renderCategoriesButtons()}
+            <p className={styles.warning}>
+              {errors.categories && errors.categories.message}
+            </p>
+          </div>
           <div>
             <input
               onChange={(e) => setPricePerHour(e.target.value)}
