@@ -21,7 +21,7 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [yearsExperience, setYearsExperience] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [phone, setPhone] = useState('');
+  const [pricePerHour, setPricePerHour] = useState('');
   const [photo, setPhoto] = useState('');
 
   const selectCategory = (e, category) => {
@@ -64,7 +64,7 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
         dateOfBirth,
         yearsExperience,
         categories: selectedCategories,
-        phone,
+        pricePerHour,
       },
       photo
     );
@@ -103,9 +103,9 @@ const NewTherapistForm = ({ createTherapist, redirect }) => {
           <div className={styles.categoryBtns}>{renderCategoriesButtons()}</div>
           <div>
             <input
-              onChange={(e) => setPhone(e.target.value)}
-              value={phone}
-              placeholder="Phone Number"
+              onChange={(e) => setPricePerHour(e.target.value)}
+              value={pricePerHour}
+              placeholder="Price per hour"
             />
           </div>
 
