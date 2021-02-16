@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './Meetings.module.scss';
-import { Link } from 'react-router-dom';
 import Loader from '../commons/Loader';
 import { format, parseISO } from 'date-fns';
 import { enGB } from 'date-fns/locale';
@@ -23,7 +22,11 @@ const Meetings = ({ meetings, status }) => {
             {meeting.hours} hr {formatMinutes(meeting.minutes)} mins
           </td>
           <td>
-            <a href={`https://${meeting.videoLink}`} target="_blank">
+            <a
+              href={`https://${meeting.videoLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Link
             </a>
           </td>

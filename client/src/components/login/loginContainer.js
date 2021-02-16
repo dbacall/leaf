@@ -3,7 +3,7 @@ import Login from './loginComponent';
 import { loginUser, resetErrors } from '../../redux/actions/authActions';
 import { useSelector, useDispatch } from 'react-redux';
 
-const LoginContainer = (props) => {
+const LoginContainer = ({ history }) => {
   const auth = useSelector((state) => state.auth);
   const errors = useSelector((state) => state.errors);
 
@@ -11,10 +11,10 @@ const LoginContainer = (props) => {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      props.history.push('/');
+      history.push('/');
       dispatch(resetErrors());
     }
-  }, [auth]);
+  }, [auth, dispatch, history]);
 
   const login = (userData) => {
     dispatch(loginUser(userData));

@@ -56,10 +56,10 @@ const Navbar = ({ auth, logout }) => {
             </Link>
           )}
 
-          <a className={styles.navButton} onClick={onLogoutClick}>
+          <Link className={styles.navButton} onClick={onLogoutClick}>
             <AuthIcon className={styles.navIcon} fill={iconColor} />
             Logout
-          </a>
+          </Link>
         </div>
       );
     } else {

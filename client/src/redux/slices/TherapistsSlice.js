@@ -1,5 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchTherapistsForCategory, fetchTherapist } from '../thunks/TherapistsThunks'
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  fetchTherapistsForCategory,
+  fetchTherapist,
+} from '../thunks/TherapistsThunks';
 
 const initialState = {
   selectedTherapist: {},
@@ -7,13 +10,12 @@ const initialState = {
   status: 'loading',
 };
 
-
 const TherapistsSlice = createSlice({
   name: 'Therapists',
   initialState,
   reducers: {
     resetStatus(state, action) {
-      state.status = 'loading'
+      state.status = 'loading';
     },
   },
   extraReducers: (builder) => {

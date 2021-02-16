@@ -17,9 +17,9 @@ section.navbar {
       text-decoration: none;
       cursor: pointer;
 
-      &:hover {
-        background-color: lighten($dark-blue, 5%);
-      }
+      // &:hover {
+      //   background-color: lighten($dark-blue, 5%);
+      // }
 
       // span {
       //   margin-left: $margin * 4;

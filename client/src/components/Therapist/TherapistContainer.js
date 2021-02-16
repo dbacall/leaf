@@ -21,7 +21,7 @@ const TherapistContainer = () => {
       isInitialMount.current = false;
       dispatch(fetchTherapist(id));
     }
-  }, []);
+  }, [dispatch, id]);
 
   return (
     <Therapist
