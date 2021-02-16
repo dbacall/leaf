@@ -7,7 +7,7 @@ const therapistService = new TherapistService(Therapist);
 class TherapistController extends Controller {
   constructor(service) {
     super(service);
-    this.getByCategory = this.getByCategory.bind(this)
+    this.getByCategory = this.getByCategory.bind(this);
   }
 
   async getByCategory(req, res) {

@@ -7,11 +7,11 @@ const express = require('express');
 
 module.exports = (app) => {
   // serve the react app
-  app.use(express.static(path.join(__dirname, 'client', 'build')));
+  app.use(express.static(path.join(__dirname, '../../client/build')));
 
-  app.get('/', function (req, res) {
-    res.send('hello world');
-  });
+  // app.get('*', (req, res) => {
+  //   res.sendFile(path.join(__dirname, '/client/public/index.html'));
+  // });
 
   app.use(cors());
 

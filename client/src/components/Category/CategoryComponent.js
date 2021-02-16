@@ -3,7 +3,7 @@ import styles from './Category.module.scss';
 import { Link } from 'react-router-dom';
 import Loader from '../commons/Loader';
 
-const Category = ({ therapists, status, category }) => {
+const Category = ({ therapists = [], status, category }) => {
   const renderTherapists = () => {
     if (status === 'loading') {
       return <Loader />;

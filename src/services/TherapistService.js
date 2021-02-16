@@ -4,28 +4,24 @@ const Therapist = require('../models/Therapist');
 class TherapistService extends Service {
   constructor(model) {
     super(model);
-    this.getById = this.getById.bind(this)
-    this.getByCategory = this.getByCategory.bind(this)
+    this.getById = this.getById.bind(this);
+    this.getByCategory = this.getByCategory.bind(this);
   }
 
   async getById(query) {
     try {
-      const items = await Therapist.findById(
-        query.params.id,
-      ).populate(
-        [
-          {
-            path: "user",
-            model: "users",
-            // select: "street zipCode",
-          },
-          {
-            path: "photo",
-            model: "Photo",
-            // select: "age",
-          },
-        ]
-      );
+      const items = await Therapist.findById(query.params.id).populate([
+        {
+          path: 'user',
+          model: 'users',
+          // select: "street zipCode",
+        },
+        {
+          path: 'photo',
+          model: 'Photo',
+          // select: "age",
+        },
+      ]);
 
       return {
         error: false,
@@ -45,20 +41,18 @@ class TherapistService extends Service {
     try {
       const items = await Therapist.find({
         categories: query.params.category,
-      }).populate(
-        [
-          {
-            path: "user",
-            model: "users",
-            // select: "street zipCode",
-          },
-          {
-            path: "photo",
-            model: "Photo",
-            // select: "age",
-          },
-        ]
-      );
+      }).populate([
+        {
+          path: 'user',
+          model: 'users',
+          // select: "street zipCode",
+        },
+        {
+          path: 'photo',
+          model: 'Photo',
+          // select: "age",
+        },
+      ]);
 
       return {
         error: false,
