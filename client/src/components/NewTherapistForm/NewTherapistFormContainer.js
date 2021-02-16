@@ -21,8 +21,6 @@ const NewTherapistFormContainer = () => {
       path: therapistPath,
     });
 
-    console.log(therapist);
-
     if (therapist.error) {
       setErrors(therapist.errors);
     } else {

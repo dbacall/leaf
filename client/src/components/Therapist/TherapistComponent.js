@@ -40,10 +40,13 @@ const Therapist = ({ user, therapist, status, category }) => {
                     <span>Age:</span>
                     <span>{findAge()}</span>
                   </p>
-                  <p>
-                    <span>Phone:</span>
-                    <span>0{therapist.phone}</span>
-                  </p>
+                  {therapist.pricePerHour && (
+                    <p>
+                      <span>Price per hour:</span>
+                      <span>£{therapist.pricePerHour}</span>
+                    </p>
+                  )}
+
                   <p>
                     <span>Email:</span>
                     <span>{therapist.user[0].email}</span>
