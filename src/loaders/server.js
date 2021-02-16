@@ -1,9 +1,14 @@
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cors = require('cors');
-var compression = require('compression');
+const compression = require('compression');
+const path = require('path');
+const express = require('express');
 
 module.exports = (app) => {
+  // serve the react app
+  app.use(express.static(path.join(__dirname, 'client', 'build')));
+
   app.use(cors());
 
   app.use(
