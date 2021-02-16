@@ -87,18 +87,16 @@ const Navbar = ({ auth, logout }) => {
 
         {renderRight()}
 
-        {auth.isAuthenticated ? (
-          <div
-            className={styles.mobileMenuIcon}
-            onClick={mobileMenu ? closeMenu : openMenu}
-          >
-            {mobileMenu ? (
-              <CloseMenu className={styles.menuIcon} />
-            ) : (
-              <MenuIcon className={styles.menuIcon} />
-            )}
-          </div>
-        ) : null}
+        <div
+          className={styles.mobileMenuIcon}
+          onClick={mobileMenu ? closeMenu : openMenu}
+        >
+          {mobileMenu ? (
+            <CloseMenu className={styles.menuIcon} />
+          ) : (
+            <MenuIcon className={styles.menuIcon} />
+          )}
+        </div>
       </nav>
     </section>
   );
