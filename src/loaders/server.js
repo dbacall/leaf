@@ -9,6 +9,10 @@ module.exports = (app) => {
   // serve the react app
   app.use(express.static(path.join(__dirname, 'client', 'build')));
 
+  app.get('/', function (req, res) {
+    res.send('hello world');
+  });
+
   app.use(cors());
 
   app.use(
