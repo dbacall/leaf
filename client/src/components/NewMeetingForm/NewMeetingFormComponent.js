@@ -58,7 +58,7 @@ const NewMeetingForm = ({ createMeeting, redirect, therapist, errors }) => {
                 setCategory(e.target.value);
               }}
               // className={styles.selectCategory}
-              className={classnames(styles.selectCategory, {
+              className={classnames('', {
                 [styles.inputWarning]: errors.category,
               })}
             >
