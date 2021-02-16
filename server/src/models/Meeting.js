@@ -9,7 +9,7 @@ const MeetingSchema = new Schema({
   category: {
     type: String,
     required: [true, 'You need to select a category'],
-    enum: ['Mums', 'Cheese Addiction']
+    enum: ['Mums', 'Cheese Addiction'],
   },
   therapistId: {
     type: String,
@@ -25,7 +25,7 @@ const MeetingSchema = new Schema({
   },
   videoLink: {
     type: String,
-    required: [true, 'You need to provide a video link',
+    required: [true, 'You need to provide a video link'],
   },
 });
 
