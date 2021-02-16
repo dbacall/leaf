@@ -11,6 +11,9 @@
     "test": "ENV_FILE=test nodemon --exec 'nyc mocha 'src/test/spec/*.test.js''",
     "build": "babel src/app.js --out-file server.compiled.js"
   },
+  "engines": {
+    "node": "12.16.1"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
