@@ -5,7 +5,7 @@ import Loader from '../commons/Loader';
 import { differenceInYears } from 'date-fns';
 import Meetings from '../Meetings/MeetingsContainer';
 
-const Therapist = ({ user, therapist, status, category }) => {
+const Therapist = ({ user, therapist = {}, status, category }) => {
   const findAge = () => {
     const dateToday = Date.now();
     return differenceInYears(dateToday, new Date(therapist.dateOfBirth));
