@@ -1,8 +1,7 @@
 const Service = require('./service');
 const Photo = require('../models/Photo');
-const fs = require('fs')
+const fs = require('fs');
 const sharp = require('sharp');
-
 
 class PhotoService extends Service {
   constructor(model) {
@@ -11,21 +10,21 @@ class PhotoService extends Service {
   }
 
   async create(data) {
-    var updatedData = data
-    fs.access('../uploads', (err) => {
+    var updatedData = data;
+    fs.access('./uploads', (err) => {
       if (err) {
-        fs.mkdirSync('../uploads/');
+        fs.mkdirSync('./uploads/');
       }
     });
     const fileName = new Date().toISOString() + data.file.originalname;
     sharp(data.file.buffer)
       .resize({ width: 280, height: 280, fit: 'cover' })
-      .toFile('../uploads/' + fileName)
+      .toFile('./uploads/' + fileName);
 
     updatedData = {
       therapistId: data.body.therapist,
-      photo: fileName
-    }
+      photo: fileName,
+    };
 
     console.log(updatedData);
     const newItem = new Photo(updatedData);
@@ -48,7 +47,6 @@ class PhotoService extends Service {
       };
     }
   }
-
 }
 
 module.exports = PhotoService;
