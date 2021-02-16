@@ -5,8 +5,6 @@ module.exports = () => {
 
   const url = process.env.DB_URL;
 
-  console.log('db url', url);
-
   mongoose
     .connect(url, {
       useNewUrlParser: true,
