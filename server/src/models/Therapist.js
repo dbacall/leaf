@@ -4,20 +4,24 @@ const Schema = mongoose.Schema;
 const TherapistSchema = new Schema({
   dateOfBirth: {
     type: Date,
-    required: true,
+    required: [true, 'You need to enter your date of birth.'],
   },
   yearsExperience: {
     type: Number,
-    required: true,
+    required: [true, 'Years of experience needs to be entered.'],
   },
-  categories: [{
-    type: String,
-    required: true,
-    enum: ['Mums', 'Cheese Addiction']
-  }],
+  categories: [
+    {
+      type: String,
+      required: [true, 'You must select at least one category'],
+      enum: ['Mums', 'Cheese Addiction'],
+    },
+  ],
   phone: {
     type: Number,
-    required: true,
+  },
+  pricePerHour: {
+    type: Number,
   },
 });
 
