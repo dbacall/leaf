@@ -7,16 +7,19 @@ const TherapistSchema = new Schema({
     required: [true, 'You need to enter your date of birth.'],
   },
   yearsExperience: {
-    type: Number,
+    type: [Number, 'Years of experience must be a number'],
     required: [true, 'Years of experience needs to be entered.'],
   },
-  categories: [
-    {
-      type: String,
-      required: [true, 'You must select at least one category'],
-      enum: ['Mums', 'Cheese Addiction'],
-    },
-  ],
+  categories: {
+    type: [
+      {
+        type: String,
+        required: true,
+        enum: ['Mums', 'Cheese Addiction'],
+      },
+    ],
+    required: [true, 'You must select at least one category.'],
+  },
   phone: {
     type: Number,
   },
