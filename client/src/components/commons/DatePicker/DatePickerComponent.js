@@ -6,11 +6,15 @@ import {
 import styles from './DatePicker.module.scss';
 
 const DatePicker = ({ setDate, dateAndTime, value }) => {
+  const today = new Date();
+
   return (
     <div className={styles.datePickerContainer}>
       {dateAndTime ? (
         <KeyboardDateTimePicker
           className={styles.datePicker}
+          minDate={today}
+          minDateMessage="Please select a future date"
           autoOk
           variant="inline"
           label="Date and Time of Meeting"
