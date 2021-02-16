@@ -32,7 +32,7 @@ module.exports = (app) => {
   // Passport config
   require('../config/passport')(passport);
 
-  const port = process.env.PORT || 8081;
+  const port = process.env.PORT || 5000;
 
   app.listen(port, () => console.log(`Server up and running on port ${port}!`));
 };
