@@ -12,7 +12,7 @@ const Therapist = ({ user, therapist, status, category }) => {
   };
 
   const renderTherapist = () => {
-    if (therapist) {
+    if (Object.keys(therapist).length > 0) {
       return (
         <div>
           <div className={styles.therapistProfile}>
