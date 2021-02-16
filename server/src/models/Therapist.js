@@ -14,11 +14,15 @@ const TherapistSchema = new Schema({
     type: [
       {
         type: String,
-        required: true,
         enum: ['Mums', 'Cheese Addiction'],
       },
     ],
-    required: [true, 'You must select at least one category.'],
+    validate: {
+      validator: (array) => {
+        return array.length > 0;
+      },
+      message: 'You must select at least one category',
+    },
   },
   phone: {
     type: Number,
