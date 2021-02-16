@@ -2,13 +2,13 @@ const express = require('express');
 
 const app = express();
 
-const database = require('./loaders/database');
+const database = require('./src/loaders/database');
 
-const server = require('./loaders/server');
+const server = require('./src/loaders/server');
 
-const env = require('./loaders/env');
+const env = require('./src/loaders/env');
 
-const getRoutes = require('./loaders/routes'); // load environment variables.
+const getRoutes = require('./src/loaders/routes'); // load environment variables.
 
 
 env(); // connect to database

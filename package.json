@@ -5,11 +5,11 @@
   "main": "app.js",
   "scripts": {
     "start": "ENV_FILE=staging node",
-    "server": "ENV_FILE=staging nodemon src/app.js",
+    "server": "ENV_FILE=staging nodemon app.js",
     "client": "npm start --prefix ../client",
     "dev": "ENV_FILE=staging concurrently \"npm run server\" \"npm run client\"",
     "test": "ENV_FILE=test nodemon --exec 'nyc mocha 'src/test/spec/*.test.js''",
-    "build": "babel src/app.js --out-file server.compiled.js"
+    "build": "babel app.js --out-file server.compiled.js"
   },
   "engines": {
     "node": "12.16.1"
