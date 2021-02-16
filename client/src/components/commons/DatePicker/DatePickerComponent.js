@@ -17,7 +17,7 @@ const DatePicker = ({ setDate, dateAndTime, value }) => {
           minDateMessage="Please select a future date"
           autoOk
           variant="inline"
-          label="Date and Time of Meeting"
+          label="Date and Time"
           format="MM/dd/yyyy HH:mm"
           value={value}
           // InputAdornmentProps={{ position: 'start' }}
@@ -29,8 +29,7 @@ const DatePicker = ({ setDate, dateAndTime, value }) => {
           className={styles.datePicker}
           autoOk
           variant="inline"
-          // inputVariant="outlined"
-          label="Date Of Birth"
+          label="Date Of Birth (mm/dd/yyyy)"
           format="MM/dd/yyyy"
           value={value}
           // InputAdornmentProps={{ position: 'start' }}
