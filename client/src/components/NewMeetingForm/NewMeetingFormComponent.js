@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 
 const NewMeetingForm = ({ createMeeting, redirect, therapist, errors }) => {
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState(new Date());
   const [category, setCategory] = useState('');
   const [hours, setHours] = useState(null);
   const [minutes, setMinutes] = useState(null);
