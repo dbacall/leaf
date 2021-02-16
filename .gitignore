@@ -1,6 +1,7 @@
 node_modules
 
-/src/config
+# /src/config
+.env*
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
