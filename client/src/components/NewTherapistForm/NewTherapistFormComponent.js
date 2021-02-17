@@ -16,7 +16,7 @@ const categories = [
   },
 ];
 
-const NewTherapistForm = ({ createTherapist, redirect, errors }) => {
+const NewTherapistForm = ({ createTherapist, redirect, errors, therapist }) => {
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [yearsExperience, setYearsExperience] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -70,7 +70,7 @@ const NewTherapistForm = ({ createTherapist, redirect, errors }) => {
 
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to={`/therapist/${therapist.id}`} />;
     }
   };
 

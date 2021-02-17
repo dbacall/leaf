@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import NewTherapistForm from './NewTherapistFormComponent';
 import api from '../../services/api';
 import axios from 'axios';
+import { updateUser } from '../../redux/actions/authActions';
 
 const url = process.env.REACT_APP_API_URL;
 
 const NewTherapistFormContainer = () => {
   const [redirect, setRedirect] = useState(false);
   const [errors, setErrors] = useState({});
+  const [therapist, setTherapist] = useState('');
+
+  const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user);
 
@@ -24,6 +28,7 @@ const NewTherapistFormContainer = () => {
     if (therapist.error) {
       setErrors(therapist.errors);
     } else {
+      setTherapist(therapist.data.data);
       const therapistId = therapist.data.data.id;
 
       if (photo) {
@@ -41,11 +46,13 @@ const NewTherapistFormContainer = () => {
         await axios.post(`${url}/photo`, photoData, config);
       }
 
-      await api.request({
+      const updatedUser = await api.request({
         method: 'put',
         data: { therapistId },
         path: `/users/${user.id}`,
       });
+
+      dispatch(updateUser(updatedUser.data.data));
 
       setRedirect(true);
     }
@@ -57,6 +64,7 @@ const NewTherapistFormContainer = () => {
       createTherapist={createTherapist}
       redirect={redirect}
       errors={errors}
+      therapist={therapist}
     />
   );
 };
