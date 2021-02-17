@@ -13,12 +13,12 @@ env();
 
 database();
 
-// create server connection
-
-server(app);
-
 // get all api routes
 
 getRoutes(app);
+
+// create server connection
+
+server(app);
 
 module.exports = app;
