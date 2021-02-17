@@ -1,7 +1,12 @@
 import api from '../../services/api';
 import setAuthToken from '../../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types';
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  USER_LOADING,
+  UPDATE_USER,
+} from './types';
 
 export const registerUser = (userData, history) => async (dispatch) => {
   const path = '/users/register';
@@ -50,6 +55,13 @@ export const setCurrentUser = (decoded) => {
     type: SET_CURRENT_USER,
     payload: decoded.user,
   };
+};
+
+export const updateUser = (user) => (dispatch) => {
+  dispatch({
+    type: UPDATE_USER,
+    payload: user,
+  });
 };
 
 export const setUserLoading = () => {
