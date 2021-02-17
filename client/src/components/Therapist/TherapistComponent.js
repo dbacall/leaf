@@ -79,7 +79,7 @@ const Therapist = ({ user, therapist = {}, status, category }) => {
 
   return (
     <div className={styles.therapist}>
-      {status === 'loading' ? <Loader /> : renderTherapist()}
+      {/* {status === 'loading' ? <Loader /> : renderTherapist()} */}
     </div>
   );
 };
