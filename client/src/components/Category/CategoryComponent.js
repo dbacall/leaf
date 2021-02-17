@@ -15,13 +15,15 @@ const Category = ({ therapists = [], status, category }) => {
             className={styles.therapist}
             key={index}
           >
-            <div className={styles.imageContainer}>
-              <img
-                className={styles.therapistImage}
-                src={`${process.env.REACT_APP_S3_BUCKET_URL}/${therapist.photo[0].photo}`}
-                alt={`${therapist.user[0].firstName} ${therapist.user[0].surname}`}
-              ></img>
-            </div>
+            {therapist.photo.length > 0 ? (
+              <div className={styles.imageContainer}>
+                <img
+                  className={styles.therapistImage}
+                  src={`${process.env.REACT_APP_S3_BUCKET_URL}/${therapist.photo[0].photo}`}
+                  alt={`${therapist.user[0].firstName} ${therapist.user[0].surname}`}
+                ></img>
+              </div>
+            ) : null}
             <h4 className={styles.therapistName}>
               {therapist.user[0].firstName} {therapist.user[0].surname}
             </h4>
