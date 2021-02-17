@@ -1,7 +1,8 @@
 const Service = require('./service');
 const Photo = require('../models/Photo');
-const fs = require('fs');
+// const fs = require('fs');
 const sharp = require('sharp');
+const AWS = require('aws-sdk');
 
 class PhotoService extends Service {
   constructor(model) {
@@ -10,23 +11,56 @@ class PhotoService extends Service {
   }
 
   async create(data) {
+    console.log(process.env.AWS_ACCESS_KEY_ID);
     var updatedData = data;
-    fs.access('./uploads', (err) => {
-      if (err) {
-        fs.mkdirSync('./uploads/');
-      }
+    // fs.access('./uploads', (err) => {
+    //   if (err) {
+    //     fs.mkdirSync('./uploads/');
+    //   }
+    // });
+    AWS.config.update({
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: 'eu-west-2',
     });
+
+    const s3Bucket = new AWS.S3({
+      params: { Bucket: process.env.AWS_S3_BUCKET_NAME },
+    });
+
     const fileName = new Date().toISOString() + data.file.originalname;
+
     sharp(data.file.buffer)
-      .resize({ width: 280, height: 280, fit: 'cover' })
-      .toFile('./uploads/' + fileName);
+      .resize({
+        width: 280,
+        height: 280,
+        fit: 'cover',
+      })
+      .toBuffer()
+      .then(async (buffer) => {
+        const s3Data = {
+          Key: fileName,
+          Body: buffer,
+          // ContentEncoding: 'base64',
+          ContentType: 'image/jpeg',
+          ACL: 'public-read',
+          Bucket: process.env.AWS_S3_BUCKET_NAME,
+        };
+
+        await s3Bucket.putObject(s3Data, (err, data) => {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log(data);
+          }
+        });
+      });
 
     updatedData = {
       therapistId: data.body.therapist,
       photo: fileName,
     };
 
-    console.log(updatedData);
     const newItem = new Photo(updatedData);
 
     try {

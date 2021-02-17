@@ -18,7 +18,7 @@ const Category = ({ therapists = [], status, category }) => {
             <div className={styles.imageContainer}>
               <img
                 className={styles.therapistImage}
-                // src={require(`../../../../uploads/${therapist.photo[0].photo}`)}
+                src={`${process.env.REACT_APP_S3_BUCKET_URL}/${therapist.photo[0].photo}`}
                 alt={`${therapist.user[0].firstName} ${therapist.user[0].surname}`}
               ></img>
             </div>
