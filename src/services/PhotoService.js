@@ -1,6 +1,5 @@
 const Service = require('./service');
 const Photo = require('../models/Photo');
-// const fs = require('fs');
 const sharp = require('sharp');
 const AWS = require('aws-sdk');
 
@@ -11,13 +10,7 @@ class PhotoService extends Service {
   }
 
   async create(data) {
-    console.log(process.env.AWS_ACCESS_KEY_ID);
     var updatedData = data;
-    // fs.access('./uploads', (err) => {
-    //   if (err) {
-    //     fs.mkdirSync('./uploads/');
-    //   }
-    // });
     AWS.config.update({
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -41,7 +34,6 @@ class PhotoService extends Service {
         const s3Data = {
           Key: fileName,
           Body: buffer,
-          // ContentEncoding: 'base64',
           ContentType: 'image/jpeg',
           ACL: 'public-read',
           Bucket: process.env.AWS_S3_BUCKET_NAME,
