@@ -9,7 +9,8 @@
     "client": "npm start --prefix ../client",
     "dev": "ENV_FILE=staging concurrently \"npm run server\" \"npm run client\"",
     "test": "ENV_FILE=test nodemon --exec 'nyc mocha 'src/test/spec/*.test.js''",
-    "build": "babel app.js --out-file server.compiled.js"
+    "build": "babel app.js --out-file server.compiled.js",
+    "deploy": "eb deploy"
   },
   "engines": {
     "node": "12.16.1"
