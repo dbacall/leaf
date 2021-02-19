@@ -5,8 +5,8 @@ const photo = require('../api/photo');
 
 module.exports = (app) => {
   // Routes
-  app.use('/api/users', users);
-  app.use('/api/therapist', therapist);
-  app.use('/api/meeting', meeting);
-  app.use('/api/photo', photo);
+  app.use('/users', users);
+  app.use('/therapist', therapist);
+  app.use('/meeting', meeting);
+  app.use('/photo', photo);
 };
