@@ -13,6 +13,11 @@ module.exports = (app) => {
   //   res.sendFile(path.join(__dirname, '/client/public/index.html'));
   // });
 
+  // for aws eb healthcheck
+  app.get('/', (req, res) => {
+    res.status(200);
+  });
+
   app.use(cors());
 
   app.use(
